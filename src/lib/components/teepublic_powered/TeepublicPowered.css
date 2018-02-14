@@ -1,0 +1,15 @@
+.tp-powered {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.tp-powered__text {
+  font-size: 15px;
+  font-weight: 300;
+  margin: 8px;
+}
+
+.tp-powered__logo {
+  height: 15px;
+  margin: 0px;
+}

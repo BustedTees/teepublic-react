@@ -1,9 +1,10 @@
 {
   "name": "teepublic-react",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "TeePublic React Components",
   "main": "build/index.js",
   "scripts": {
+    "precommit": "lint-staged",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "demo": "node scripts/demo.js",
@@ -19,7 +20,18 @@
   },
   "homepage": "https://github.com/BustedTees/teepublic-react#readme",
   "license": "MIT",
-  "dependencies": {},
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.0",
+    "prettier": "^1.10.2"
+  },
   "devDependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",

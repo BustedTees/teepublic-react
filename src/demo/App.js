@@ -1,11 +1,9 @@
 import React from 'react';
-import Example from '../lib';
-import { SecondExample } from '../lib';
+import TeepublicPowered from '../lib/components/teepublic_powered/TeepublicPowered';
 
 const App = () => (
   <div>
-    <Example />
-    <SecondExample />
+    <TeepublicPowered layout="row" />
   </div>
 );
 

@@ -1,8 +1,3 @@
-import Example from './components/Example';
-import SecondExample from './components/SecondExample';
+import TeepublicPowered from './components/teepublic_powered/TeepublicPowered';
 
-export default Example;
-
-export {
-  SecondExample,
-};
+export default TeepublicPowered;
