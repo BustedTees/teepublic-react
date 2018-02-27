@@ -25,7 +25,13 @@ import { TeepublicCheckout } from 'teepublic-react'
 Clone the repo on your dev machine
 `git clone https://github.com/BustedTees/teepublic-react`
 
-npm install
+`npm install` to install all dependencies
+
+`npm start` to run the demo project
+
+`npm publish` to publish the package on npm. You would need to change the version number in package.json
+
+`git push -u origin <branch-name>` & create PR and get it reviewed
 
 
 
