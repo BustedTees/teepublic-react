@@ -1,6 +1,7 @@
 .tp-row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .tp-row--justify-start {

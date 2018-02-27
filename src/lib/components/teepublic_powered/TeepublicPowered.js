@@ -50,6 +50,5 @@ TeepublicPowered.propTypes = {
 };
 
 TeepublicPowered.defaultProps = {
-  size: 'medium',
   layout: 'row'
 };
