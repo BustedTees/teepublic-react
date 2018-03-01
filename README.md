@@ -1,3 +1,7 @@
+# About
+Components for rendering a TeePublic storefront.
+![test-status](https://travis-ci.org/BustedTees/teepublic-react.svg?branch=master)
+
 # Installation 
 `npm install teepublic-react`
 
