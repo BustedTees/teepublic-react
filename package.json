@@ -6,7 +6,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "start": "node scripts/start.js",
-    "build": "babel src/lib -d lib",
+    "build": "babel src/lib --out-dir lib --copy-files",
     "demo": "node scripts/demo.js",
     "test": "node scripts/test.js --env=jsdom"
   },
