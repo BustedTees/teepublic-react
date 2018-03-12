@@ -12,17 +12,56 @@ import './BuyProduct.css';
 
 const CLASS_ROOT = 'tp-buy-product';
 
+const OPTIONS_MAP = {
+  gender: 'buttonBar',
+  style: 'dropdown',
+  size: 'dropdown',
+  color: 'buttonBar'
+};
+
 export default class BuyProduct extends Component {
   constructor(props) {
     super(props);
+
+    var canvasOptions = {};
+    var selectedOptions = {};
+    props.design.hierarchy.forEach(function(value) {
+      canvasOptions[value] = new Set();
+      selectedOptions[value] = null;
+    });
+
+    selectedOptions.gender = 'Male';
+    selectedOptions.style = 'Classic T-Shirt';
+
     this.state = {
       selectedCanvas: props.selectedCanvas,
-      selectedImageUrl: props.selectedCanvas.mockup_url
+      selectedImageUrl: props.selectedCanvas.mockup_url,
+      canvasOptions: canvasOptions,
+      selectedOptions: selectedOptions
     };
+    console.log(props.design);
   }
+
+  recalibrateOptions() {
+    const { design } = this.props;
+    const { products, hierarchy } = design;
+    const { canvasOptions, selectedOptions } = this.state;
+
+    hierarchy.forEach(function(option) {
+      products.forEach(function(product) {
+        const productAttributes = product.attributes;
+        const value = productAttributes[option].value;
+        canvasOptions[option].add(value);
+      });
+    });
+
+    console.log(canvasOptions);
+  }
+
   render() {
+    this.recalibrateOptions();
     const { className, design, ...props } = this.props;
-    const { selectedCanvas, selectedImageUrl } = this.state;
+    const { selectedCanvas, selectedImageUrl, canvasOptions } = this.state;
     const canvases = design.canvases;
 
     const classes = classnames(CLASS_ROOT, className);
@@ -69,11 +108,32 @@ export default class BuyProduct extends Component {
         ).commaSeprated()}
       </h2>
     );
+    // const cartButton = (
+    //   <Button disabled style="fill" size="medium">
+    //     Add to Cart
+    //   </Button>
+    // );
+
     const cartButton = (
-      <Button style="fill" size="medium">
+      <button type="button" disabled>
         Add to Cart
-      </Button>
+      </button>
     );
+
+    const dropdowns = [];
+    for (var option in canvasOptions) {
+      const optionDisplay = (
+        <Row>
+          <p>{option}</p>
+          <select>
+            {[...canvasOptions[option]].map(value => (
+              <option value={value}>{value}</option>
+            ))}
+          </select>
+        </Row>
+      );
+      dropdowns.push(optionDisplay);
+    }
 
     return (
       <Row className={classes} justify="center" align="start">
@@ -91,6 +151,7 @@ export default class BuyProduct extends Component {
           align="start"
         >
           {designTitle}
+          {dropdowns}
           {designPrice}
           {cartButton}
         </Column>

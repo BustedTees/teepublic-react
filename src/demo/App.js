@@ -2,19 +2,29 @@ import React from 'react';
 import TeepublicPowered from '../lib/components/teepublic_powered/TeepublicPowered';
 import DesignCollection from '../lib/components/design_collection/DesignCollection';
 import BuyProduct from '../lib/components/buy_product/BuyProduct';
-import Row from '../lib/components/row/Row';
+import Column from '../lib/components/column/Column';
 import Button from '../lib/components/button/Button';
+import AddToCart from '../lib/components/add_to_cart/AddToCart';
+import Cart from '../lib/components/cart/Cart';
 import designs from './DesignsData';
+import design from './DesignData';
+import designsMarcello from './DesignDataMarcello';
 
 const App = () => {
-  const design = designs[0].design;
+  const firstDesign = designs[0].design;
+  const designMarcello = designsMarcello.designs[0];
+  console.log(designMarcello);
   return (
-    <div>
-      {console.log(design)}
-      <BuyProduct design={design} selectedCanvas={design.canvases[0]} />
+    <Column align="center">
+      <AddToCart
+        design={designMarcello}
+        product={designMarcello.defaultProduct}
+      />
+      <Cart />
+      <BuyProduct design={design} selectedCanvas={firstDesign.canvases[0]} />
       <DesignCollection tileSize="large" designs={designs} />
-      <TeepublicPowered layout="row" />
-    </div>
+      <TeepublicPowered layout="column" />
+    </Column>
   );
 };
 

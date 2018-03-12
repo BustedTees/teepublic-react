@@ -1,0 +1,6 @@
+.tp-cart {
+  max-width: 400px;
+}
+.tp-cart__total {
+  align-self: flex-end;
+}
