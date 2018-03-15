@@ -65,7 +65,7 @@ export default class Cart extends Component {
 
     var totalPrice = 0;
     items.forEach(function(item) {
-      totalPrice += item.product.price * item.quantity;
+      totalPrice += item.sku.price * item.quantity;
     });
 
     return (

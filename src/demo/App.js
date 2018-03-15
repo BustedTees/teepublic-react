@@ -8,20 +8,19 @@ import AddToCart from '../lib/components/add_to_cart/AddToCart';
 import Cart from '../lib/components/cart/Cart';
 import designs from './DesignsData';
 import design from './DesignData';
-import designMarcello from './DesignDataMarcello';
 
 const App = () => {
   const firstDesign = designs[0].design;
-  console.log(designMarcello);
+  console.log(design);
   return (
     <Column align="center">
       <AddToCart
-        design={designMarcello}
-        product={designMarcello.defaultProduct}
+        design={design}
+        sku={design._embedded.defaultProduct._embedded.defaultSku}
       />
       <Cart />
-      <BuyProduct design={design} selectedCanvas={firstDesign.canvases[0]} />
-      <DesignCollection tileSize="large" designs={designs} />
+      {/* <BuyProduct design={design} selectedCanvas={firstDesign.canvases[0]} /> */}
+      <DesignCollection tileSize="small" designs={designs} />
       <TeepublicPowered layout="column" />
     </Column>
   );

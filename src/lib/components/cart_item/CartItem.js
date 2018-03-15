@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import Row from '../row/Row';
 import Column from '../column/Column';
 import MoneyHelper from '../../utils/MoneyHelper';
+import _ from 'underscore';
 
 import './CartItem.css';
 
@@ -27,24 +28,29 @@ export default class CartItem extends Component {
 
     const classes = classnames(className, CLASS_ROOT);
 
-    const productImage = (
+    var skuMockupImage = _.find(cartItem.sku.images, function(image) {
+      return image.type == 'mockup';
+    });
+    console.log(skuMockupImage);
+
+    const skuImage = (
       <img
         className={`${CLASS_ROOT}__image`}
-        src={cartItem.product.images[0].url}
-        alt="Product Image"
+        src={skuMockupImage.url}
+        alt="Sku Image"
         height={100}
       />
     );
     const designTitle = (
       <h4 className={`${CLASS_ROOT}__title`}>{cartItem.design.description}</h4>
     );
-    const productPrice = (
+    const skuPrice = (
       <p className={`${CLASS_ROOT}__price`}>
-        {new MoneyHelper(cartItem.product.price, 'USD').commaSeprated()}
+        {new MoneyHelper(cartItem.sku.price, 'USD').commaSeprated()}
       </p>
     );
 
-    const productQuantity = (
+    const skuQuantity = (
       <Row justify="start" align="center">
         Quantity:
         <input
@@ -58,7 +64,7 @@ export default class CartItem extends Component {
     const itemPrice = (
       <p className={`${CLASS_ROOT}__item-price`}>
         {new MoneyHelper(
-          cartItem.product.price * cartItem.quantity,
+          cartItem.sku.price * cartItem.quantity,
           'USD'
         ).commaSeprated()}
       </p>
@@ -66,13 +72,13 @@ export default class CartItem extends Component {
 
     return (
       <Row className={classes} justify="between">
-        {productImage}
+        {skuImage}
         <Column>
           {designTitle}
           <Row justify="between" align="center">
-            {productQuantity}
+            {skuQuantity}
             X
-            {productPrice}
+            {skuPrice}
             =
             {itemPrice}
           </Row>

@@ -1,14 +1,11 @@
 const CART_KEY = 'TEEPUBLIC_CART_ITEMS';
 export default class CartHelper {
-  addToCart(design, product, quantity = 1) {
+  addToCart(design, sku, quantity = 1) {
     var itemAlreadyExists = false;
 
     const cartItems = this.getCartItems();
     cartItems.forEach(function(cartItem) {
-      if (
-        cartItem.design.id == design.id &&
-        cartItem.product.id == product.id
-      ) {
+      if (cartItem.design.id == design.id && cartItem.sku.id == sku.id) {
         cartItem.quantity += quantity;
         itemAlreadyExists = true;
       }
@@ -17,7 +14,7 @@ export default class CartHelper {
     if (!itemAlreadyExists) {
       const newCartItem = {
         design: design,
-        product: product,
+        sku: sku,
         quantity: quantity
       };
       cartItems.push(newCartItem);
@@ -31,10 +28,10 @@ export default class CartHelper {
     cartItems.forEach(function(cartItem) {
       if (
         cartItem.design.id == updatedCartItem.design.id &&
-        cartItem.product.id == updatedCartItem.product.id
+        cartItem.sku.id == updatedCartItem.sku.id
       ) {
         cartItem.design = updatedCartItem.design;
-        cartItem.product = updatedCartItem.product;
+        cartItem.sku = updatedCartItem.sku;
         cartItem.quantity = parseInt(updatedCartItem.quantity);
       }
     });
@@ -46,7 +43,7 @@ export default class CartHelper {
     cartItems.forEach(function(cartItem, index, object) {
       if (
         cartItem.design.id == deletedCartItem.design.id &&
-        cartItem.product.id == deletedCartItem.product.id
+        cartItem.sku.id == deletedCartItem.sku.id
       ) {
         object.splice(index, 1);
       }
