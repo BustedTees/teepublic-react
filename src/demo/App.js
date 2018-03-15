@@ -8,11 +8,10 @@ import AddToCart from '../lib/components/add_to_cart/AddToCart';
 import Cart from '../lib/components/cart/Cart';
 import designs from './DesignsData';
 import design from './DesignData';
-import designsMarcello from './DesignDataMarcello';
+import designMarcello from './DesignDataMarcello';
 
 const App = () => {
   const firstDesign = designs[0].design;
-  const designMarcello = designsMarcello.designs[0];
   console.log(designMarcello);
   return (
     <Column align="center">
