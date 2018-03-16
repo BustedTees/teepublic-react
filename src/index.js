@@ -1,0 +1,8 @@
+export {
+  default as DesignCollection
+} from './lib/components/design_collection/DesignCollection';
+export {
+  default as TeepublicPowered
+} from './lib/components/teepublic_powered/TeepublicPowered';
+export { default as Cart } from './lib/components/cart/Cart';
+export { default as BuyProduct } from './lib/components/buy_product/BuyProduct';
