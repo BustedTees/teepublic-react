@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import Row from '../row/Row';
 import Column from '../column/Column';
 import AddToCart from '..//add_to_cart/AddToCart';
+import ImageGallery from '..//image_gallery/ImageGallery';
 import MoneyHelper from '../../utils/MoneyHelper';
 
 import './BuyProduct.css';
@@ -49,32 +50,14 @@ export default class BuyProduct extends Component {
     const selectedSku = selectedProduct._embedded.defaultSku;
     const { images, productType, price } = selectedSku;
 
-    const previewImageTags = images.map(function(image, imageIndex) {
-      return (
-        <img
-          key={imageIndex}
-          onClick={() => {
-            this.setState({ skuImageIndex: imageIndex });
-          }}
-          src={image.url}
-          alt={image.type}
-          height={100}
-        />
-      );
-    }, this);
-
-    const previewImages = (
-      <Row justify="start" align="center">
-        {previewImageTags}
-      </Row>
-    );
-
-    const selectedImage = (
-      <img
-        className={`${CLASS_ROOT}__selected-image`}
-        src={images[skuImageIndex].url}
-        alt="Main"
-        height={600}
+    const skuImageGallery = (
+      <ImageGallery
+        className={`${CLASS_ROOT}__images`}
+        images={images}
+        selectedImageIndex={skuImageIndex}
+        onImageSelect={imageIndex =>
+          this.setState({ skuImageIndex: imageIndex })
+        }
       />
     );
     const designTitle = (
@@ -113,14 +96,7 @@ export default class BuyProduct extends Component {
 
     return (
       <Row className={classes} justify="center" align="start">
-        <Column
-          className={`${CLASS_ROOT}__images`}
-          justify="start"
-          align="start"
-        >
-          {selectedImage}
-          {previewImages}
-        </Column>
+        {skuImageGallery}
         <Column
           className={`${CLASS_ROOT}__options`}
           justify="start"
