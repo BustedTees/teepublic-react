@@ -1,9 +1,6 @@
 import React from 'react';
-import TeepublicPowered from '../lib/components/teepublic_powered/TeepublicPowered';
-import DesignCollection from '../lib/components/design_collection/DesignCollection';
-import BuyProduct from '../lib/components/buy_product/BuyProduct';
+import { TeepublicPowered, DesignCollection, Cart, BuyProduct } from '../index';
 import Column from '../lib/components/column/Column';
-import Cart from '../lib/components/cart/Cart';
 import store from './StoreData';
 import design from './DesignData';
 
