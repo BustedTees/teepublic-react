@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Row from '../row/Row';
 import Column from '../column/Column';
 import CartItem from '../cart_item/CartItem';
 import MoneyHelper from '../../utils/MoneyHelper';
@@ -48,14 +47,15 @@ export default class Cart extends Component {
     console.log('Redirect to checkout for ', cartItems);
   };
   render() {
-    const { className, ...props } = this.props;
+    const { className } = this.props;
     const { items } = this.state;
 
     const classes = classnames(className, CLASS_ROOT);
 
-    const cartItems = items.map(function(item, index) {
+    const cartItems = items.map(function(item, itemIndex) {
       return (
         <CartItem
+          key={itemIndex}
           cartItem={item}
           updateCartItem={this.updateCartItem}
           deleteCartItem={this.deleteCartItem}
@@ -68,15 +68,22 @@ export default class Cart extends Component {
       totalPrice += item.sku.price * item.quantity;
     });
 
-    return (
-      <Column className={classes} justify="center" align="stretch">
-        {cartItems}
-        <div className={`${CLASS_ROOT}__total`}>
-          Total={new MoneyHelper(totalPrice, 'USD').commaSeprated()}
-        </div>
-        <button onClick={this.checkoutHandler}>Checkout</button>
-      </Column>
-    );
+    const cartContent =
+      items.length > 0 ? (
+        <Column className={classes} justify="center" align="stretch">
+          {cartItems}
+          <div className={`${CLASS_ROOT}__total`}>
+            Total={new MoneyHelper(totalPrice, 'USD').commaSeprated()}
+          </div>
+          <button onClick={this.checkoutHandler}>Checkout</button>
+        </Column>
+      ) : (
+        <Column className={classes} justify="center" align="stretch">
+          No items added to cart
+        </Column>
+      );
+
+    return cartContent;
   }
 }
 

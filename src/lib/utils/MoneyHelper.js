@@ -112,7 +112,8 @@ const CURRENCY_SYMBOLS = {
 };
 export default class MoneyHelper {
   constructor(amount, currency = 'USD') {
-    (this.amount = amount), (this.symbol = CURRENCY_SYMBOLS[currency]);
+    this.amount = amount;
+    this.symbol = CURRENCY_SYMBOLS[currency];
   }
 
   KMBT(decimalPoints) {

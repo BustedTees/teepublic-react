@@ -3,23 +3,13 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Row from '../row/Row';
-import Button from '../button/Button';
 import Column from '../column/Column';
 import AddToCart from '..//add_to_cart/AddToCart';
-import ImageZoom from '../image_zoom/ImageZoom';
 import MoneyHelper from '../../utils/MoneyHelper';
 
 import './BuyProduct.css';
-import _ from 'underscore';
 
 const CLASS_ROOT = 'tp-buy-product';
-
-const OPTIONS_MAP = {
-  gender: 'buttonBar',
-  style: 'dropdown',
-  size: 'dropdown',
-  color: 'buttonBar'
-};
 
 export default class BuyProduct extends Component {
   constructor(props) {
@@ -42,8 +32,6 @@ export default class BuyProduct extends Component {
       };
     }, this);
 
-    const firstProduct = products[0];
-    const skuImages = firstProduct._embedded.defaultSku.images;
     this.state = {
       skuImageIndex: 0,
       productOptions: productOptions,
@@ -52,7 +40,7 @@ export default class BuyProduct extends Component {
   }
 
   render() {
-    const { className, design, ...props } = this.props;
+    const { className, design } = this.props;
     const { skuImageIndex, productOptions, selectedProductIndex } = this.state;
 
     const classes = classnames(CLASS_ROOT, className);
@@ -64,11 +52,12 @@ export default class BuyProduct extends Component {
     const previewImageTags = images.map(function(image, imageIndex) {
       return (
         <img
+          key={imageIndex}
           onClick={() => {
             this.setState({ skuImageIndex: imageIndex });
           }}
           src={image.url}
-          alt={`${image.type} Image`}
+          alt={image.type}
           height={100}
         />
       );
@@ -84,7 +73,7 @@ export default class BuyProduct extends Component {
       <img
         className={`${CLASS_ROOT}__selected-image`}
         src={images[skuImageIndex].url}
-        alt="Selected Image"
+        alt="Main"
         height={600}
       />
     );
@@ -113,8 +102,10 @@ export default class BuyProduct extends Component {
           }}
           value={selectedProductIndex}
         >
-          {productOptions.map(productOption => (
-            <option value={productOption.value}>{productOption.display}</option>
+          {productOptions.map((productOption, index) => (
+            <option key={index} value={productOption.value}>
+              {productOption.display}
+            </option>
           ))}
         </select>
       </Row>

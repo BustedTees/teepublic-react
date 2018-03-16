@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Row from '../row/Row';
-import Button from '../button/Button';
 import Column from '../column/Column';
 import MoneyHelper from '../../utils/MoneyHelper';
+import _ from 'underscore';
 
 import './DesignTile.css';
 
@@ -17,29 +17,9 @@ const DESIGN_IMAGE = {
   large: 400
 };
 
-const AVATAR_IMAGE = {
-  small: 26,
-  medium: 40,
-  large: 53
-};
-
 export default class DesignTile extends Component {
-  randomCanvas(canvases) {
-    const rand_canvas = Math.floor(Math.random() * (canvases.length - 1)) + 1;
-    return canvases[rand_canvas];
-  }
-
-  findCanvas(canvases, canvas_slug) {
-    canvases.forEach(function(canvas) {
-      if (canvas.slug == canvas_slug) {
-        return canvas;
-      }
-    });
-    return this.randomCanvas(canvases);
-  }
-
   render() {
-    const { className, design, designer, size, ...props } = this.props;
+    const { className, design, size, onClick } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -48,85 +28,68 @@ export default class DesignTile extends Component {
       },
       className
     );
+    const owner = design._embedded.owner;
+    const sku = design._embedded.defaultProduct._embedded.defaultSku;
+    const { images, price } = sku;
 
-    const canvas = this.randomCanvas(design.canvases);
-    const product_url = `https://www.teepublic.com/${canvas.slug}/${
-      design.slug
-    }`;
+    var skuMockupImage = _.find(images, function(image) {
+      return image.type === 'mockup';
+    });
 
-    // const designImage = <img className={`${CLASS_ROOT}__image`} src={design.image_url} alt="Design Image" height={DESIGN_IMAGE[size]}/>
     const designImage = (
       <img
         className={`${CLASS_ROOT}__image`}
-        src={canvas.mockup_url}
-        alt="Design Image"
+        src={skuMockupImage.url}
+        alt={skuMockupImage.type}
         height={DESIGN_IMAGE[size]}
       />
     );
     const designTitle = (
-      <a className={`${CLASS_ROOT}__title`} href={product_url} target="_blank">
-        {design.title}
-      </a>
+      <a className={`${CLASS_ROOT}__title`}>{design.title}</a>
     );
     const designPrice = (
       <p className={`${CLASS_ROOT}__price`}>
-        {new MoneyHelper(canvas.prices.regular_price, 'USD').commaSeprated()}
+        {new MoneyHelper(price, 'USD').commaSeprated()}
       </p>
     );
-    const designerLocation = (
-      <p className={`${CLASS_ROOT}__location`}>{designer.location}</p>
+    const ownerName = (
+      <p className={`${CLASS_ROOT}__owner`}>{owner.username}</p>
     );
-    const designerAvatar = (
-      <a href={designer.store_url} target="_blank">
-        <img
-          className={`${CLASS_ROOT}__avatar`}
-          src={designer.avatar_url}
-          alt="Designer Avatar"
-          height={AVATAR_IMAGE[size]}
-        />
-      </a>
-    );
-    const buyButton = (
-      <Button style="fill" size="small">
-        Buy
-      </Button>
-    );
+    const buyButton = <button>Buy</button>;
 
     return (
-      <a className={classes} href={product_url} target="_blank">
-        <Column justify="start" align="center">
-          {designImage}
-          <Row
-            className={`${CLASS_ROOT}__details`}
-            justify="between"
+      <Column
+        onClick={() => onClick()}
+        className={classes}
+        justify="start"
+        align="center"
+      >
+        {designImage}
+        <Row
+          className={`${CLASS_ROOT}__details`}
+          justify="between"
+          align="start"
+        >
+          <Column
+            className={`${CLASS_ROOT}__title-owner`}
+            justify="start"
             align="start"
           >
-            <Column justify="start" align="start">
-              <Row justify="start" align="center">
-                {designerAvatar}
-                <Column
-                  className={`${CLASS_ROOT}__title-location`}
-                  justify="start"
-                  align="start"
-                >
-                  {designTitle}
-                  {designerLocation}
-                </Column>
-              </Row>
-            </Column>
-            <Column justify="start" align="end">
-              {designPrice}
-              {buyButton}
-            </Column>
-          </Row>
-        </Column>
-      </a>
+            {designTitle}
+            {ownerName}
+            {designPrice}
+          </Column>
+          {buyButton}
+        </Row>
+      </Column>
     );
   }
 }
 
 DesignTile.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  design: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 DesignTile.defaultProps = {

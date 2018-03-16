@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Button from '../button/Button';
 import CartHelper from '../../utils/CartHelper';
 
 import './AddToCart.css';
@@ -17,7 +16,7 @@ export default class AddToCart extends Component {
   };
 
   render() {
-    const { className, design, sku, ...props } = this.props;
+    const { className, design, sku } = this.props;
     const classes = classnames(CLASS_ROOT, className);
     const disabled = !(design && sku);
     return (

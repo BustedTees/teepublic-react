@@ -3,24 +3,30 @@ import TeepublicPowered from '../lib/components/teepublic_powered/TeepublicPower
 import DesignCollection from '../lib/components/design_collection/DesignCollection';
 import BuyProduct from '../lib/components/buy_product/BuyProduct';
 import Column from '../lib/components/column/Column';
-import Button from '../lib/components/button/Button';
-import AddToCart from '../lib/components/add_to_cart/AddToCart';
 import Cart from '../lib/components/cart/Cart';
-import designs from './DesignsData';
+import store from './StoreData';
 import design from './DesignData';
 
 const App = () => {
-  const firstDesign = designs[0].design;
-  console.log(design);
   return (
     <Column align="center">
-      <AddToCart
-        design={design}
-        sku={design._embedded.defaultProduct._embedded.defaultSku}
-      />
+      <h3> --- Cart Component (Start) --- </h3>
       <Cart />
+      <h3> --- Cart Component (End) --- </h3>
+      <br />
+      <br />
+      <h3> --- BuyProduct Component (Start) --- </h3>
       <BuyProduct design={design} />
-      <DesignCollection tileSize="small" designs={designs} />
+      <h3> --- BuyProduct Component (End) --- </h3>
+      <br />
+      <br />
+      <h3> --- DesignCollection Component (Start) --- </h3>
+      <DesignCollection
+        tileSize="large"
+        designs={store._embedded.designs}
+        onDesignClick={(design, sku) => console.log(design, sku)}
+      />
+      <h3> --- DesignCollection Component (End) --- </h3>
       <TeepublicPowered layout="column" />
     </Column>
   );

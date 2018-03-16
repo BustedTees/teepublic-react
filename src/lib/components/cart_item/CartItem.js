@@ -24,20 +24,19 @@ export default class CartItem extends Component {
   };
 
   render() {
-    const { className, cartItem, ...props } = this.props;
+    const { className, cartItem } = this.props;
 
     const classes = classnames(className, CLASS_ROOT);
 
     var skuMockupImage = _.find(cartItem.sku.images, function(image) {
-      return image.type == 'mockup';
+      return image.type === 'mockup';
     });
-    console.log(skuMockupImage);
 
     const skuImage = (
       <img
         className={`${CLASS_ROOT}__image`}
         src={skuMockupImage.url}
-        alt="Sku Image"
+        alt={skuMockupImage.type}
         height={100}
       />
     );
@@ -90,9 +89,7 @@ export default class CartItem extends Component {
 }
 
 CartItem.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
-};
-
-CartItem.defaultProps = {
-  size: 'large'
+  cartItem: PropTypes.object.isRequired,
+  updateCartItem: PropTypes.func.isRequired,
+  deleteCartItem: PropTypes.func.isRequired
 };

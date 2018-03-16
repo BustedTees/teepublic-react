@@ -1,11 +1,13 @@
 .tp-design-tile {
   text-decoration: none;
+  cursor: pointer;
 }
-.tp-design-tile__location {
+.tp-design-tile__owner {
   color: #616161;
   max-width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
+  margin: 2px 0;
 }
 
 .tp-design-tile__title {
@@ -15,8 +17,12 @@
   overflow: hidden;
 }
 
-.tp-design-tile__title-location {
+.tp-design-tile__title-owner {
   white-space: nowrap;
+}
+
+.tp-design-tile__details {
+  width: 100%;
 }
 
 .tp-design-tile__price {
@@ -87,5 +93,5 @@
   margin: 4px 0;
 }
 .tp-design-tile--large .tp-design-tile__price {
-  font-size: 25px;
+  font-size: 50px;
 }

@@ -12,7 +12,7 @@ const CLASS_ROOT = 'tp-powered';
 
 export default class TeepublicPowered extends Component {
   render() {
-    const { className, layout, ...props } = this.props;
+    const { className, layout } = this.props;
 
     const classes = classnames(CLASS_ROOT, className);
 
@@ -22,6 +22,7 @@ export default class TeepublicPowered extends Component {
         className={`${CLASS_ROOT}__logo`}
         href="https://www.teepublic.com"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <img src={tpLogo} alt="TeePubic logo" height="15" />
       </a>
@@ -33,9 +34,9 @@ export default class TeepublicPowered extends Component {
       </Row>
     );
 
-    if (layout == 'column') {
+    if (layout === 'column') {
       content = (
-        <Column justify="center" align="center">
+        <Column className={classes} justify="center" align="center">
           {text}
           {logo}
         </Column>
