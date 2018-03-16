@@ -5,10 +5,12 @@ import classnames from 'classnames';
 import Row from '../row/Row';
 import Button from '../button/Button';
 import Column from '../column/Column';
+import AddToCart from '..//add_to_cart/AddToCart';
 import ImageZoom from '../image_zoom/ImageZoom';
 import MoneyHelper from '../../utils/MoneyHelper';
 
 import './BuyProduct.css';
+import _ from 'underscore';
 
 const CLASS_ROOT = 'tp-buy-product';
 
@@ -23,117 +25,100 @@ export default class BuyProduct extends Component {
   constructor(props) {
     super(props);
 
-    var canvasOptions = {};
-    var selectedOptions = {};
-    props.design.hierarchy.forEach(function(value) {
-      canvasOptions[value] = new Set();
-      selectedOptions[value] = null;
-    });
+    const products = props.design._embedded.products;
+    const productOptions = products.map(function(product, productIndex) {
+      const sku = product._embedded.defaultSku;
+      const { productOptions } = sku;
+      const productOption = productOptions.map(function(
+        productOption,
+        productOptionIndex
+      ) {
+        return productOption.value;
+      },
+      this);
+      return {
+        display: productOption.join(', '),
+        value: productIndex
+      };
+    }, this);
 
-    selectedOptions.gender = 'Male';
-    selectedOptions.style = 'Classic T-Shirt';
-
+    const firstProduct = products[0];
+    const skuImages = firstProduct._embedded.defaultSku.images;
     this.state = {
-      selectedCanvas: props.selectedCanvas,
-      selectedImageUrl: props.selectedCanvas.mockup_url,
-      canvasOptions: canvasOptions,
-      selectedOptions: selectedOptions
+      skuImageIndex: 0,
+      productOptions: productOptions,
+      selectedProductIndex: 0
     };
-    console.log(props.design);
-  }
-
-  recalibrateOptions() {
-    const { design } = this.props;
-    const { products, hierarchy } = design;
-    const { canvasOptions, selectedOptions } = this.state;
-
-    hierarchy.forEach(function(option) {
-      products.forEach(function(product) {
-        const productAttributes = product.attributes;
-        const value = productAttributes[option].value;
-        canvasOptions[option].add(value);
-      });
-    });
-
-    console.log(canvasOptions);
   }
 
   render() {
-    this.recalibrateOptions();
     const { className, design, ...props } = this.props;
-    const { selectedCanvas, selectedImageUrl, canvasOptions } = this.state;
-    const canvases = design.canvases;
+    const { skuImageIndex, productOptions, selectedProductIndex } = this.state;
 
     const classes = classnames(CLASS_ROOT, className);
 
+    const selectedProduct = design._embedded.products[selectedProductIndex];
+    const selectedSku = selectedProduct._embedded.defaultSku;
+    const { images, productType, price } = selectedSku;
+
+    const previewImageTags = images.map(function(image, imageIndex) {
+      return (
+        <img
+          onClick={() => {
+            this.setState({ skuImageIndex: imageIndex });
+          }}
+          src={image.url}
+          alt={`${image.type} Image`}
+          height={100}
+        />
+      );
+    }, this);
+
     const previewImages = (
       <Row justify="start" align="center">
-        <img
-          onClick={() => {
-            this.setState({ selectedImageUrl: selectedCanvas.mockup_url });
-          }}
-          src={selectedCanvas.mockup_url}
-          alt="Canvas Image"
-          height={100}
-        />
-        <img
-          onClick={() => {
-            this.setState({ selectedImageUrl: design.image_url });
-          }}
-          src={design.image_url}
-          alt="Design Image"
-          height={100}
-        />
+        {previewImageTags}
       </Row>
     );
 
     const selectedImage = (
       <img
         className={`${CLASS_ROOT}__selected-image`}
-        src={selectedImageUrl}
+        src={images[skuImageIndex].url}
         alt="Selected Image"
         height={600}
       />
     );
     const designTitle = (
-      <h2 className={`${CLASS_ROOT}__title`}>{`${design.title} ${
-        selectedCanvas.name
-      }`}</h2>
+      <h2 className={`${CLASS_ROOT}__title`}>{`${
+        design.title
+      } ${productType}`}</h2>
     );
     const designPrice = (
       <h2 className={`${CLASS_ROOT}__price`}>
-        {new MoneyHelper(
-          selectedCanvas.prices.regular_price,
-          'USD'
-        ).commaSeprated()}
+        {new MoneyHelper(price, 'USD').commaSeprated()}
       </h2>
     );
-    // const cartButton = (
-    //   <Button disabled style="fill" size="medium">
-    //     Add to Cart
-    //   </Button>
-    // );
 
-    const cartButton = (
-      <button type="button" disabled>
-        Add to Cart
-      </button>
+    const cartButton = <AddToCart design={design} sku={selectedSku} />;
+
+    const optionSelector = (
+      <Row>
+        <p>{'Select: '}</p>
+        <select
+          onChange={e => {
+            this.setState({
+              selectedProductIndex: e.target.value,
+              skuImageIndex: 0
+            });
+          }}
+          value={selectedProductIndex}
+        >
+          {productOptions.map(productOption => (
+            <option value={productOption.value}>{productOption.display}</option>
+          ))}
+        </select>
+      </Row>
     );
-
-    const dropdowns = [];
-    for (var option in canvasOptions) {
-      const optionDisplay = (
-        <Row>
-          <p>{option}</p>
-          <select>
-            {[...canvasOptions[option]].map(value => (
-              <option value={value}>{value}</option>
-            ))}
-          </select>
-        </Row>
-      );
-      dropdowns.push(optionDisplay);
-    }
 
     return (
       <Row className={classes} justify="center" align="start">
@@ -151,7 +136,7 @@ export default class BuyProduct extends Component {
           align="start"
         >
           {designTitle}
-          {dropdowns}
+          {optionSelector}
           {designPrice}
           {cartButton}
         </Column>
@@ -161,10 +146,5 @@ export default class BuyProduct extends Component {
 }
 
 BuyProduct.propTypes = {
-  canvasSlug: PropTypes.string,
-  designSlug: PropTypes.string
-};
-
-BuyProduct.defaultProps = {
-  canvasSlug: 't-shirt'
+  design: PropTypes.object.isRequired
 };

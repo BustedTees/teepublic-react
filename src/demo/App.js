@@ -19,7 +19,7 @@ const App = () => {
         sku={design._embedded.defaultProduct._embedded.defaultSku}
       />
       <Cart />
-      {/* <BuyProduct design={design} selectedCanvas={firstDesign.canvases[0]} /> */}
+      <BuyProduct design={design} />
       <DesignCollection tileSize="small" designs={designs} />
       <TeepublicPowered layout="column" />
     </Column>
