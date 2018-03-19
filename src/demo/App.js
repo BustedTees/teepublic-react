@@ -3,6 +3,7 @@ import { TeepublicPowered, DesignCollection, Cart, BuyProduct } from '../index';
 import Column from '../lib/components/column/Column';
 import store from './StoreData';
 import design from './DesignData';
+import BackToProducts from '../lib/components/back_to_products/BackToProducts';
 
 const App = () => {
   return (
@@ -12,11 +13,19 @@ const App = () => {
       <h3> --- Cart Component (End) --- </h3>
       <br />
       <br />
+
+      <h3> --- BackToProducts Component (Start) --- </h3>
+      <BackToProducts storeUrl="/" linkText="Back to Products" />
+      <h3> --- BackToProducts Component (End) --- </h3>
+      <br />
+      <br />
+
       <h3> --- BuyProduct Component (Start) --- </h3>
       <BuyProduct design={design} />
       <h3> --- BuyProduct Component (End) --- </h3>
       <br />
       <br />
+
       <h3> --- DesignCollection Component (Start) --- </h3>
       <DesignCollection
         tileSize="large"
