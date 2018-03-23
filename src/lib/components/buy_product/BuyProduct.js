@@ -7,6 +7,9 @@ import Column from '../column/Column';
 import AddToCart from '..//add_to_cart/AddToCart';
 import ImageGallery from '..//image_gallery/ImageGallery';
 import MoneyHelper from '../../utils/MoneyHelper';
+import BackToProducts from '../back_to_products/BackToProducts';
+import ProductVariants from '../product_variants/ProductVariants';
+import ProductHelper from '../../utils/ProductHelper';
 
 import './BuyProduct.css';
 
@@ -41,14 +44,18 @@ export default class BuyProduct extends Component {
   }
 
   render() {
-    const { className, design } = this.props;
+    this.productHelper = new ProductHelper();
+    const { className, design, store } = this.props;
     const { skuImageIndex, productOptions, selectedProductIndex } = this.state;
 
     const classes = classnames(CLASS_ROOT, className);
-
     const selectedProduct = design._embedded.products[selectedProductIndex];
     const selectedSku = selectedProduct._embedded.defaultSku;
     const { images, productType, price } = selectedSku;
+    const otherVariants = this.productHelper.otherVariants(
+      this.props.design,
+      selectedProductIndex
+    );
 
     const skuImageGallery = (
       <ImageGallery
@@ -94,20 +101,34 @@ export default class BuyProduct extends Component {
       </Row>
     );
 
+    const backToProducts = (
+      <Column justify="start" align="center" style={{ width: '100%' }}>
+        <BackToProducts storeUrl="/" linkText="Back to Products" />
+      </Column>
+    );
+
+    const productVariants = (
+      <ProductVariants variants={otherVariants} store={store} />
+    );
+
     return (
-      <Row className={classes} justify="center" align="start">
-        {skuImageGallery}
-        <Column
-          className={`${CLASS_ROOT}__options`}
-          justify="start"
-          align="start"
-        >
-          {designTitle}
-          {optionSelector}
-          {designPrice}
-          {cartButton}
-        </Column>
-      </Row>
+      <div className={CLASS_ROOT}>
+        <Row className={classes} justify="center" align="start">
+          {backToProducts}
+          {skuImageGallery}
+          <Column
+            className={`${CLASS_ROOT}__options`}
+            justify="start"
+            align="start"
+          >
+            {designTitle}
+            {optionSelector}
+            {designPrice}
+            {cartButton}
+          </Column>
+        </Row>
+        <Row>{productVariants}</Row>
+      </div>
     );
   }
 }

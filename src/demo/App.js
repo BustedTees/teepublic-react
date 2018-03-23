@@ -6,6 +6,7 @@ import design from './DesignData';
 import BackToProducts from '../lib/components/back_to_products/BackToProducts';
 
 const App = () => {
+  const storeDesigns = store._embedded.designs;
   return (
     <Column align="center">
       <h3> --- Cart Component (Start) --- </h3>
@@ -14,14 +15,8 @@ const App = () => {
       <br />
       <br />
 
-      <h3> --- BackToProducts Component (Start) --- </h3>
-      <BackToProducts storeUrl="/" linkText="Back to Products" />
-      <h3> --- BackToProducts Component (End) --- </h3>
-      <br />
-      <br />
-
       <h3> --- BuyProduct Component (Start) --- </h3>
-      <BuyProduct design={design} />
+      <BuyProduct design={storeDesigns[0]} store={store} />
       <h3> --- BuyProduct Component (End) --- </h3>
       <br />
       <br />
