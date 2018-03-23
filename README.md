@@ -1,28 +1,47 @@
 # About
 Components for rendering a TeePublic storefront.
-![test-status](https://travis-ci.org/BustedTees/teepublic-react.svg?branch=master)
+[![test-status](https://travis-ci.org/BustedTees/teepublic-react.svg?branch=master)](https://travis-ci.org/BustedTees/teepublic-react)
 
 # Installation 
 `npm install teepublic-react`
+or
+`yarn add teepublic-react`
 
+# Quick Start
+These components are designed for responses from the TeePublic.com API.  With an API response from  `/v1/stores/{id}`, you can use the DesignCollection component to quickly show tiles.
+```
+import { DesignCollection } from 'teepublic-react'
 
-# Store Page
-```
-import { TeepublicDesignCollection } from 'teepublic-react'
-<TeepublicDesignCollection  storeType="Affiliate" storeSlug="wishlist" />
+class MyStore extends React.Component {
+  render () {
+    const avatarUrl = this.props.store_data.avatarUrl
+    const bannerUrl = this.props.store_data.bannerUrl
+    const designs   = this.props.store_data._embedded.designs
+    const onClickHandler   = (design, sku) => {
+      console.log(design);
+      console.log(sku);
+    }
+
+    return (
+      <div className='homepage'>
+        <img src={bannerUrl}/>
+        <br/>
+        <img src={avatarUrl}/>
+
+        <DesignCollection 
+          designs={designs}
+          tileSize="large"
+          onDesignClick={ onClickHandler }
+        />
+
+      </div>
+    );
+  }
+}
 ```
 
-# Product Page
-```
-import { TeepublicProduct } from 'teepublic-react'
-<TeepublicProduct  designId={123} defaultCanvas="tshirt" />
-```
-
-# Checkout Page
-```
-import { TeepublicCheckout } from 'teepublic-react'
-<TeepublicCheckout  />
-```
+# Documentation
+Additional Components Docs Pending!
 
 
 # Devlopment Process
