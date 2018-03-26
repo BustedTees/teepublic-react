@@ -43,8 +43,9 @@ export default class Cart extends Component {
   };
 
   checkoutHandler = e => {
-    const cartItems = this.cartHelper.getCartItems();
-    console.log('Redirect to checkout for ', cartItems);
+    const { onCheckout } = this.props;
+    const cartItems = this.cartHelper.checkoutCartItems();
+    onCheckout(cartItems);
   };
   render() {
     const { className } = this.props;
@@ -88,9 +89,5 @@ export default class Cart extends Component {
 }
 
 Cart.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
-};
-
-Cart.defaultProps = {
-  size: 'large'
+  onCheckout: PropTypes.func.isRequired
 };

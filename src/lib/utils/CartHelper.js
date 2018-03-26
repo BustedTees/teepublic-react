@@ -51,6 +51,18 @@ export default class CartHelper {
     this.setCartItems(cartItems);
   }
 
+  checkoutCartItems() {
+    const cartItems = this.getCartItems();
+    const tpCartItems = cartItems.map(function(cartItem, itemIndex) {
+      return {
+        product_id: cartItem.sku.id,
+        design_id: cartItem.design.id,
+        quantity: cartItem.quantity
+      };
+    }, this);
+    return tpCartItems;
+  }
+
   getCartItems() {
     const cartItems = localStorage.getItem(CART_KEY);
     if (cartItems) {
