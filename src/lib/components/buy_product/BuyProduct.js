@@ -18,40 +18,84 @@ const CLASS_ROOT = 'tp-buy-product';
 export default class BuyProduct extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
 
-    const products = props.design._embedded.products;
-    const productOptions = products.map(function(product, productIndex) {
-      const sku = product._embedded.defaultSku;
-      const { productOptions } = sku;
-      const productOption = productOptions.map(function(
-        productOption,
-        productOptionIndex
-      ) {
-        return productOption.value;
-      },
-      this);
-      return {
-        display: productOption.join(', '),
-        value: productIndex
-      };
-    }, this);
+    const productOptions = props.skuData.options;
+    const skus = props.skuData._embedded.skus;
+    const currentProduct = props.design._embedded.products[1];
+    const defaultSku = currentProduct._embedded.defaultSku;
+
+    this.productHelper = new ProductHelper();
+    const selectorsOptions = this.productHelper.collectSelectorOptions(
+      skus,
+      productOptions
+    );
+
+    const selectedOptions = {};
+    productOptions.forEach((selectorOption, selectorOptionIndex) => {
+      selectedOptions[selectorOption.name] =
+        selectorsOptions[selectorOptionIndex][0].value;
+    });
+    console.log('original selections', selectedOptions);
 
     this.state = {
+      defaultSku: defaultSku,
       skuImageIndex: 0,
       productOptions: productOptions,
-      selectedProductIndex: 0
+      skus: skus,
+      selectedProductIndex: 0,
+      selectorsOptions: selectorsOptions,
+      selectedOptions: selectedOptions
     };
   }
 
+  handleOptionChange(e) {
+    var currentSelections = this.state.selectedOptions;
+    currentSelections[e.target.name] = e.target.value;
+    var newSelectorsOptions = this.productHelper.collectSelectorOptions(
+      this.state.skus,
+      this.state.productOptions,
+      currentSelections
+    );
+    var newSelections = this.determineNewSelections(
+      newSelectorsOptions,
+      currentSelections
+    );
+    this.setState({
+      selectedOptions: newSelections,
+      selectorsOptions: newSelectorsOptions
+    });
+  }
+
+  determineNewSelections(newSelectorsOptions, currentSelections) {
+    var newSelections = {};
+    newSelectorsOptions.forEach(selectorOptions => {
+      var selectorName = selectorOptions[0]['name'];
+      if (
+        selectorOptions.some(x => x['value'] == currentSelections[x['name']])
+      ) {
+        newSelections[selectorName] = currentSelections[selectorName];
+      } else {
+        newSelections[selectorName] = selectorOptions[0]['value'];
+      }
+    });
+    return newSelections;
+  }
+
   render() {
-    this.productHelper = new ProductHelper();
     const { className, design, store } = this.props;
-    const { skuImageIndex, productOptions, selectedProductIndex } = this.state;
+    const {
+      skuImageIndex,
+      productOptions,
+      skus,
+      selectedProductIndex,
+      selectorsOptions,
+      defaultSku
+    } = this.state;
 
     const classes = classnames(CLASS_ROOT, className);
-    const selectedProduct = design._embedded.products[selectedProductIndex];
-    const selectedSku = selectedProduct._embedded.defaultSku;
-    const { images, productType, price } = selectedSku;
+
+    const { images, productType, price } = defaultSku;
     const otherVariants = this.productHelper.otherVariants(
       this.props.design,
       selectedProductIndex
@@ -67,10 +111,30 @@ export default class BuyProduct extends Component {
         }
       />
     );
+
+    const optionSelectors = selectorsOptions.map(
+      (selectorOptions, selectorOptionsIndex) => {
+        return (
+          <select
+            key={productOptions[selectorOptionsIndex].name}
+            name={productOptions[selectorOptionsIndex].name}
+            onChange={this.handleOptionChange.bind(this)}
+          >
+            {selectorOptions.map((selectorOption, index) => (
+              <option key={selectorOption.value} value={selectorOption.value}>
+                {selectorOption.value}
+              </option>
+            ))}
+          </select>
+        );
+      },
+      this
+    );
+
     const designTitle = (
-      <h2 className={`${CLASS_ROOT}__title`}>{`${
-        design.title
-      } ${productType}`}</h2>
+      <h2 className={`${CLASS_ROOT}__title`}>
+        {`${design.title} ${productType}`}
+      </h2>
     );
     const designPrice = (
       <h2 className={`${CLASS_ROOT}__price`}>
@@ -78,28 +142,7 @@ export default class BuyProduct extends Component {
       </h2>
     );
 
-    const cartButton = <AddToCart design={design} sku={selectedSku} />;
-
-    const optionSelector = (
-      <Row>
-        <p>{'Select: '}</p>
-        <select
-          onChange={e => {
-            this.setState({
-              selectedProductIndex: e.target.value,
-              skuImageIndex: 0
-            });
-          }}
-          value={selectedProductIndex}
-        >
-          {productOptions.map((productOption, index) => (
-            <option key={index} value={productOption.value}>
-              {productOption.display}
-            </option>
-          ))}
-        </select>
-      </Row>
-    );
+    const cartButton = <AddToCart design={design} sku={defaultSku} />;
 
     const backToProducts = (
       <Column justify="start" align="center" style={{ width: '100%' }}>
@@ -107,9 +150,9 @@ export default class BuyProduct extends Component {
       </Column>
     );
 
-    const productVariants = (
-      <ProductVariants variants={otherVariants} store={store} />
-    );
+    // const productVariants = (
+    //   <ProductVariants variants={otherVariants} store={store} />
+    // );
 
     return (
       <div className={CLASS_ROOT}>
@@ -122,12 +165,11 @@ export default class BuyProduct extends Component {
             align="start"
           >
             {designTitle}
-            {optionSelector}
+            {optionSelectors}
             {designPrice}
             {cartButton}
           </Column>
         </Row>
-        <Row>{productVariants}</Row>
       </div>
     );
   }
