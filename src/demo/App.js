@@ -3,10 +3,11 @@ import { TeepublicPowered, DesignCollection, Cart, BuyProduct } from '../index';
 import Column from '../lib/components/column/Column';
 import store from './StoreData';
 import design from './DesignData';
+import skuData from './SkuData';
+
 import BackToProducts from '../lib/components/back_to_products/BackToProducts';
 
 const App = () => {
-  const storeDesigns = store._embedded.designs;
   return (
     <Column align="center">
       <h3> --- Cart Component (Start) --- </h3>
@@ -16,7 +17,7 @@ const App = () => {
       <br />
 
       <h3> --- BuyProduct Component (Start) --- </h3>
-      <BuyProduct design={storeDesigns[0]} store={store} />
+      <BuyProduct design={design} skuData={skuData} store={store} />
       <h3> --- BuyProduct Component (End) --- </h3>
       <br />
       <br />
