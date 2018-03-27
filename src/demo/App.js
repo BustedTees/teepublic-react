@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Column align="center">
       <h3> --- Cart Component (Start) --- </h3>
-      <Cart />
+      <Cart onCheckout={cartItems => console.log(cartItems)} />
       <h3> --- Cart Component (End) --- </h3>
       <br />
       <br />
