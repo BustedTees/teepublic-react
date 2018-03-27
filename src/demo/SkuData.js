@@ -10,22 +10,30 @@ const skuData = {
     {
       name: 'Gender',
       is_preselected: false,
-      placeholder_value: ''
+      placeholder_value: '',
+      display_input_type: 'radio',
+      display_select_order: 1
     },
     {
       name: 'Style',
       is_preselected: false,
-      placeholder_value: ''
+      placeholder_value: '',
+      display_input_type: 'dropdown',
+      display_select_order: 2
     },
     {
       name: 'Size',
       is_preselected: true,
-      placeholder_value: 'Choose a Size'
+      placeholder_value: 'Choose a Size',
+      display_input_type: 'dropdown',
+      display_select_order: 3
     },
     {
       name: 'Color',
       is_preselected: false,
-      placeholder_value: ''
+      placeholder_value: '',
+      display_input_type: 'swatch',
+      display_select_order: 4
     }
   ],
   _embedded: {
