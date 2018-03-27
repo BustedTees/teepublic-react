@@ -10,6 +10,7 @@ import MoneyHelper from '../../utils/MoneyHelper';
 import BackToProducts from '../back_to_products/BackToProducts';
 import ProductVariants from '../product_variants/ProductVariants';
 import ProductHelper from '../../utils/ProductHelper';
+import SkuSelector from '../sku_selector/SkuSelector';
 
 import './BuyProduct.css';
 
@@ -22,6 +23,7 @@ export default class BuyProduct extends Component {
 
     const productOptions = props.skuData.options;
     const skus = props.skuData._embedded.skus;
+    const colorMetaData = props.skuData._embedded.colors;
     const currentProduct = props.design._embedded.products[1];
     const defaultSku = currentProduct._embedded.defaultSku;
 
@@ -36,20 +38,20 @@ export default class BuyProduct extends Component {
       selectedOptions[selectorOption.name] =
         selectorsOptions[selectorOptionIndex][0].value;
     });
-    console.log('original selections', selectedOptions);
 
     this.state = {
       defaultSku: defaultSku,
       skuImageIndex: 0,
       productOptions: productOptions,
       skus: skus,
+      colorMetaData: colorMetaData,
       selectedProductIndex: 0,
       selectorsOptions: selectorsOptions,
       selectedOptions: selectedOptions
     };
   }
 
-  handleOptionChange(e) {
+  onSkuChange(e) {
     var currentSelections = this.state.selectedOptions;
     currentSelections[e.target.name] = e.target.value;
     var newSelectorsOptions = this.productHelper.collectSelectorOptions(
@@ -90,7 +92,9 @@ export default class BuyProduct extends Component {
       skus,
       selectedProductIndex,
       selectorsOptions,
-      defaultSku
+      defaultSku,
+      selectedOptions,
+      colorMetaData
     } = this.state;
 
     const classes = classnames(CLASS_ROOT, className);
@@ -110,25 +114,6 @@ export default class BuyProduct extends Component {
           this.setState({ skuImageIndex: imageIndex })
         }
       />
-    );
-
-    const optionSelectors = selectorsOptions.map(
-      (selectorOptions, selectorOptionsIndex) => {
-        return (
-          <select
-            key={productOptions[selectorOptionsIndex].name}
-            name={productOptions[selectorOptionsIndex].name}
-            onChange={this.handleOptionChange.bind(this)}
-          >
-            {selectorOptions.map((selectorOption, index) => (
-              <option key={selectorOption.value} value={selectorOption.value}>
-                {selectorOption.value}
-              </option>
-            ))}
-          </select>
-        );
-      },
-      this
     );
 
     const designTitle = (
@@ -165,7 +150,13 @@ export default class BuyProduct extends Component {
             align="start"
           >
             {designTitle}
-            {optionSelectors}
+            <SkuSelector
+              onSkuChange={this.onSkuChange.bind(this)}
+              selectorsOptions={selectorsOptions}
+              productOptions={productOptions}
+              selectedOptions={selectedOptions}
+              colorMetaData={colorMetaData}
+            />
             {designPrice}
             {cartButton}
           </Column>
