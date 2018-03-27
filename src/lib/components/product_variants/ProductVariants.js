@@ -4,16 +4,21 @@ import ProductHelper from '../../utils/ProductHelper';
 
 const CLASS_ROOT = 'tp-product-variants';
 
-export default class MoreCanvases extends Component {
+export default class ProductVariants extends Component {
   render() {
     this.productHelper = new ProductHelper();
+    const { store, design, selectedProductIndex } = this.props;
+    const otherVariants = this.productHelper.otherVariants(
+      design,
+      selectedProductIndex
+    );
 
-    const variants = this.props.variants.map((variant, i) => {
+    console.log(store);
+    console.log(design);
+
+    const variants = otherVariants.map((variant, i) => {
       const imageUrl = this.productHelper.mockupImage(variant).url;
-      const variantGroup = this.productHelper.variantGroup(
-        this.props.store,
-        variant
-      );
+      const variantGroup = this.productHelper.variantGroup(store, variant);
 
       return (
         <div key={i}>

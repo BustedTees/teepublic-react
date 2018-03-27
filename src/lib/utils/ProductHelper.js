@@ -17,14 +17,13 @@ export default class ProductHelper {
 
   mockupImage(variant) {
     const defaultSku = variant._embedded.defaultSku;
-    var image = defaultSku.images.filter(image => {
+    return defaultSku.images.find(image => {
       return (
         image.type === 'mockup' ||
         (defaultSku.productType === 'laptop-case' && image.type === 'front') ||
         (defaultSku.productType === 'mug' && image.type === 'front')
       );
     });
-    return image[0];
   }
 
   collectSelectorOptions(products, hierarchy, preselected = {}) {

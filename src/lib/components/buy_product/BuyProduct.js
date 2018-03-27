@@ -21,10 +21,12 @@ export default class BuyProduct extends Component {
     super(props);
     this.state = {};
 
+    var selectedProductIndex = 1;
     const productOptions = props.skuData.options;
     const skus = props.skuData._embedded.skus;
     const colorMetaData = props.skuData._embedded.colors;
-    const currentProduct = props.design._embedded.products[1];
+    const currentProduct =
+      props.design._embedded.products[selectedProductIndex];
     const defaultSku = currentProduct._embedded.defaultSku;
 
     this.productHelper = new ProductHelper();
@@ -46,6 +48,7 @@ export default class BuyProduct extends Component {
       skus: skus,
       colorMetaData: colorMetaData,
       selectedProductIndex: 0,
+      selectedProductIndex: selectedProductIndex,
       selectorsOptions: selectorsOptions,
       selectedOptions: selectedOptions
     };
@@ -100,10 +103,6 @@ export default class BuyProduct extends Component {
     const classes = classnames(CLASS_ROOT, className);
 
     const { images, productType, price } = defaultSku;
-    const otherVariants = this.productHelper.otherVariants(
-      this.props.design,
-      selectedProductIndex
-    );
 
     const skuImageGallery = (
       <ImageGallery
@@ -135,9 +134,13 @@ export default class BuyProduct extends Component {
       </Column>
     );
 
-    // const productVariants = (
-    //   <ProductVariants variants={otherVariants} store={store} />
-    // );
+    const productVariants = (
+      <ProductVariants
+        design={design}
+        store={store}
+        selectedProductIndex={selectedProductIndex}
+      />
+    );
 
     return (
       <div className={CLASS_ROOT}>
@@ -160,6 +163,7 @@ export default class BuyProduct extends Component {
             {designPrice}
             {cartButton}
           </Column>
+          <Column>{productVariants}</Column>
         </Row>
       </div>
     );
