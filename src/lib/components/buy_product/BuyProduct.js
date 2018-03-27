@@ -22,13 +22,9 @@ export default class BuyProduct extends Component {
     super(props);
     this.state = {};
 
-    var selectedProductIndex = 1;
     const productOptions = props.skuData.options;
     const skus = props.skuData._embedded.skus;
     const colorMetaData = props.skuData._embedded.colors;
-    const currentProduct =
-      props.design._embedded.products[selectedProductIndex];
-    const defaultSku = currentProduct._embedded.defaultSku;
 
     this.productHelper = new ProductHelper();
     const selectorsOptions = this.productHelper.collectSelectorOptions(
@@ -42,34 +38,39 @@ export default class BuyProduct extends Component {
         selectorsOptions[selectorOptionIndex][0].value;
     });
 
+    const currentSku = this.productHelper.currentSku(skus, selectedOptions);
+
     this.state = {
-      defaultSku: defaultSku,
       skuImageIndex: 0,
       productOptions: productOptions,
       skus: skus,
       colorMetaData: colorMetaData,
-      selectedProductIndex: 0,
-      selectedProductIndex: selectedProductIndex,
       selectorsOptions: selectorsOptions,
-      selectedOptions: selectedOptions
+      selectedOptions: selectedOptions,
+      currentSku: currentSku
     };
   }
 
   onSkuChange(e) {
+    const { skus, productOptions } = this.state;
     var currentSelections = this.state.selectedOptions;
     currentSelections[e.target.name] = e.target.value;
-    var newSelectorsOptions = this.productHelper.collectSelectorOptions(
-      this.state.skus,
-      this.state.productOptions,
+
+    const newSelectorsOptions = this.productHelper.collectSelectorOptions(
+      skus,
+      productOptions,
       currentSelections
     );
-    var newSelections = this.determineNewSelections(
+
+    const newSelections = this.determineNewSelections(
       newSelectorsOptions,
       currentSelections
     );
+
     this.setState({
       selectedOptions: newSelections,
-      selectorsOptions: newSelectorsOptions
+      selectorsOptions: newSelectorsOptions,
+      currentSku: this.productHelper.currentSku(skus, newSelections)
     });
   }
 
@@ -78,7 +79,7 @@ export default class BuyProduct extends Component {
     newSelectorsOptions.forEach(selectorOptions => {
       var selectorName = selectorOptions[0]['name'];
       if (
-        selectorOptions.some(x => x['value'] == currentSelections[x['name']])
+        selectorOptions.some(x => x['value'] === currentSelections[x['name']])
       ) {
         newSelections[selectorName] = currentSelections[selectorName];
       } else {
@@ -94,16 +95,17 @@ export default class BuyProduct extends Component {
       skuImageIndex,
       productOptions,
       skus,
-      selectedProductIndex,
       selectorsOptions,
-      defaultSku,
       selectedOptions,
-      colorMetaData
+      colorMetaData,
+      currentSku
     } = this.state;
 
     const classes = classnames(CLASS_ROOT, className);
+    const description = this.props.design.description;
+    const materialInfo = currentSku.description;
 
-    const { images, productType, price } = defaultSku;
+    const { images, productType, price } = currentSku;
 
     const skuImageGallery = (
       <ImageGallery
@@ -127,7 +129,7 @@ export default class BuyProduct extends Component {
       </h2>
     );
 
-    const cartButton = <AddToCart design={design} sku={defaultSku} />;
+    const cartButton = <AddToCart design={design} sku={currentSku} />;
 
     const backToProducts = (
       <Column justify="start" align="center" style={{ width: '100%' }}>
@@ -136,14 +138,19 @@ export default class BuyProduct extends Component {
     );
 
     const productVariants = (
-      <ProductVariants
-        design={design}
-        store={store}
-        selectedProductIndex={selectedProductIndex}
-      />
+      <ProductVariants design={design} store={store} currentSku={currentSku} />
     );
 
     const relatedTags = <RelatedTags design={design} />;
+
+    const relatedInfo = (
+      <div>
+        <h5>Description</h5>
+        <p>{description}</p>
+        <h5>Material Info</h5>
+        <p>{materialInfo}</p>
+      </div>
+    );
 
     return (
       <div className={CLASS_ROOT}>
@@ -165,6 +172,7 @@ export default class BuyProduct extends Component {
             />
             {designPrice}
             {cartButton}
+            {relatedInfo}
           </Column>
           <Column>{productVariants}</Column>
         </Row>

@@ -11,8 +11,6 @@ import store from './StoreData';
 import design from './DesignData';
 import skuData from './SkuData';
 
-import BackToProducts from '../lib/components/back_to_products/BackToProducts';
-
 const App = () => {
   return (
     <Column align="center">
