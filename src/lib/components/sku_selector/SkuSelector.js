@@ -35,7 +35,7 @@ export default class SkuSelector extends Component {
                 value={selectorOption.value}
                 id={selectorOption.value}
                 checked={
-                  selectorOption.value == selectedOptions[productOption.name]
+                  selectorOption.value === selectedOptions[productOption.name]
                 }
                 onChange={onSkuChange}
               />
@@ -66,7 +66,7 @@ export default class SkuSelector extends Component {
     }
 
     function dataForValue(value, colorData) {
-      return colorData.find(record => record.name == value);
+      return colorData.find(record => record.name === value);
     }
 
     function buildRadioOptions(
@@ -86,7 +86,7 @@ export default class SkuSelector extends Component {
                   value={selectorOption.value}
                   id={selectorOption.value}
                   checked={
-                    selectorOption.value == selectedOptions[productOption.name]
+                    selectorOption.value === selectedOptions[productOption.name]
                   }
                   onChange={onSkuChange}
                 />
@@ -133,7 +133,7 @@ export default class SkuSelector extends Component {
     selectorsOptions.forEach((selectorOptions, selectorOptionsIndex) => {
       var displayInputType =
         productOptions[selectorOptionsIndex]['display_input_type'];
-      if (displayInputType == 'swatch') {
+      if (displayInputType === 'swatch') {
         colorSelectors.push(
           buildSwatchOptions(
             productOptions[selectorOptionsIndex],
@@ -142,7 +142,7 @@ export default class SkuSelector extends Component {
             colorMetaData
           )
         );
-      } else if (displayInputType == 'radio') {
+      } else if (displayInputType === 'radio') {
         nonColorSelectors.push(
           buildRadioOptions(
             productOptions[selectorOptionsIndex],

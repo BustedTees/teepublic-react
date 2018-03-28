@@ -7,14 +7,11 @@ const CLASS_ROOT = 'tp-product-variants';
 export default class ProductVariants extends Component {
   render() {
     this.productHelper = new ProductHelper();
-    const { store, design, selectedProductIndex } = this.props;
+    const { store, design, currentSku } = this.props;
     const otherVariants = this.productHelper.otherVariants(
       design,
-      selectedProductIndex
+      currentSku.productType
     );
-
-    console.log(store);
-    console.log(design);
 
     const variants = otherVariants.map((variant, i) => {
       const imageUrl = this.productHelper.mockupImage(variant).url;
@@ -23,7 +20,7 @@ export default class ProductVariants extends Component {
       return (
         <div key={i}>
           <img key={imageUrl} src={imageUrl} />
-          <h4>{variantGroup}</h4>
+          <h4>{variantGroup.group}</h4>
           <a href={variant._links.self.href} key={variant.type}>
             {variant.type}
           </a>

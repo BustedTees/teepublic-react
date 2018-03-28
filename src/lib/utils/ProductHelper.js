@@ -1,18 +1,12 @@
 export default class ProductHelper {
-  otherVariants(design, selectedProductIndex) {
+  otherVariants(design, productType) {
     var products = design._embedded.products;
-    return products.filter((product, i) => i !== selectedProductIndex);
+    return products.filter(product => product.type !== productType);
   }
 
   variantGroup(store, variant) {
     const types = store._embedded.productTypes;
-    var group;
-
-    types.some((type, i) => {
-      if (type.name === variant.type) return (group = type.group);
-    });
-
-    return group;
+    return types.find(type => type.name === variant.type);
   }
 
   mockupImage(variant) {
@@ -81,7 +75,7 @@ export default class ProductHelper {
     // MAKE SURE THE CURRENT PRODUCT MATCHES ALL SOFT SELECTED OPTIONS
     softSelected.forEach(softSelectedRecord => {
       if (
-        softSelectedRecord['value'] !=
+        softSelectedRecord['value'] !==
         this.attributeForType(currentProductAttrs, softSelectedRecord['name'])[
           'value'
         ]
@@ -103,9 +97,21 @@ export default class ProductHelper {
     // FIND THE ATTRIBUTE THAT MATCHES THAT TYPE
     // update to foreach/array methods array.some
     for (var i = 0; i < attributes.length; i++) {
-      if (attributes[i]['name'] == attr_type) {
+      if (attributes[i]['name'] === attr_type) {
         return attributes[i];
       }
     }
+  }
+
+  currentSku(skus, selectedOptions) {
+    const keys = Object.keys(selectedOptions);
+    const selectedSku = skus.find(sku => {
+      return keys.every(key => {
+        return sku.productOptions.find(option => {
+          return option.name === key && option.value === selectedOptions[key];
+        });
+      });
+    });
+    return selectedSku;
   }
 }
