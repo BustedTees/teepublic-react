@@ -90,7 +90,7 @@ export default class BuyProduct extends Component {
   }
 
   render() {
-    const { className, design, store, buyProductLinkLBuilder } = this.props;
+    const { className, design, store, buyProductLinkBuilder } = this.props;
     const {
       skuImageIndex,
       productOptions,
@@ -142,7 +142,7 @@ export default class BuyProduct extends Component {
         design={design}
         store={store}
         currentSku={currentSku}
-        buyProductLinkLBuilder={buyProductLinkLBuilder}
+        buyProductLinkBuilder={buyProductLinkBuilder}
       />
     );
 

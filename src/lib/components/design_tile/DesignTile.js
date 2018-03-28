@@ -19,9 +19,9 @@ const DESIGN_IMAGE = {
 
 export default class DesignTile extends Component {
   render() {
-    const { className, design, size, buyProductLinkLBuilder } = this.props;
+    const { className, design, size, buyProductLinkBuilder } = this.props;
     const designSku = design._embedded.defaultProduct._embedded.defaultSku;
-    const buyProductLink = buyProductLinkLBuilder(
+    const buyProductLink = buyProductLinkBuilder(
       design.id,
       designSku.productType
     );
@@ -93,7 +93,7 @@ export default class DesignTile extends Component {
 DesignTile.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   design: PropTypes.object.isRequired,
-  buyProductLinkLBuilder: PropTypes.string.isRequired
+  buyProductLinkBuilder: PropTypes.string.isRequired
 };
 
 DesignTile.defaultProps = {

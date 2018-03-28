@@ -30,7 +30,7 @@ const App = () => {
         design={design}
         skuData={skuData}
         store={store}
-        buyProductLinkLBuilder={(designId, productType) => {
+        buyProductLinkBuilder={(designId, productType) => {
           return `/store/${productType}/${designId}`;
         }}
       />
@@ -42,7 +42,7 @@ const App = () => {
       <DesignCollection
         tileSize="large"
         designs={store._embedded.designs}
-        buyProductLinkLBuilder={(designId, productType) => {
+        buyProductLinkBuilder={(designId, productType) => {
           return `/store/${productType}/${designId}`;
         }}
       />
