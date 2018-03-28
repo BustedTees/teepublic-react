@@ -19,7 +19,12 @@ const DESIGN_IMAGE = {
 
 export default class DesignTile extends Component {
   render() {
-    const { className, design, size, onClick } = this.props;
+    const { className, design, size, buyProductLinkLBuilder } = this.props;
+    const designSku = design._embedded.defaultProduct._embedded.defaultSku;
+    const buyProductLink = buyProductLinkLBuilder(
+      design.id,
+      designSku.productType
+    );
 
     const classes = classnames(
       CLASS_ROOT,
@@ -45,7 +50,9 @@ export default class DesignTile extends Component {
       />
     );
     const designTitle = (
-      <a className={`${CLASS_ROOT}__title`}>{design.title}</a>
+      <a href={buyProductLink} className={`${CLASS_ROOT}__title`}>
+        {design.title}
+      </a>
     );
     const designPrice = (
       <p className={`${CLASS_ROOT}__price`}>
@@ -58,30 +65,27 @@ export default class DesignTile extends Component {
     const buyButton = <button>Buy</button>;
 
     return (
-      <Column
-        onClick={() => onClick()}
-        className={classes}
-        justify="start"
-        align="center"
-      >
-        {designImage}
-        <Row
-          className={`${CLASS_ROOT}__details`}
-          justify="between"
-          align="start"
-        >
-          <Column
-            className={`${CLASS_ROOT}__title-owner`}
-            justify="start"
+      <a className={classes} href={buyProductLink}>
+        <Column justify="start" align="center">
+          {designImage}
+          <Row
+            className={`${CLASS_ROOT}__details`}
+            justify="between"
             align="start"
           >
-            {designTitle}
-            {ownerName}
-            {designPrice}
-          </Column>
-          {buyButton}
-        </Row>
-      </Column>
+            <Column
+              className={`${CLASS_ROOT}__title-owner`}
+              justify="start"
+              align="start"
+            >
+              {designTitle}
+              {ownerName}
+              {designPrice}
+            </Column>
+            {buyButton}
+          </Row>
+        </Column>
+      </a>
     );
   }
 }
@@ -89,7 +93,7 @@ export default class DesignTile extends Component {
 DesignTile.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   design: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired
+  buyProductLinkLBuilder: PropTypes.string.isRequired
 };
 
 DesignTile.defaultProps = {

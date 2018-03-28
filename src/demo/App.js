@@ -37,7 +37,9 @@ const App = () => {
       <DesignCollection
         tileSize="large"
         designs={store._embedded.designs}
-        onDesignClick={(design, sku) => console.log(design, sku)}
+        buyProductLinkLBuilder={(designId, productType) => {
+          return `/store/${productType}/${designId}`;
+        }}
       />
       <h3> --- DesignCollection Component (End) --- </h3>
       <TeepublicPowered layout="column" />

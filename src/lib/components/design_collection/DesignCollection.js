@@ -10,16 +10,8 @@ import './DesignCollection.css';
 const CLASS_ROOT = 'tp-design-collection';
 
 export default class DesignCollection extends Component {
-  handleDesignClick(designIndex) {
-    const { designs, onDesignClick } = this.props;
-    const clickedDesign = designs[designIndex];
-    const clickedDesignSku =
-      clickedDesign._embedded.defaultProduct._embedded.defaultSku;
-    onDesignClick(clickedDesign, clickedDesignSku);
-  }
-
   render() {
-    const { className, designs, tileSize } = this.props;
+    const { className, designs, tileSize, buyProductLinkLBuilder } = this.props;
 
     const classes = classnames(CLASS_ROOT, className);
 
@@ -27,7 +19,7 @@ export default class DesignCollection extends Component {
       return (
         <DesignTile
           key={designIndex}
-          onClick={() => this.handleDesignClick(designIndex)}
+          buyProductLinkLBuilder={buyProductLinkLBuilder}
           size={tileSize}
           design={design}
         />
@@ -45,7 +37,7 @@ export default class DesignCollection extends Component {
 DesignCollection.propTypes = {
   tileSize: PropTypes.oneOf(['small', 'medium', 'large']),
   designs: PropTypes.array.isRequired,
-  onDesignClick: PropTypes.func.isRequired
+  buyProductLinkLBuilder: PropTypes.func.isRequired
 };
 
 DesignCollection.defaultProps = {
