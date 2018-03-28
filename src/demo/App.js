@@ -15,9 +15,7 @@ const App = () => {
   return (
     <Column align="center">
       <h3> --- Cart Button (Start) --- </h3>
-      <CartButton
-        onClick={event => console.log('Render Cart Component on this click')}
-      />
+      <CartButton href="/cart" />
       <h3> --- Cart Button (End) --- </h3>
       <br />
       <br />

@@ -30,9 +30,9 @@ export default class CartButton extends Component {
     const classes = classnames(className, CLASS_ROOT);
 
     return (
-      <button className={classes} {...props}>
+      <a className={classes} {...props}>
         Cart ({cartItems.length})
-      </button>
+      </a>
     );
   }
 }
