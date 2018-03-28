@@ -21,7 +21,7 @@ export default class ProductVariants extends Component {
 
       return (
         <a href={buyProductLink} key={i}>
-          <img key={imageUrl} src={imageUrl} />
+          <img key={imageUrl} src={imageUrl} height={200} />
           <h4>{variantGroup.group}</h4>
           {variant.type}
         </a>

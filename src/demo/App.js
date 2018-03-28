@@ -4,7 +4,8 @@ import {
   DesignCollection,
   Cart,
   BuyProduct,
-  CartButton
+  CartButton,
+  StoreFilter
 } from '../index';
 import Column from '../lib/components/column/Column';
 import store from './StoreData';
@@ -14,6 +15,14 @@ import skuData from './SkuData';
 const App = () => {
   return (
     <Column align="center">
+      <h3> --- Store Filters (Start) --- </h3>
+      <StoreFilter
+        albums={store._embedded.albums}
+        productTypes={store._embedded.productTypes}
+      />
+      <h3> --- Store Filters (End) --- </h3>
+      <br />
+      <br />
       <h3> --- Cart Button (Start) --- </h3>
       <CartButton href="/cart" />
       <h3> --- Cart Button (End) --- </h3>
