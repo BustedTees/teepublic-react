@@ -28,7 +28,14 @@ const App = () => {
       <br />
 
       <h3> --- BuyProduct Component (Start) --- </h3>
-      <BuyProduct design={design} skuData={skuData} store={store} />
+      <BuyProduct
+        design={design}
+        skuData={skuData}
+        store={store}
+        buyProductLinkLBuilder={(designId, productType) => {
+          return `/store/${productType}/${designId}`;
+        }}
+      />
       <h3> --- BuyProduct Component (End) --- </h3>
       <br />
       <br />

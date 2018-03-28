@@ -7,7 +7,7 @@ const CLASS_ROOT = 'tp-product-variants';
 export default class ProductVariants extends Component {
   render() {
     this.productHelper = new ProductHelper();
-    const { store, design, currentSku } = this.props;
+    const { store, design, currentSku, buyProductLinkLBuilder } = this.props;
     const otherVariants = this.productHelper.otherVariants(
       design,
       currentSku.productType
@@ -17,14 +17,16 @@ export default class ProductVariants extends Component {
       const imageUrl = this.productHelper.mockupImage(variant).url;
       const variantGroup = this.productHelper.variantGroup(store, variant);
 
+      const buyProductLink = buyProductLinkLBuilder(design.id, variant.type);
+
       return (
-        <div key={i}>
+        <a href={buyProductLink} key={i}>
           <img key={imageUrl} src={imageUrl} />
           <h4>{variantGroup.group}</h4>
-          <a href={variant._links.self.href} key={variant.type}>
+          <a href={buyProductLink} key={variant.type}>
             {variant.type}
           </a>
-        </div>
+        </a>
       );
     }, this);
 
