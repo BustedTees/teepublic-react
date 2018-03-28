@@ -50,9 +50,7 @@ export default class DesignTile extends Component {
       />
     );
     const designTitle = (
-      <a href={buyProductLink} className={`${CLASS_ROOT}__title`}>
-        {design.title}
-      </a>
+      <p className={`${CLASS_ROOT}__title`}>{design.title}</p>
     );
     const designPrice = (
       <p className={`${CLASS_ROOT}__price`}>
@@ -93,7 +91,7 @@ export default class DesignTile extends Component {
 DesignTile.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   design: PropTypes.object.isRequired,
-  buyProductLinkBuilder: PropTypes.string.isRequired
+  buyProductLinkBuilder: PropTypes.func.isRequired
 };
 
 DesignTile.defaultProps = {
