@@ -11,6 +11,7 @@ import BackToProducts from '../back_to_products/BackToProducts';
 import ProductVariants from '../product_variants/ProductVariants';
 import ProductHelper from '../../utils/ProductHelper';
 import SkuSelector from '../sku_selector/SkuSelector';
+import RelatedTags from '../related_tags/RelatedTags';
 
 import './BuyProduct.css';
 
@@ -142,6 +143,8 @@ export default class BuyProduct extends Component {
       />
     );
 
+    const relatedTags = <RelatedTags design={design} />;
+
     return (
       <div className={CLASS_ROOT}>
         <Row className={classes} justify="center" align="start">
@@ -165,6 +168,7 @@ export default class BuyProduct extends Component {
           </Column>
           <Column>{productVariants}</Column>
         </Row>
+        <Row>{relatedTags}</Row>
       </div>
     );
   }
