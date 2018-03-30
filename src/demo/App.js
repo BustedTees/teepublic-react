@@ -42,6 +42,10 @@ const App = () => {
         buyProductLinkBuilder={(designId, productType) => {
           return `/store/${productType}/${designId}`;
         }}
+        tagLinkBuilder={(type, tag) => {
+          var baseUrl = 'https://www.teepublic.com';
+          return `${baseUrl}/${type}/${tag}`;
+        }}
       />
       <h3> --- BuyProduct Component (End) --- </h3>
       <br />
