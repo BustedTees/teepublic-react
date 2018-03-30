@@ -10,3 +10,4 @@ export { default as CartButton } from './lib/components/cart_button/CartButton';
 export {
   default as StoreFilter
 } from './lib/components/store_filter/StoreFilter';
+export { default as Pagination } from './lib/components/pagination/Pagination';
