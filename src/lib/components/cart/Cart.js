@@ -47,8 +47,9 @@ export default class Cart extends Component {
     const cartItems = this.cartHelper.checkoutCartItems();
     onCheckout(cartItems);
   };
+
   render() {
-    const { className } = this.props;
+    const { className, storePathLinkBuilder } = this.props;
     const { items } = this.state;
 
     const classes = classnames(className, CLASS_ROOT);
@@ -72,15 +73,26 @@ export default class Cart extends Component {
     const cartContent =
       items.length > 0 ? (
         <Column className={classes} justify="center" align="stretch">
+          <h2>{`Your Cart (${this.cartHelper.itemsDescription(
+            cartItems
+          )})`}</h2>
           {cartItems}
           <div className={`${CLASS_ROOT}__total`}>
-            Total={new MoneyHelper(totalPrice, 'USD').commaSeprated()}
+            Subtotal:{' '}
+            {`${new MoneyHelper(
+              totalPrice,
+              'USD'
+            ).commaSeprated()} (${this.cartHelper.itemsDescription(
+              cartItems
+            )})`}
           </div>
           <button onClick={this.checkoutHandler}>Checkout</button>
+          <a href={storePathLinkBuilder()}>Continue Shopping</a>
         </Column>
       ) : (
         <Column className={classes} justify="center" align="stretch">
-          No items added to cart
+          <p>Your cart is empty</p>
+          <a href={storePathLinkBuilder()}>Continue Shopping</a>
         </Column>
       );
 

@@ -58,7 +58,10 @@ export default class App extends Component {
         <br />
         <br />
         <h3> --- Cart Component (Start) --- </h3>
-        <Cart onCheckout={cartItems => console.log(cartItems)} />
+        <Cart
+          onCheckout={cartItems => console.log(cartItems)}
+          storePathLinkBuilder={() => '/'}
+        />
         <h3> --- Cart Component (End) --- </h3>
         <br />
         <br />

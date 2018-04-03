@@ -76,6 +76,11 @@ export default class CartHelper {
     localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
   }
 
+  itemsDescription(cartItems) {
+    if (cartItems.length < 1) return 'Empty';
+    return `${cartItems.length} ${cartItems.length === 1 ? 'Item' : 'Items'}`;
+  }
+
   _areSameItems = (item1, item2) => {
     return item1.design.id === item2.design.id && item1.sku.id === item2.sku.id;
   };

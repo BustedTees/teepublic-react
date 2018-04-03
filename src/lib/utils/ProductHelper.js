@@ -114,4 +114,12 @@ export default class ProductHelper {
     });
     return selectedSku;
   }
+
+  skuOptions(sku) {
+    var options = {};
+    sku.productOptions.forEach(option => {
+      options[option.name.toLowerCase()] = option.value;
+    });
+    return options;
+  }
 }
