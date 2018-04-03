@@ -21,9 +21,6 @@ export default class StoreFilter extends Component {
       productTypeChangeHandler
     } = this.props;
 
-    console.log(albums);
-    console.log(productTypes);
-
     const classes = classnames(className, CLASS_ROOT);
 
     const productTypeRadios = productTypes.map((productType, index) => (

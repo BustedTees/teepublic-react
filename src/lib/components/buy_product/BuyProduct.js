@@ -90,7 +90,13 @@ export default class BuyProduct extends Component {
   }
 
   render() {
-    const { className, design, store, buyProductLinkBuilder } = this.props;
+    const {
+      className,
+      design,
+      store,
+      buyProductLinkBuilder,
+      tagLinkBuilder
+    } = this.props;
     const {
       skuImageIndex,
       productOptions,
@@ -146,7 +152,13 @@ export default class BuyProduct extends Component {
       />
     );
 
-    const relatedTags = <RelatedTags design={design} />;
+    const relatedTags = (
+      <RelatedTags
+        design={design}
+        currentSku={currentSku}
+        tagLinkBuilder={tagLinkBuilder}
+      />
+    );
 
     const relatedInfo = (
       <div>

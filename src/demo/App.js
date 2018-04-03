@@ -5,7 +5,8 @@ import {
   Cart,
   BuyProduct,
   CartButton,
-  StoreFilter
+  StoreFilter,
+  Pagination
 } from '../index';
 import Column from '../lib/components/column/Column';
 import store from './StoreData';
@@ -32,6 +33,13 @@ export default class App extends Component {
   render() {
     return (
       <Column align="center">
+        <Pagination
+          currentPage={1}
+          totalPages={10}
+          onPageChange={pgNum => {
+            console.log(pgNum);
+          }}
+        />
         <h3> --- Store Filters (Start) --- </h3>
         <StoreFilter
           albums={store._embedded.albums}
@@ -62,6 +70,10 @@ export default class App extends Component {
           store={store}
           buyProductLinkBuilder={(designId, productType) => {
             return `/store/${productType}/${designId}`;
+          }}
+          tagLinkBuilder={(type, tag) => {
+            var baseUrl = 'https://www.teepublic.com';
+            return `${baseUrl}/${type}/${tag}`;
           }}
         />
         <h3> --- BuyProduct Component (End) --- </h3>
