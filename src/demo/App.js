@@ -5,7 +5,8 @@ import {
   Cart,
   BuyProduct,
   CartButton,
-  StoreFilter
+  StoreFilter,
+  Pagination
 } from '../index';
 import Column from '../lib/components/column/Column';
 import store from './StoreData';
@@ -15,6 +16,13 @@ import skuData from './SkuData';
 const App = () => {
   return (
     <Column align="center">
+      <Pagination
+        currentPage={1}
+        totalPages={10}
+        onPageChange={pgNum => {
+          console.log(pgNum);
+        }}
+      />
       <h3> --- Store Filters (Start) --- </h3>
       <StoreFilter
         albums={store._embedded.albums}
