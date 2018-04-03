@@ -29,7 +29,7 @@ export default class StoreFilter extends Component {
           type="radio"
           name="product-types"
           value={productType.name}
-          checked={productType.name === selectedProductTypeName}
+          defaultChecked={productType.name === selectedProductTypeName}
         />
         <label>{productType.displayName}</label>
       </div>
@@ -41,7 +41,7 @@ export default class StoreFilter extends Component {
           type="radio"
           name="albums"
           value={album.id}
-          checked={album.id === selectedAlbumId}
+          defaultChecked={album.id === selectedAlbumId}
         />
         <label>{album.name}</label>
       </div>
