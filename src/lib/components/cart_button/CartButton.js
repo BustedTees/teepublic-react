@@ -31,7 +31,7 @@ export default class CartButton extends Component {
 
     return (
       <a className={classes} {...props}>
-        Cart ({cartItems.length})
+        Cart ({this.cartHelper.itemsDescription(cartItems)})
       </a>
     );
   }

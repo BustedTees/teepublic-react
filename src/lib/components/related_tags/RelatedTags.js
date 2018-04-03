@@ -11,8 +11,6 @@ export default class RelatedTags extends Component {
     const relatedTags = buildTags(design._embedded.relatedTags);
     const classes = classnames(CLASS_ROOT, className);
 
-    console.log(tagLinkBuilder);
-
     function buildTags(tags) {
       return (
         <ul>
