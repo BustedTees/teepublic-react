@@ -10,22 +10,20 @@ import './StoreFilter.css';
 const CLASS_ROOT = 'tp-store-filter';
 
 export default class StoreFilter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedProductIndex: null,
-      selectedAlbumIndex: null
-    };
-  }
-
   render() {
     const {
       className,
       albums,
       productTypes,
-      collectionLinkBuilder
+      selectedAlbumId,
+      selectedProductTypeName,
+      albumChangeHandler,
+      productTypeChangeHandler
     } = this.props;
-    const { selectedProductIndex, selectedAlbumIndex } = this.state;
+
+    console.log(albums);
+    console.log(productTypes);
+
     const classes = classnames(className, CLASS_ROOT);
 
     const productTypeRadios = productTypes.map((productType, index) => (
@@ -33,8 +31,8 @@ export default class StoreFilter extends Component {
         <input
           type="radio"
           name="product-types"
-          value={index}
-          checked={index === selectedProductIndex}
+          value={productType.name}
+          checked={productType.name === selectedProductTypeName}
         />
         <label>{productType.displayName}</label>
       </div>
@@ -45,8 +43,8 @@ export default class StoreFilter extends Component {
         <input
           type="radio"
           name="albums"
-          value={index}
-          checked={index === selectedAlbumIndex}
+          value={album.id}
+          checked={album.id === selectedAlbumId}
         />
         <label>{album.name}</label>
       </div>
@@ -57,9 +55,7 @@ export default class StoreFilter extends Component {
         <h4> Albums </h4>
         <Column
           onChange={event => {
-            this.setState({
-              selectedAlbumIndex: parseInt(event.target.value, 10)
-            });
+            albumChangeHandler(parseInt(event.target.value, 10));
           }}
         >
           {albumRadios}
@@ -67,9 +63,7 @@ export default class StoreFilter extends Component {
         <h4> Products </h4>
         <Column
           onChange={event => {
-            this.setState({
-              selectedProductIndex: parseInt(event.target.value, 10)
-            });
+            productTypeChangeHandler(event.target.value);
           }}
         >
           {productTypeRadios}
@@ -81,7 +75,11 @@ export default class StoreFilter extends Component {
 
 StoreFilter.propTypes = {
   albums: PropTypes.array.isRequired,
-  productTypes: PropTypes.array.isRequired
+  productTypes: PropTypes.array.isRequired,
+  selectedAlbumId: PropTypes.number,
+  selectedProductTypeName: PropTypes.string,
+  albumChangeHandler: PropTypes.func.isRequired,
+  productTypeChangeHandler: PropTypes.func.isRequired
 };
 
 StoreFilter.defaultProps = {
