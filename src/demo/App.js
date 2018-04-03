@@ -44,8 +44,8 @@ export default class App extends Component {
         <StoreFilter
           albums={store._embedded.albums}
           productTypes={store._embedded.productTypes}
-          albumChangeHandler={this.albumChangeHandler}
-          productTypeChangeHandler={this.productTypeChangeHandler}
+          onAlbumChange={this.albumChangeHandler}
+          onProductTypeChange={this.productTypeChangeHandler}
           selectedAlbumId={this.state.selectedAlbumId}
           selectedProductTypeName={this.state.selectedProductTypeName}
         />

@@ -17,8 +17,8 @@ export default class StoreFilter extends Component {
       productTypes,
       selectedAlbumId,
       selectedProductTypeName,
-      albumChangeHandler,
-      productTypeChangeHandler
+      onAlbumChange,
+      onProductTypeChange
     } = this.props;
 
     const classes = classnames(className, CLASS_ROOT);
@@ -52,7 +52,7 @@ export default class StoreFilter extends Component {
         <h4> Albums </h4>
         <Column
           onChange={event => {
-            albumChangeHandler(parseInt(event.target.value, 10));
+            onAlbumChange(parseInt(event.target.value, 10));
           }}
         >
           {albumRadios}
@@ -60,7 +60,7 @@ export default class StoreFilter extends Component {
         <h4> Products </h4>
         <Column
           onChange={event => {
-            productTypeChangeHandler(event.target.value);
+            onProductTypeChange(event.target.value);
           }}
         >
           {productTypeRadios}
@@ -75,8 +75,8 @@ StoreFilter.propTypes = {
   productTypes: PropTypes.array.isRequired,
   selectedAlbumId: PropTypes.number,
   selectedProductTypeName: PropTypes.string,
-  albumChangeHandler: PropTypes.func.isRequired,
-  productTypeChangeHandler: PropTypes.func.isRequired
+  onAlbumChange: PropTypes.func.isRequired,
+  onProductTypeChange: PropTypes.func.isRequired
 };
 
 StoreFilter.defaultProps = {
