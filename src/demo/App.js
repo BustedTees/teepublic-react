@@ -13,6 +13,9 @@ import store from './StoreData';
 import design from './DesignData';
 import skuData from './SkuData';
 
+import 'normalize.css';
+import '../lib/components/App.css';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -61,6 +64,9 @@ export default class App extends Component {
         <Cart
           onCheckout={cartItems => console.log(cartItems)}
           storePathLinkBuilder={() => '/'}
+          buyProductLinkBuilder={(designId, productType) => {
+            return `/store/${productType}/${designId}`;
+          }}
         />
         <h3> --- Cart Component (End) --- </h3>
         <br />

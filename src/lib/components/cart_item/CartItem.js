@@ -20,7 +20,9 @@ export default class CartItem extends Component {
 
   onQuantityChange = e => {
     const { cartItem, updateCartItem } = this.props;
-    cartItem.quantity = e.target.value;
+    var qty = e.target.value;
+    if (qty > 100) qty = 100;
+    cartItem.quantity = qty;
     updateCartItem(cartItem);
   };
 
@@ -30,8 +32,7 @@ export default class CartItem extends Component {
   };
 
   render() {
-    const { className, cartItem } = this.props;
-
+    const { className, cartItem, buyProductLinkBuilder } = this.props;
     const classes = classnames(className, CLASS_ROOT);
     const skuOptions = this.productHelper.skuOptions(cartItem.sku);
 
@@ -47,44 +48,67 @@ export default class CartItem extends Component {
         height={100}
       />
     );
+
     const designTitle = (
-      <h4 className={`${CLASS_ROOT}__title`}>{cartItem.design.description}</h4>
-    );
-    const skuPrice = (
-      <p className={`${CLASS_ROOT}__price`}>
-        {new MoneyHelper(cartItem.sku.price, 'USD').commaSeprated()}
+      <p className={`${CLASS_ROOT}__title`}>
+        <a
+          href={buyProductLinkBuilder(
+            cartItem.design.id,
+            cartItem.sku.productType
+          )}
+        >
+          {cartItem.design.description}
+        </a>
       </p>
     );
 
+    const skuPrice = (
+      <span className={`${CLASS_ROOT}__price`}>
+        {new MoneyHelper(
+          Number(cartItem.sku.price).toFixed(2),
+          'USD'
+        ).commaSeprated()}
+      </span>
+    );
+
     const skuQuantity = (
-      <Row justify="start" align="center">
-        <input
-          type="number"
-          value={cartItem.quantity}
-          onChange={this.onQuantityChange}
-        />
-      </Row>
+      <input
+        type="number"
+        min="1"
+        max="100"
+        value={cartItem.quantity}
+        onChange={this.onQuantityChange}
+        className={`${CLASS_ROOT}__qty`}
+      />
     );
 
     return (
-      <Row className={classes} justify="between">
+      <div className={classes}>
         {designTitle}
-        <Column>
-          <Row justify="between" align="center">
-            {skuImage}
-            <ul>
-              <li>{`Style ${skuOptions.style}`}</li>
+        <div className={`${CLASS_ROOT}__preview`}>
+          {skuImage}
+
+          <div className={`${CLASS_ROOT}__config`}>
+            <ul className={`${CLASS_ROOT}__details`}>
+              <li>{skuOptions.style}</li>
               <li>{`${skuOptions.gender}, Size ${skuOptions.size}`}</li>
               <li>{skuOptions.color}</li>
             </ul>
-          </Row>
-          <Row justify="between" align="center">
-            {skuPrice}
-            {skuQuantity}
-          </Row>
-          <button onClick={this.deleteCartItem}>Remove</button>
-        </Column>
-      </Row>
+
+            <div className={`${CLASS_ROOT}__adjust`}>
+              {skuPrice}
+              {skuQuantity}
+            </div>
+
+            <span
+              onClick={this.deleteCartItem}
+              className={`${CLASS_ROOT}__update`}
+            >
+              Remove
+            </span>
+          </div>
+        </div>
+      </div>
     );
   }
 }

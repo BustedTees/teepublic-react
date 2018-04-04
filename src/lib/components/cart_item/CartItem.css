@@ -1,91 +1,57 @@
-.tp-design-tile {
-  text-decoration: none;
-}
-.tp-design-tile__location {
-  color: #616161;
-  max-width: 100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.tp-cart-item {
 }
 
-.tp-design-tile__title {
-  color: #19b1ff;
-  max-width: 100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.tp-cart-item__adjust {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.tp-design-tile__title-location {
-  white-space: nowrap;
+.tp-cart-item__config {
+  margin-left: 20px;
+  flex-grow: 1;
 }
 
-.tp-design-tile__price {
-  margin: 0;
-  color: gray;
-}
-
-.tp-design-tile--small {
-  margin: 5px;
-}
-.tp-design-tile--small .tp-design-tile__title-location {
-  width: 100px;
-}
-.tp-design-tile--small .tp-design-tile__details {
-  width: 200px;
-  margin-top: 5px;
-}
-.tp-design-tile--small .tp-design-tile__avatar {
-  border-radius: 50%;
-  margin: 0 5px;
-}
-.tp-design-tile--small .tp-design-tile__location {
+.tp-cart-item__details {
+  list-style-type: none;
+  padding-left: 0;
   font-size: 12px;
-  margin: 2px 0;
-}
-.tp-design-tile--small .tp-design-tile__price {
-  font-size: 16px;
+  color: var(--tp-color-gray);
 }
 
-.tp-design-tile--medium {
-  margin: 10px;
-}
-.tp-design-tile--medium .tp-design-tile__title-location {
-  width: 170px;
-}
-.tp-design-tile--medium .tp-design-tile__details {
-  width: 300px;
-  margin-top: 7px;
-}
-.tp-design-tile--medium .tp-design-tile__avatar {
-  border-radius: 50%;
-  margin: 0 5px;
-}
-.tp-design-tile--medium .tp-design-tile__location {
-  font-size: 12px;
-  margin: 3px 0;
-}
-.tp-design-tile--medium .tp-design-tile__price {
-  font-size: 20px;
+.tp-cart-item__details li {
+  margin-bottom: 6px;
 }
 
-.tp-design-tile--large {
-  margin: 15px;
+.tp-cart-item__image {
+  width: 113px;
+  height: 113px;
 }
-.tp-design-tile--large .tp-design-tile__title-location {
-  width: 250px;
+
+.tp-cart-item__title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
-.tp-design-tile--large .tp-design-tile__details {
-  width: 400px;
-  margin-top: 10px;
+
+.tp-cart-item__preview {
+  display: flex;
 }
-.tp-design-tile--large .tp-design-tile__avatar {
-  border-radius: 50%;
-  margin: 0 7px;
+
+.tp-cart-item__price {
+  font-size: 14px;
+  font-weight: bold;
 }
-.tp-design-tile--large .tp-design-tile__location {
-  font-size: 15px;
-  margin: 4px 0;
+
+.tp-cart-item__update {
+  font-size: 11px;
+  color: var(--tp-color-blue);
 }
-.tp-design-tile--large .tp-design-tile__price {
-  font-size: 25px;
+
+.tp-cart-item__qty {
+  border: 1px solid rgba(200, 200, 200, 1);
+  padding: 15px;
+  width: 70px;
+  height: 42px;
+  font-size: 14px;
 }

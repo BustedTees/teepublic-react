@@ -77,8 +77,11 @@ export default class CartHelper {
   }
 
   itemsDescription(cartItems) {
-    if (cartItems.length < 1) return 'Empty';
-    return `${cartItems.length} ${cartItems.length === 1 ? 'Item' : 'Items'}`;
+    const qty = cartItems.reduce((total, item) => {
+      return total + item.quantity || 1;
+    }, 0);
+    if (qty < 1) return 'Empty';
+    return `${qty} ${qty === 1 ? 'Item' : 'Items'}`;
   }
 
   _areSameItems = (item1, item2) => {
