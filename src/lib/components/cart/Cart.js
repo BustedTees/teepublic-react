@@ -49,7 +49,11 @@ export default class Cart extends Component {
   };
 
   render() {
-    const { className, storePathLinkBuilder } = this.props;
+    const {
+      className,
+      storePathLinkBuilder,
+      buyProductLinkBuilder
+    } = this.props;
     const { items } = this.state;
 
     const classes = classnames(className, CLASS_ROOT);
@@ -61,6 +65,7 @@ export default class Cart extends Component {
           cartItem={item}
           updateCartItem={this.updateCartItem}
           deleteCartItem={this.deleteCartItem}
+          buyProductLinkBuilder={buyProductLinkBuilder}
         />
       );
     }, this);
@@ -72,23 +77,40 @@ export default class Cart extends Component {
 
     const cartContent =
       items.length > 0 ? (
-        <Column className={classes} justify="center" align="stretch">
-          <h2>{`Your Cart (${this.cartHelper.itemsDescription(
-            cartItems
-          )})`}</h2>
+        <div className={classes}>
+          <h2 className={`${CLASS_ROOT}__h`}>
+            Your Cart
+            <span>{` (${this.cartHelper.itemsDescription(items)})`}</span>
+          </h2>
           {cartItems}
-          <div className={`${CLASS_ROOT}__total`}>
-            Subtotal:{' '}
-            {`${new MoneyHelper(
-              totalPrice,
-              'USD'
-            ).commaSeprated()} (${this.cartHelper.itemsDescription(
-              cartItems
-            )})`}
+
+          <div className={`${CLASS_ROOT}__checkout`}>
+            <div className={`${CLASS_ROOT}__total`}>
+              <span className={`${CLASS_ROOT}__total-h`}>Subtotal: </span>
+              <span className={`${CLASS_ROOT}__total-price`}>
+                {new MoneyHelper(
+                  Number(totalPrice).toFixed(2),
+                  'USD'
+                ).commaSeprated()}
+                <span>{` (${this.cartHelper.itemsDescription(items)})`}</span>
+              </span>
+            </div>
+
+            <button
+              onClick={this.checkoutHandler}
+              className={`${CLASS_ROOT}__checkout-checkout`}
+            >
+              Checkout
+            </button>
+
+            <a
+              href={storePathLinkBuilder()}
+              className={`${CLASS_ROOT}__checkout-shopping`}
+            >
+              Continue Shopping
+            </a>
           </div>
-          <button onClick={this.checkoutHandler}>Checkout</button>
-          <a href={storePathLinkBuilder()}>Continue Shopping</a>
-        </Column>
+        </div>
       ) : (
         <Column className={classes} justify="center" align="stretch">
           <p>Your cart is empty</p>
