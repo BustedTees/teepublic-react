@@ -1,1 +1,41 @@
+.tp-sku-selector__color-label {
+  font-weight: bold;
+  font-size: 14px;
+}
 
+.tp-sku-selector__color-color {
+  font-weight: normal;
+  color: var(--tp-color-gray);
+  margin-left: 4px;
+}
+
+.tp-sku-selector__color-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tp-sku-selector__color-option {
+  width: calc(100% / 6 - 6px);
+  margin: 3px;
+  border-radius: 2px;
+  padding: 3px;
+  border: 2px solid var(--tp-color-gray-light-1);
+}
+
+.tp-sku-selector__color-option.on {
+  border-color: var(--tp-color-blue);
+}
+
+.tp-sku-selector__color-option input {
+  display: none;
+}
+
+.tp-sku-selector__color-option label {
+  cursor: pointer;
+  font-size: 0;
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+  border-radius: 2px;
+}

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Row from '../row/Row';
-import Column from '../column/Column';
-
 import './ImageGallery.css';
 
 const CLASS_ROOT = 'tp-image-gallery';
@@ -14,40 +11,37 @@ export default class ImageGallery extends Component {
     const { className, images, selectedImageIndex, onImageSelect } = this.props;
     const classes = classnames(CLASS_ROOT, className);
 
-    const previewImageTags = images.map(function(image, imageIndex) {
+    const thumbImageTags = images.map(function(image, imageIndex) {
       return (
         <img
+          className={`${CLASS_ROOT}__thumb`}
           key={imageIndex}
           onClick={() => {
             onImageSelect(imageIndex);
           }}
           src={image.url}
           alt={image.type}
-          height={100}
         />
       );
     }, this);
 
-    const previewImages = (
-      <Row justify="start" align="center">
-        {previewImageTags}
-      </Row>
+    const thumbImages = (
+      <div className={`${CLASS_ROOT}__thumbs`}>{thumbImageTags}</div>
     );
 
-    const selectedImage = (
+    const previewImage = (
       <img
-        className={`${CLASS_ROOT}__selected-image`}
+        className={`${CLASS_ROOT}__preview`}
         src={images[selectedImageIndex].url}
         alt="Main"
-        height={600}
       />
     );
 
     return (
-      <Column className={classes} justify="start" align="start">
-        {selectedImage}
-        {previewImages}
-      </Column>
+      <div className={classes}>
+        {previewImage}
+        {thumbImages}
+      </div>
     );
   }
 }

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Row from '../row/Row';
-import Column from '../column/Column';
 import AddToCart from '..//add_to_cart/AddToCart';
 import ImageGallery from '..//image_gallery/ImageGallery';
 import MoneyHelper from '../../utils/MoneyHelper';
@@ -15,7 +13,7 @@ import RelatedTags from '../related_tags/RelatedTags';
 
 import './BuyProduct.css';
 
-const CLASS_ROOT = 'tp-buy-product';
+const CLASS_ROOT = 'tp-product';
 
 export default class BuyProduct extends Component {
   constructor(props) {
@@ -97,6 +95,7 @@ export default class BuyProduct extends Component {
       buyProductLinkBuilder,
       tagLinkBuilder
     } = this.props;
+
     const {
       skuImageIndex,
       productOptions,
@@ -130,17 +129,17 @@ export default class BuyProduct extends Component {
       </h2>
     );
     const designPrice = (
-      <h2 className={`${CLASS_ROOT}__price`}>
-        {new MoneyHelper(price, 'USD').commaSeprated()}
-      </h2>
+      <p className={`${CLASS_ROOT}__price`}>
+        {new MoneyHelper(Number(price).toFixed(2), 'USD').commaSeprated()}
+      </p>
     );
 
     const cartButton = <AddToCart design={design} sku={currentSku} />;
 
     const backToProducts = (
-      <Column justify="start" align="center" style={{ width: '100%' }}>
+      <div style={{ width: '100%' }}>
         <BackToProducts storeUrl="/" linkText="Back to Products" />
-      </Column>
+      </div>
     );
 
     const productVariants = (
@@ -161,25 +160,25 @@ export default class BuyProduct extends Component {
     );
 
     const relatedInfo = (
-      <div>
+      <div className={`${CLASS_ROOT}__related-info`}>
         <h5>Description</h5>
-        <p>{description}</p>
+        <p className={`${CLASS_ROOT}__desc`}>{description}</p>
         <h5>Material Info</h5>
-        <p>{materialInfo}</p>
+        <p className={`${CLASS_ROOT}__material-info`}>{materialInfo}</p>
       </div>
     );
 
     return (
-      <div className={CLASS_ROOT}>
-        <Row className={classes} justify="center" align="start">
+      <div className={classes}>
+        <div className={`${CLASS_ROOT}__product`}>
           {backToProducts}
+          {designTitle}
+          <p className={`${CLASS_ROOT}__attribution`}>
+            Design by {design._embedded.owner.username}
+          </p>
           {skuImageGallery}
-          <Column
-            className={`${CLASS_ROOT}__options`}
-            justify="start"
-            align="start"
-          >
-            {designTitle}
+
+          <div className={`${CLASS_ROOT}__options`}>
             <SkuSelector
               onSkuChange={this.onSkuChange.bind(this)}
               selectorsOptions={selectorsOptions}
@@ -190,10 +189,12 @@ export default class BuyProduct extends Component {
             {designPrice}
             {cartButton}
             {relatedInfo}
-          </Column>
-          <Column>{productVariants}</Column>
-        </Row>
-        <Row>{relatedTags}</Row>
+          </div>
+        </div>
+
+        <div className={`${CLASS_ROOT}__variants`}>{productVariants}</div>
+
+        <div className={`${CLASS_ROOT}__tags`}>{relatedTags}</div>
       </div>
     );
   }

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Row from '../row/Row';
-import Column from '../column/Column';
-
+import './SkuSelector.css';
 const CLASS_ROOT = 'tp-sku-selector';
 
 export default class SkuSelector extends Component {
@@ -26,30 +24,47 @@ export default class SkuSelector extends Component {
       colorMetaData
     ) {
       return (
-        <Row key={productOption.name}>
-          {selectorOptions.map((selectorOption, index) => (
-            <div key={selectorOption.value}>
-              <input
-                type="radio"
-                name={productOption.name}
-                value={selectorOption.value}
-                id={selectorOption.value}
-                checked={
-                  selectorOption.value === selectedOptions[productOption.name]
-                }
-                onChange={onSkuChange}
-              />
-              <label
-                htmlFor={selectorOption.value}
-                style={buildSwatchStyles(
-                  dataForValue(selectorOption.value, colorMetaData)
-                )}
-              >
-                {selectorOption.value}
-              </label>
-            </div>
-          ))}
-        </Row>
+        <div key={productOption.name} className={`${CLASS_ROOT}__colors`}>
+          <p className={`${CLASS_ROOT}__color-label`}>
+            Color:
+            <span className={`${CLASS_ROOT}__color-color`}>
+              {` ${selectedOptions[productOption.name]}`}
+            </span>
+          </p>
+          <div className={`${CLASS_ROOT}__color-options`}>
+            {selectorOptions.map((selectorOption, index) => {
+              const selected =
+                selectorOption.value === selectedOptions[productOption.name];
+
+              return (
+                <div
+                  key={selectorOption.value}
+                  className={classnames(`${CLASS_ROOT}__color-option`, {
+                    on: selected
+                  })}
+                >
+                  <input
+                    type="radio"
+                    name={productOption.name}
+                    value={selectorOption.value}
+                    id={selectorOption.value}
+                    checked={selected}
+                    onChange={onSkuChange}
+                  />
+
+                  <label
+                    htmlFor={selectorOption.value}
+                    style={buildSwatchStyles(
+                      dataForValue(selectorOption.value, colorMetaData)
+                    )}
+                  >
+                    {selectorOption.value}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       );
     }
 
@@ -75,9 +90,9 @@ export default class SkuSelector extends Component {
       selectedOptions
     ) {
       return (
-        <Row key={productOption.name}>
-          <Column>{productOption.name}</Column>
-          <Column>
+        <div key={productOption.name}>
+          <div>{productOption.name}</div>
+          <div>
             {selectorOptions.map((selectorOption, index) => (
               <div key={selectorOption.value}>
                 <input
@@ -95,15 +110,16 @@ export default class SkuSelector extends Component {
                 </label>
               </div>
             ))}
-          </Column>
-        </Row>
+          </div>
+        </div>
       );
     }
+
     function buildDropdownOptions(productOption, selectorOptions) {
       return (
-        <Row key={productOption.name}>
-          <Column>{productOption.name}</Column>
-          <Column>
+        <div key={productOption.name}>
+          <div>{productOption.name}</div>
+          <div>
             <select
               key={productOption.name}
               name={productOption.name}
@@ -116,8 +132,8 @@ export default class SkuSelector extends Component {
                 </option>
               ))}
             </select>
-          </Column>
-        </Row>
+          </div>
+        </div>
       );
     }
 
@@ -133,6 +149,7 @@ export default class SkuSelector extends Component {
     selectorsOptions.forEach((selectorOptions, selectorOptionsIndex) => {
       var displayInputType =
         productOptions[selectorOptionsIndex]['display_input_type'];
+
       if (displayInputType === 'swatch') {
         colorSelectors.push(
           buildSwatchOptions(
@@ -161,10 +178,10 @@ export default class SkuSelector extends Component {
     });
 
     return (
-      <Column className={classes} justify="center" align="start">
+      <div className={classes}>
         {colorSelectors}
         {nonColorSelectors}
-      </Column>
+      </div>
     );
   }
 }

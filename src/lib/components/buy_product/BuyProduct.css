@@ -1,7 +1,49 @@
-.tp-buy-product__images {
-  margin: 20px;
+.tp-product__attribution {
+  color: var(--tp-color-gray);
+  margin-top: 10px;
 }
 
-.tp-buy-product__options {
-  margin: 20px;
+.tp-product__images {
+  margin-top: 15px;
+}
+
+.tp-product__desc {
+}
+
+.tp-product__material-info {
+}
+
+.tp-product__options {
+}
+
+.tp-product__price {
+  font-size: 34px;
+  color: var(--tp-color-green);
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.tp-product__related-info {
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+
+.tp-product__related-info p {
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.tp-product__related-info h5 {
+  font-size: 14px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.tp-product__title {
+  margin-bottom: 10px;
+}
+
+.tp-product__variants {
+  text-align: center;
 }

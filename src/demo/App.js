@@ -60,7 +60,8 @@ export default class App extends Component {
         <h3> --- Cart Button (End) --- </h3>
         <br />
         <br />
-        <h3> --- Cart Component (Start) --- </h3>
+
+        <h2>- Cart -</h2>
         <Cart
           onCheckout={cartItems => console.log(cartItems)}
           storePathLinkBuilder={() => '/'}
@@ -68,11 +69,8 @@ export default class App extends Component {
             return `/store/${productType}/${designId}`;
           }}
         />
-        <h3> --- Cart Component (End) --- </h3>
-        <br />
-        <br />
 
-        <h3> --- BuyProduct Component (Start) --- </h3>
+        <h2>- BuyProduct -</h2>
         <BuyProduct
           design={design}
           skuData={skuData}
@@ -85,9 +83,6 @@ export default class App extends Component {
             return `${baseUrl}/${type}/${tag}`;
           }}
         />
-        <h3> --- BuyProduct Component (End) --- </h3>
-        <br />
-        <br />
 
         <h3> --- DesignCollection Component (Start) --- </h3>
         <DesignCollection
