@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Row from '../row/Row';
 import ProductHelper from '../../utils/ProductHelper';
+import './ProductVariants.css';
 
 const CLASS_ROOT = 'tp-product-variants';
 
@@ -20,18 +20,32 @@ export default class ProductVariants extends Component {
       const buyProductLink = buyProductLinkBuilder(design.id, variant.type);
 
       return (
-        <a href={buyProductLink} key={i}>
-          <img key={imageUrl} src={imageUrl} height={200} />
-          <h4>{variantGroup.group}</h4>
-          {variant.type}
-        </a>
+        <div className={`${CLASS_ROOT}__variant`} key={i}>
+          <a href={buyProductLink}>
+            <img
+              key={imageUrl}
+              src={imageUrl}
+              className={`${CLASS_ROOT}__thumb`}
+            />
+          </a>
+
+          <h4 className={`${CLASS_ROOT}__variant-group`}>
+            {variantGroup.group}
+          </h4>
+
+          <a className={`${CLASS_ROOT}__variant-type`} href={buyProductLink}>
+            {variant.type.replace(/-/g, ' ')}
+          </a>
+        </div>
       );
     }, this);
 
     return (
-      <div style={{ textAlign: 'center' }}>
-        <h3>This product is also available as:</h3>
-        <Row justify="center">{variants}</Row>
+      <div className={CLASS_ROOT}>
+        <h3 className={`${CLASS_ROOT}__h`}>
+          This product is also available as:
+        </h3>
+        <div className={`${CLASS_ROOT}__thumbs`}>{variants}</div>
       </div>
     );
   }

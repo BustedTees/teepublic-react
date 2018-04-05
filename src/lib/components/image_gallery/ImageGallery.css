@@ -1,1 +1,8 @@
+.tp-image-gallery__thumbs {
+  margin-top: 10px;
+}
 
+.tp-image-gallery__thumb {
+  width: 78px;
+  margin-right: 10px;
+}

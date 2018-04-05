@@ -1,1 +1,30 @@
+.tp-product-variants__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.tp-product-variants__variant {
+  width: calc(50% - 20px);
+  margin: 10px;
+}
+
+.tp-product-variants__variant-group {
+  margin-top: 6px;
+  margin-bottom: 2px;
+  font-size: 10px;
+  color: var(--tp-color-gray);
+  text-transform: uppercase;
+}
+
+.tp-product-variants__h {
+  margin-bottom: 10px;
+}
+
+.tp-product-variants__thumb {
+  border-radius: 4px;
+}
+
+.tp-product-variants__variant-type {
+  text-transform: capitalize;
+  font-size: 14px;
+}
