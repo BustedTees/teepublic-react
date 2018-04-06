@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import './Pagination.css';
 
 const CLASS_ROOT = 'tp-pagination';
 
@@ -25,28 +26,41 @@ export default class Pagination extends Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { className, totalPages, currentPage } = this.props;
     const classes = classnames(className, CLASS_ROOT);
 
+    const prevTag =
+      currentPage > 1 ? <span onClick={this.prevPage}>{'<'}</span> : null;
+
+    const nextTag =
+      currentPage < totalPages ? (
+        <span onClick={this.nextPage}>{'>'}</span>
+      ) : null;
+
     return (
-      <ul className={classes}>
-        <li onClick={this.prevPage}>{'<'}</li>
+      <nav className={classes}>
+        {prevTag}
         {this.renderPages()}
-        <li onClick={this.nextPage}>{'>'}</li>
-      </ul>
+        {nextTag}
+      </nav>
     );
   }
 
   renderPages() {
-    const { totalPages } = this.props;
+    const { totalPages, currentPage } = this.props;
 
     return [...Array(totalPages).keys()].map(pageNumber => {
       let pgNum = pageNumber + 1;
 
       return (
-        <li id={pgNum} onClick={this.handleClick} key={pgNum}>
+        <span
+          id={pgNum}
+          onClick={this.handleClick}
+          key={pgNum}
+          className={pgNum == currentPage ? 'on' : ''}
+        >
           {pgNum}
-        </li>
+        </span>
       );
     });
   }
