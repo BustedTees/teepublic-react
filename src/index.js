@@ -11,3 +11,4 @@ export {
   default as StoreFilter
 } from './lib/components/store_filter/StoreFilter';
 export { default as Pagination } from './lib/components/pagination/Pagination';
+export { default as Store } from './lib/components/store/Store';
