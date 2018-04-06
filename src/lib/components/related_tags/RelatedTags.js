@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import TagHelper from '../../utils/TagHelper';
 
+import './RelatedTags.css';
 const CLASS_ROOT = 'tp-related-tags';
+const tagHelper = new TagHelper();
 
 export default class RelatedTags extends Component {
   render() {
@@ -13,11 +16,14 @@ export default class RelatedTags extends Component {
 
     function buildTags(tags) {
       return (
-        <ul>
-          {tags.map(tag => {
+        <ul className={`${CLASS_ROOT}__list`}>
+          {tags.map((tag, i) => {
             return (
               <li key={tag}>
-                <a href={tagLinkBuilder('t-shirts', tag)}>{tag}</a>
+                <a href={tagLinkBuilder('t-shirts', tag)}>
+                  {tagHelper.unslugify(tag)}
+                </a>
+                {i < tags.length - 1 ? ',' : ''}
               </li>
             );
           })}
@@ -27,10 +33,10 @@ export default class RelatedTags extends Component {
 
     return (
       <div className={classes}>
-        <h4>Design Tags</h4>
+        <h4 className={`${CLASS_ROOT}__h`}>Design Tags</h4>
         {tags}
 
-        <h4>Related Tags</h4>
+        <h4 className={`${CLASS_ROOT}__h`}>Related Tags</h4>
         {relatedTags}
       </div>
     );

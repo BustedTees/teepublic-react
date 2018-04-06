@@ -1,8 +1,9 @@
 :root {
   --tp-color-blue: rgb(85, 175, 249);
   --tp-color-gray: rgba(123, 125, 126, 1);
-  --tp-color-gray-light-1: rgb(241, 241, 241);
-  --tp-color-gray-light-2: rgb(248, 248, 248);
+  --tp-color-gray-light-1: rgb(200, 200, 200);
+  --tp-color-gray-light-2: rgb(241, 241, 241);
+  --tp-color-gray-light-3: rgb(248, 248, 248);
   --tp-color-green: rgba(39, 183, 66, 1);
   --tp-color-green-dark: rgba(29, 173, 56, 1);
 }

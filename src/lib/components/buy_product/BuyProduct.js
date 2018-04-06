@@ -163,6 +163,7 @@ export default class BuyProduct extends Component {
       <div className={`${CLASS_ROOT}__related-info`}>
         <h5>Description</h5>
         <p className={`${CLASS_ROOT}__desc`}>{description}</p>
+
         <h5>Material Info</h5>
         <p className={`${CLASS_ROOT}__material-info`}>{materialInfo}</p>
       </div>
