@@ -216,8 +216,7 @@ const store = {
             },
             _links: {
               self: {
-                href:
-                  'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/t-shirt'
+                href: '/v1/designs/2310768/products/t-shirt'
               }
             }
           },
@@ -226,84 +225,65 @@ const store = {
         },
         _links: {
           self: {
-            href: 'http://api.teepublic-dev.com:5000/v1/designs/2310768'
+            href: '/v1/designs/2310768'
           },
           products: [
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/t-shirt'
+              href: '/v1/designs/2310768/products/t-shirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/tank-top'
+              href: '/v1/designs/2310768/products/tank-top'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/long-sleeve-t-shirt'
+              href: '/v1/designs/2310768/products/long-sleeve-t-shirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/baseball-tee'
+              href: '/v1/designs/2310768/products/baseball-tee'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/kids-t-shirt'
+              href: '/v1/designs/2310768/products/kids-t-shirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/crewneck-sweatshirt'
+              href: '/v1/designs/2310768/products/crewneck-sweatshirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/hoodie'
+              href: '/v1/designs/2310768/products/hoodie'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/poster-and-art'
+              href: '/v1/designs/2310768/products/poster-and-art'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/phone-case'
+              href: '/v1/designs/2310768/products/phone-case'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/laptop-case'
+              href: '/v1/designs/2310768/products/laptop-case'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/notebook'
+              href: '/v1/designs/2310768/products/notebook'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/mug'
+              href: '/v1/designs/2310768/products/mug'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/sticker'
+              href: '/v1/designs/2310768/products/sticker'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/throw-pillow'
+              href: '/v1/designs/2310768/products/throw-pillow'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/tote'
+              href: '/v1/designs/2310768/products/tote'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/tapestry'
+              href: '/v1/designs/2310768/products/tapestry'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/kids-hoodie'
+              href: '/v1/designs/2310768/products/kids-hoodie'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/kids-long-sleeve-t-shirt'
+              href: '/v1/designs/2310768/products/kids-long-sleeve-t-shirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2310768/products/onesie'
+              href: '/v1/designs/2310768/products/onesie'
             }
           ]
         }
@@ -406,8 +386,7 @@ const store = {
             },
             _links: {
               self: {
-                href:
-                  'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/t-shirt'
+                href: '/v1/designs/2321277/products/t-shirt'
               }
             }
           },
@@ -416,84 +395,65 @@ const store = {
         },
         _links: {
           self: {
-            href: 'http://api.teepublic-dev.com:5000/v1/designs/2321277'
+            href: '/v1/designs/2321277'
           },
           products: [
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/t-shirt'
+              href: '/v1/designs/2321277/products/t-shirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/tank-top'
+              href: '/v1/designs/2321277/products/tank-top'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/long-sleeve-t-shirt'
+              href: '/v1/designs/2321277/products/long-sleeve-t-shirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/baseball-tee'
+              href: '/v1/designs/2321277/products/baseball-tee'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/kids-t-shirt'
+              href: '/v1/designs/2321277/products/kids-t-shirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/crewneck-sweatshirt'
+              href: '/v1/designs/2321277/products/crewneck-sweatshirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/hoodie'
+              href: '/v1/designs/2321277/products/hoodie'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/poster-and-art'
+              href: '/v1/designs/2321277/products/poster-and-art'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/phone-case'
+              href: '/v1/designs/2321277/products/phone-case'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/laptop-case'
+              href: '/v1/designs/2321277/products/laptop-case'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/notebook'
+              href: '/v1/designs/2321277/products/notebook'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/mug'
+              href: '/v1/designs/2321277/products/mug'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/sticker'
+              href: '/v1/designs/2321277/products/sticker'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/throw-pillow'
+              href: '/v1/designs/2321277/products/throw-pillow'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/tote'
+              href: '/v1/designs/2321277/products/tote'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/tapestry'
+              href: '/v1/designs/2321277/products/tapestry'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/kids-hoodie'
+              href: '/v1/designs/2321277/products/kids-hoodie'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/kids-long-sleeve-t-shirt'
+              href: '/v1/designs/2321277/products/kids-long-sleeve-t-shirt'
             },
             {
-              href:
-                'http://api.teepublic-dev.com:5000/v1/designs/2321277/products/onesie'
+              href: '/v1/designs/2321277/products/onesie'
             }
           ]
         }
@@ -502,20 +462,20 @@ const store = {
   },
   _links: {
     self: {
-      href: 'http://api.teepublic-dev.com:5000/v1/stores/146747?album_id=1'
+      href: '/v1/stores/146747?album_id=1'
     },
     first: {
-      href: 'http://api.teepublic-dev.com:5000/v1/stores/146747'
+      href: '/v1/stores/146747'
     },
     last: {
-      href: 'http://api.teepublic-dev.com:5000/v1/stores/146747album_id=1'
+      href: '/v1/stores/146747album_id=1'
     },
     designs: [
       {
-        href: 'http://api.teepublic-dev.com:5000/v1/designs/2310768'
+        href: '/v1/designs/2310768'
       },
       {
-        href: 'http://api.teepublic-dev.com:5000/v1/designs/2321277'
+        href: '/v1/designs/2321277'
       }
     ]
   }
