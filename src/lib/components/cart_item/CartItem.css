@@ -46,6 +46,7 @@
 .tp-cart-item__update {
   font-size: 11px;
   color: var(--tp-color-blue);
+  cursor: pointer;
 }
 
 .tp-cart-item__qty {

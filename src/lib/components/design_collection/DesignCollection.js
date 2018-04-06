@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Row from '../row/Row';
 import DesignTile from '../design_tile/DesignTile';
 
 import './DesignCollection.css';
@@ -20,17 +19,12 @@ export default class DesignCollection extends Component {
         <DesignTile
           key={designIndex}
           buyProductLinkBuilder={buyProductLinkBuilder}
-          size={tileSize}
           design={design}
         />
       );
     }, this);
 
-    return (
-      <Row className={classes} justify="around" align="start">
-        {designTiles}
-      </Row>
-    );
+    return <div className={classes}>{designTiles}</div>;
   }
 }
 
