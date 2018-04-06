@@ -42,6 +42,7 @@
 
 .tp-product__title {
   margin-bottom: 10px;
+  text-transform: capitalize;
 }
 
 .tp-product__variants {

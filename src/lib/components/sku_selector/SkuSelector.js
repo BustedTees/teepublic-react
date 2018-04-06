@@ -90,11 +90,14 @@ export default class SkuSelector extends Component {
       selectedOptions
     ) {
       return (
-        <div key={productOption.name}>
-          <div>{productOption.name}</div>
+        <div key={productOption.name} className={`${CLASS_ROOT}__option`}>
+          <label className={`${CLASS_ROOT}__label`}>{productOption.name}</label>
           <div>
             {selectorOptions.map((selectorOption, index) => (
-              <div key={selectorOption.value}>
+              <div
+                className={`${CLASS_ROOT}__radio`}
+                key={selectorOption.value}
+              >
                 <input
                   type="radio"
                   name={productOption.name}
@@ -117,10 +120,11 @@ export default class SkuSelector extends Component {
 
     function buildDropdownOptions(productOption, selectorOptions) {
       return (
-        <div key={productOption.name}>
-          <div>{productOption.name}</div>
-          <div>
+        <div key={productOption.name} className={`${CLASS_ROOT}__option`}>
+          <label className={`${CLASS_ROOT}__label`}>{productOption.name}</label>
+          <div className={`${CLASS_ROOT}__choose ${CLASS_ROOT}__dropdown-wrap`}>
             <select
+              className={`${CLASS_ROOT}__dropdown`}
               key={productOption.name}
               name={productOption.name}
               onChange={onSkuChange}
