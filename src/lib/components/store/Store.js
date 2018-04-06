@@ -17,43 +17,48 @@ export default class Store extends Component {
     super(props);
 
     this.state = {
-      page: props.page || 1,
-      albumId: parseInt(props.albumId, 10),
-      productTypeName: props.productTypeName
+      selectedPage: props.selectedPage || 1,
+      selectedAlbumId: parseInt(props.selectedAlbumId, 10),
+      selectedProductTypeName: props.selectedProductTypeName
     };
   }
 
   pageChangeHandler = page => {
-    this.setState({ page: page });
-    const { albumId, productTypeName } = this.state;
-    this.fetchStore(page, albumId, productTypeName);
+    this.setState({ selectedPage: page });
+    const { selectedAlbumId, selectedProductTypeName } = this.state;
+    this.fetchStore(page, selectedAlbumId, selectedProductTypeName);
   };
 
   albumChangeHandler = albumId => {
-    this.setState({ albumId: albumId });
-    const { page, productTypeName } = this.state;
-    this.fetchStore(page, albumId, productTypeName);
+    this.setState({ selectedAlbumId: albumId });
+    const { selectedPage, selectedProductTypeName } = this.state;
+    this.fetchStore(selectedPage, albumId, selectedProductTypeName);
   };
 
   productTypeChangeHandler = productTypeName => {
-    this.setState({ productTypeName: productTypeName });
-    const { page, albumId } = this.state;
-    this.fetchStore(page, albumId, productTypeName);
+    this.setState({ selectedProductTypeName: productTypeName });
+    const { selectedPage, selectedAlbumId } = this.state;
+    this.fetchStore(selectedPage, selectedAlbumId, productTypeName);
   };
 
-  fetchStore = (page, albumId, productTypeName) => {
-    const { storeUrl } = this.props.configuration.storeUrl;
+  fetchStore = (pageNum, albumId, productTypeName) => {
+    const { storeId } = this.props.storeData;
 
-    let url = `${storeUrl}?page=${page}`;
-    if (albumId) url += `&album_id=${albumId}`;
-    if (productTypeName) url += `&product_type=${productTypeName}`;
-
-    window.location = url;
+    window.location = this.props.configuration.storeUrl(
+      storeId,
+      pageNum,
+      albumId,
+      productTypeName
+    );
   };
 
   render() {
     const { designs, albums, productTypes } = this.props.storeData._embedded;
-    const { page, albumId, productTypeName } = this.state;
+    const {
+      selectedPage,
+      selectedAlbumId,
+      selectedProductTypeName
+    } = this.state;
     const totalPages = parseInt(this.props.storeData.totalPages, 10);
 
     const { className } = this.props;
@@ -61,10 +66,10 @@ export default class Store extends Component {
 
     return (
       <div className={classes}>
-        <CartButton href={this.props.configuration.cartUrl} />
+        <CartButton href={this.props.configuration.cartUrl()} />
 
         <Pagination
-          currentPage={page}
+          currentPage={selectedPage}
           totalPages={totalPages}
           onPageChange={this.pageChangeHandler}
         />
@@ -74,14 +79,14 @@ export default class Store extends Component {
           productTypes={productTypes}
           onAlbumChange={this.albumChangeHandler}
           onProductTypeChange={this.productTypeChangeHandler}
-          selectedAlbumId={albumId}
-          selectedProductTypeName={productTypeName}
+          selectedAlbumId={selectedAlbumId}
+          selectedProductTypeName={selectedProductTypeName}
         />
 
         <DesignCollection
           designs={designs}
           tileSize="large"
-          buyProductLinkBuilder={this.props.buyProductLinkBuilder}
+          buyProductLinkBuilder={this.props.configuration.buyProductUrl}
         />
       </div>
     );
@@ -89,13 +94,13 @@ export default class Store extends Component {
 }
 
 Store.propTypes = {
-  buyProductLinkBuilder: PropTypes.func.isRequired,
   storeData: PropTypes.object.isRequired,
   configuration: PropTypes.shape({
-    storeUrl: PropTypes.string.isRequired,
-    cartUrl: PropTypes.string.isRequired
+    storeUrl: PropTypes.func.isRequired,
+    cartUrl: PropTypes.func.isRequired,
+    buyProductUrl: PropTypes.func.isRequired
   }).isRequired,
-  albumId: PropTypes.number,
-  page: PropTypes.number,
-  productTypeName: PropTypes.string
+  selectedAlbumId: PropTypes.number,
+  selectedPage: PropTypes.number,
+  selectedProductTypeName: PropTypes.string
 };

@@ -31,10 +31,6 @@ export default class App extends Component {
     this.setState({ selectedAlbumId: albumId });
   };
 
-  buyProductLinkBuilder = (designId, productTypeName) => {
-    console.log('Design ' + designId + ' Product ' + productTypeName);
-  };
-
   productTypeChangeHandler = productTypeName => {
     this.setState({ selectedProductTypeName: productTypeName });
   };
