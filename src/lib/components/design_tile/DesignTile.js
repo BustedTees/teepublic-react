@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-
-import Row from '../row/Row';
-import Column from '../column/Column';
 import MoneyHelper from '../../utils/MoneyHelper';
 import _ from 'underscore';
 
@@ -49,40 +46,31 @@ export default class DesignTile extends Component {
         height={DESIGN_IMAGE[size]}
       />
     );
+
     const designTitle = (
       <p className={`${CLASS_ROOT}__title`}>{design.title}</p>
     );
+
     const designPrice = (
       <p className={`${CLASS_ROOT}__price`}>
         {new MoneyHelper(price, 'USD').commaSeprated()}
       </p>
     );
-    const ownerName = (
-      <p className={`${CLASS_ROOT}__owner`}>{owner.username}</p>
-    );
+
     const buyButton = <button>Buy</button>;
 
     return (
       <a className={classes} href={buyProductLink}>
-        <Column justify="start" align="center">
+        <div>
           {designImage}
-          <Row
-            className={`${CLASS_ROOT}__details`}
-            justify="between"
-            align="start"
-          >
-            <Column
-              className={`${CLASS_ROOT}__title-owner`}
-              justify="start"
-              align="start"
-            >
+          <div className={`${CLASS_ROOT}__details`}>
+            <div className={`${CLASS_ROOT}__title-owner`}>
               {designTitle}
-              {ownerName}
               {designPrice}
-            </Column>
+            </div>
             {buyButton}
-          </Row>
-        </Column>
+          </div>
+        </div>
       </a>
     );
   }

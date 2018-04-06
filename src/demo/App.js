@@ -9,7 +9,7 @@ import {
   Pagination,
   Store
 } from '../index';
-import Column from '../lib/components/column/Column';
+
 import store from './StoreData';
 import design from './DesignData';
 import skuData from './SkuData';
@@ -37,12 +37,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <Column align="center">
+      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
         <h3> --- Store (Start) --- </h3>
         <Store storeData={store} configuration={ROUTE_CONFIGURATION} />
         <h3> --- Store (End) --- </h3>
         <br />
         <br />
+
         <h3> --- Pagination (Start) --- </h3>
         <Pagination
           currentPage={1}
@@ -54,6 +55,7 @@ export default class App extends Component {
         <h3> --- Pagination (End) --- </h3>
         <br />
         <br />
+
         <h3> --- Store Filters (Start) --- </h3>
         <StoreFilter
           albums={store._embedded.albums}
@@ -66,6 +68,7 @@ export default class App extends Component {
         <h3> --- Store Filters (End) --- </h3>
         <br />
         <br />
+
         <h3> --- Cart Button (Start) --- </h3>
         <CartButton href="/cart" />
         <h3> --- Cart Button (End) --- </h3>
@@ -105,7 +108,7 @@ export default class App extends Component {
         />
         <h3> --- DesignCollection Component (End) --- </h3>
         <TeepublicPowered layout="column" />
-      </Column>
+      </div>
     );
   }
 }
