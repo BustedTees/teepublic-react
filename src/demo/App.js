@@ -6,12 +6,14 @@ import {
   BuyProduct,
   CartButton,
   StoreFilter,
-  Pagination
+  Pagination,
+  Store
 } from '../index';
 import Column from '../lib/components/column/Column';
 import store from './StoreData';
 import design from './DesignData';
 import skuData from './SkuData';
+import { ROUTE_CONFIGURATION } from './RouteConfiguration';
 
 import 'normalize.css';
 import '../lib/components/App.css';
@@ -36,6 +38,16 @@ export default class App extends Component {
   render() {
     return (
       <Column align="center">
+        <h3> --- Store (Start) --- </h3>
+        <Store
+          storeData={store}
+          buyProductLinkBuilder={this.buyProductLinkBuilder}
+          configuration={ROUTE_CONFIGURATION}
+        />
+        <h3> --- Store (End) --- </h3>
+        <br />
+        <br />
+        <h3> --- Pagination (Start) --- </h3>
         <Pagination
           currentPage={1}
           totalPages={10}
@@ -43,6 +55,9 @@ export default class App extends Component {
             console.log(pgNum);
           }}
         />
+        <h3> --- Pagination (End) --- </h3>
+        <br />
+        <br />
         <h3> --- Store Filters (Start) --- </h3>
         <StoreFilter
           albums={store._embedded.albums}

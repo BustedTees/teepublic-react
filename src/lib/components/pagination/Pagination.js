@@ -73,5 +73,6 @@ export default class Pagination extends Component {
 Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
-  totalPages: PropTypes.number.isRequired
+  totalPages: PropTypes.number.isRequired,
+  className: PropTypes.string
 };
