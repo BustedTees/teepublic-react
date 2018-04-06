@@ -39,11 +39,7 @@ export default class App extends Component {
     return (
       <Column align="center">
         <h3> --- Store (Start) --- </h3>
-        <Store
-          storeData={store}
-          buyProductLinkBuilder={this.buyProductLinkBuilder}
-          configuration={ROUTE_CONFIGURATION}
-        />
+        <Store storeData={store} configuration={ROUTE_CONFIGURATION} />
         <h3> --- Store (End) --- </h3>
         <br />
         <br />
