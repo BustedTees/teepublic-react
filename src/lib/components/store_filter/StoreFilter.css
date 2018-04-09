@@ -1,1 +1,29 @@
+.tp-store-filter__dropdown {
+  border: 1px solid var(--tp-color-gray-light-1);
+  border-radius: 2px;
+  width: 100%;
+  background: transparent;
+  padding: 10px;
+  font-size: 14px;
+  -webkit-appearance: none;
+}
 
+.tp-store-filter__dropdown-wrap {
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.tp-store-filter__dropdown-wrap:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 15px;
+  top: calc((50% + 14px) / 2);
+  border-top: 6px solid #000;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  pointer-events: none;
+}
