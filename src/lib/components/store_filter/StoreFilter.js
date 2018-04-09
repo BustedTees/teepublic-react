@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Row from '../row/Row';
-import Column from '../column/Column';
-
 import './StoreFilter.css';
 
 const CLASS_ROOT = 'tp-store-filter';
@@ -23,49 +20,54 @@ export default class StoreFilter extends Component {
 
     const classes = classnames(className, CLASS_ROOT);
 
-    const productTypeRadios = productTypes.map((productType, index) => (
-      <div key={index}>
-        <input
-          type="radio"
-          name="product-types"
-          value={productType.name}
-          defaultChecked={productType.name === selectedProductTypeName}
-        />
-        <label>{productType.displayName}</label>
-      </div>
+    const productTypeOptions = productTypes.map((productType, index) => (
+      <option
+        key={index}
+        name="product-types"
+        value={productType.name}
+        defaultChecked={productType.name === selectedProductTypeName}
+      >
+        {productType.displayName}
+      </option>
     ));
 
-    const albumRadios = albums.map((album, index) => (
-      <div key={index}>
-        <input
-          type="radio"
-          name="albums"
-          value={album.id}
-          defaultChecked={album.id === selectedAlbumId}
-        />
-        <label>{album.name}</label>
-      </div>
+    const albumOptions = albums.map((album, index) => (
+      <option
+        key={index}
+        name="albums"
+        value={album.id}
+        defaultChecked={album.id === selectedAlbumId}
+      >
+        {album.name}
+      </option>
     ));
 
     return (
-      <Column>
-        <h4> Albums </h4>
-        <Column
-          onChange={event => {
-            onAlbumChange(parseInt(event.target.value, 10));
-          }}
-        >
-          {albumRadios}
-        </Column>
-        <h4> Products </h4>
-        <Column
-          onChange={event => {
-            onProductTypeChange(event.target.value);
-          }}
-        >
-          {productTypeRadios}
-        </Column>
-      </Column>
+      <div className={classes}>
+        <div className={`${CLASS_ROOT}__dropdown-wrap`}>
+          <select
+            className={`${CLASS_ROOT}__dropdown`}
+            onChange={event => {
+              onAlbumChange(parseInt(event.target.value, 10));
+            }}
+          >
+            <option>Filter by album</option>
+            {albumOptions}
+          </select>
+        </div>
+
+        <div className={`${CLASS_ROOT}__dropdown-wrap`}>
+          <select
+            className={`${CLASS_ROOT}__dropdown`}
+            onChange={event => {
+              onProductTypeChange(event.target.value);
+            }}
+          >
+            <option>Filter by product</option>
+            {productTypeOptions}
+          </select>
+        </div>
+      </div>
     );
   }
 }
