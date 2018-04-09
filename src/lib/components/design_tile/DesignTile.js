@@ -8,12 +8,6 @@ import './DesignTile.css';
 
 const CLASS_ROOT = 'tp-design-tile';
 
-const DESIGN_IMAGE = {
-  small: 200,
-  medium: 300,
-  large: 400
-};
-
 export default class DesignTile extends Component {
   render() {
     const {
@@ -46,39 +40,47 @@ export default class DesignTile extends Component {
     });
 
     const designImage = (
-      <img
-        className={`${CLASS_ROOT}__image`}
-        src={skuMockupImage.url}
-        alt={skuMockupImage.type}
-        height={DESIGN_IMAGE[size]}
-      />
+      <a href={buyProductLink} className={`${CLASS_ROOT}__image-link`}>
+        <img
+          className={`${CLASS_ROOT}__image`}
+          src={skuMockupImage.url}
+          alt={skuMockupImage.type}
+        />
+      </a>
     );
 
     const designTitle = (
-      <p className={`${CLASS_ROOT}__title`}>{design.title}</p>
+      <p className={`${CLASS_ROOT}__title`}>
+        <a href={buyProductLink}>{design.title}</a>
+      </p>
     );
 
     const designPrice = (
       <p className={`${CLASS_ROOT}__price`}>
-        {new MoneyHelper(price, 'USD').commaSeprated()}
+        {new MoneyHelper(Number(price).toFixed(2), 'USD').commaSeprated()}
       </p>
     );
 
-    const buyButton = <button>Buy</button>;
+    const buyButton = (
+      <button
+        className={`${CLASS_ROOT}__buy-btn`}
+        onClick={() => (window.location = buyProductLink)}
+      >
+        Buy
+      </button>
+    );
 
     return (
-      <a className={classes} href={buyProductLink}>
-        <div>
-          {designImage}
-          <div className={`${CLASS_ROOT}__details`}>
-            <div className={`${CLASS_ROOT}__title-owner`}>
-              {designTitle}
-              {designPrice}
-            </div>
-            {buyButton}
-          </div>
+      <div className={classes}>
+        {designImage}
+
+        <div className={`${CLASS_ROOT}__details`}>
+          {designTitle}
+          {buyButton}
         </div>
-      </a>
+
+        {designPrice}
+      </div>
     );
   }
 }
