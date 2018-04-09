@@ -17,7 +17,7 @@ export const ROUTE_CONFIGURATION = {
     return '/cart';
   },
 
-  buyProductUrl: (designId, productTypeName) => {
-    return `designs/${designId}?product_type=${productTypeName}`;
+  buyProductUrl: (designId, productTypeName, storeId) => {
+    return `/stores/${storeId}/designs/${designId}?product_type=${productTypeName}`;
   }
 };

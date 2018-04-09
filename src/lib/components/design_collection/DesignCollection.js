@@ -10,7 +10,13 @@ const CLASS_ROOT = 'tp-design-collection';
 
 export default class DesignCollection extends Component {
   render() {
-    const { className, designs, tileSize, buyProductLinkBuilder } = this.props;
+    const {
+      className,
+      designs,
+      tileSize,
+      buyProductLinkBuilder,
+      storeId
+    } = this.props;
 
     const classes = classnames(CLASS_ROOT, className);
 
@@ -20,6 +26,7 @@ export default class DesignCollection extends Component {
           key={designIndex}
           buyProductLinkBuilder={buyProductLinkBuilder}
           design={design}
+          storeId={storeId}
         />
       );
     }, this);
@@ -31,7 +38,8 @@ export default class DesignCollection extends Component {
 DesignCollection.propTypes = {
   tileSize: PropTypes.oneOf(['small', 'medium', 'large']),
   designs: PropTypes.array.isRequired,
-  buyProductLinkBuilder: PropTypes.func.isRequired
+  buyProductLinkBuilder: PropTypes.func.isRequired,
+  storeId: PropTypes.number
 };
 
 DesignCollection.defaultProps = {

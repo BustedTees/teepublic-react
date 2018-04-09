@@ -17,7 +17,11 @@ export default class ProductVariants extends Component {
       const imageUrl = this.productHelper.mockupImage(variant).url;
       const variantGroup = this.productHelper.variantGroup(store, variant);
 
-      const buyProductLink = buyProductLinkBuilder(design.id, variant.type);
+      const buyProductLink = buyProductLinkBuilder(
+        design.id,
+        variant.type,
+        store.id
+      );
 
       return (
         <div className={`${CLASS_ROOT}__variant`} key={i}>
@@ -25,6 +29,7 @@ export default class ProductVariants extends Component {
             <img
               key={imageUrl}
               src={imageUrl}
+              alt={variant.type}
               className={`${CLASS_ROOT}__thumb`}
             />
           </a>

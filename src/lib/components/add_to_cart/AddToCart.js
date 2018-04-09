@@ -10,9 +10,15 @@ const CLASS_ROOT = 'tp-add-to-cart';
 
 export default class AddToCart extends Component {
   handleClick = e => {
-    const { design, sku } = this.props;
+    const {
+      design,
+      sku,
+      storeId,
+      affiliateId,
+      affiliateNetworkId
+    } = this.props;
     const cartHelper = new CartHelper();
-    cartHelper.addToCart(design, sku);
+    cartHelper.addToCart(design, sku, storeId, affiliateId, affiliateNetworkId);
   };
 
   render() {
@@ -33,5 +39,8 @@ export default class AddToCart extends Component {
 
 AddToCart.propTypes = {
   design: PropTypes.object.isRequired,
+  affiliateId: PropTypes.number,
+  affiliateNetworkId: PropTypes.number,
+  storeId: PropTypes.number,
   sku: PropTypes.object
 };

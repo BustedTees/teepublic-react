@@ -1,10 +1,20 @@
 const CART_KEY = 'TEEPUBLIC_CART_ITEMS';
 export default class CartHelper {
-  addToCart(design, sku, quantity = 1) {
+  addToCart(
+    design,
+    sku,
+    storeId,
+    affiliateId,
+    affiliateNetworkId,
+    quantity = 1
+  ) {
     const addedCartItem = {
       design: design,
       sku: sku,
-      quantity: quantity
+      quantity: quantity,
+      storeId: storeId,
+      affiliateId: affiliateId,
+      affiliateNetworkId: affiliateNetworkId
     };
 
     var itemAlreadyExists = false;
@@ -57,7 +67,10 @@ export default class CartHelper {
       return {
         product_id: cartItem.sku.id,
         design_id: cartItem.design.id,
-        quantity: cartItem.quantity
+        quantity: cartItem.quantity,
+        affiliate_id: cartItem.affiliateId,
+        affiliate_network_id: cartItem.affiliateNetworkId,
+        store_id: cartItem.storeId
       };
     }, this);
     return tpCartItems;

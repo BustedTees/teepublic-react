@@ -54,7 +54,8 @@ export default class CartItem extends Component {
         <a
           href={buyProductLinkBuilder(
             cartItem.design.id,
-            cartItem.sku.productType
+            cartItem.sku.productType,
+            cartItem.storeId
           )}
         >
           {cartItem.design.description}

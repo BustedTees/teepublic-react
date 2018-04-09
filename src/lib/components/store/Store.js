@@ -42,10 +42,10 @@ export default class Store extends Component {
   };
 
   fetchStore = (pageNum, albumId, productTypeName) => {
-    const { storeId } = this.props.storeData;
+    const { id } = this.props.storeData;
 
     window.location = this.props.configuration.storeUrl(
-      storeId,
+      id,
       pageNum,
       albumId,
       productTypeName
@@ -87,6 +87,7 @@ export default class Store extends Component {
           designs={designs}
           tileSize="large"
           buyProductLinkBuilder={this.props.configuration.buyProductUrl}
+          storeId={this.props.storeData.id}
         />
       </div>
     );
