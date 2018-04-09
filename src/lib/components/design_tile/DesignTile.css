@@ -1,7 +1,37 @@
 .tp-design-tile {
   text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.tp-design-tile__buy-btn {
+  width: 100%;
+  border-radius: 2px;
+  background: var(--tp-color-blue);
+  height: 35px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  width: 56px;
+  display: block;
+  border: none;
+  border-bottom: 2px solid var(--tp-color-blue-dark);
+  padding-top: 5px;
+  margin-left: 20px;
   cursor: pointer;
 }
+
+.tp-design-tile__details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tp-design-tile__image {
+  display: block;
+}
+
 .tp-design-tile__owner {
   color: #616161;
   max-width: 100%;
@@ -10,22 +40,20 @@
   margin: 2px 0;
 }
 
+.tp-design-tile__price {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .tp-design-tile__title {
   color: #19b1ff;
   max-width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
+  margin: 0;
 }
 
 .tp-design-tile__title-owner {
   white-space: nowrap;
-}
-
-.tp-design-tile__details {
-  width: 100%;
-}
-
-.tp-design-tile__price {
-  margin: 0;
-  color: gray;
 }
