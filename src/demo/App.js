@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  TeepublicPowered,
+  Footer,
   DesignCollection,
   Cart,
   BuyProduct,
@@ -83,8 +83,8 @@ export default class App extends Component {
           buyProductLinkBuilder={ROUTE_CONFIGURATION.buyProductUrl}
         />
 
-        <h2>-TeePublicPowered -</h2>
-        <TeepublicPowered layout="column" />
+        <h2>- Footer -</h2>
+        <Footer />
       </div>
     );
   }
