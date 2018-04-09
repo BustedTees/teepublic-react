@@ -78,10 +78,8 @@ export default class App extends Component {
         <h2>- Cart -</h2>
         <Cart
           onCheckout={cartItems => console.log(cartItems)}
-          storePathLinkBuilder={() => '/'}
-          buyProductLinkBuilder={(designId, productType, storeId) => {
-            return `/stores/${storeId}/designs/${productType}/${designId}`;
-          }}
+          storePathLinkBuilder={ROUTE_CONFIGURATION.storeUrl}
+          buyProductLinkBuilder={ROUTE_CONFIGURATION.buyProductUrl}
         />
 
         <h2>- BuyProduct -</h2>
@@ -92,9 +90,7 @@ export default class App extends Component {
           storeUrl={storeId => {
             return `/stores/${storeId}`;
           }}
-          buyProductLinkBuilder={(designId, productType, storeId) => {
-            return `/stores/${storeId}/designs/${productType}/${designId}`;
-          }}
+          buyProductLinkBuilder={ROUTE_CONFIGURATION.buyProductUrl}
           tagLinkBuilder={(type, tag) => {
             var baseUrl = 'https://www.teepublic.com';
             return `${baseUrl}/${type}/${tag}`;
@@ -105,9 +101,7 @@ export default class App extends Component {
         <DesignCollection
           tileSize="large"
           designs={store._embedded.designs}
-          buyProductLinkBuilder={(designId, productType, storeId) => {
-            return `/stores/${storeId}/designs/${productType}/${designId}`;
-          }}
+          buyProductLinkBuilder={ROUTE_CONFIGURATION.buyProductUrl}
           storeId={1}
         />
         <h3> --- DesignCollection Component (End) --- </h3>
