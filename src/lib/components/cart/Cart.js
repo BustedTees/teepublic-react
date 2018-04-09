@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Column from '../column/Column';
 import CartItem from '../cart_item/CartItem';
 import MoneyHelper from '../../utils/MoneyHelper';
 import CartHelper from '../../utils/CartHelper';
@@ -112,10 +111,10 @@ export default class Cart extends Component {
           </div>
         </div>
       ) : (
-        <Column className={classes} justify="center" align="stretch">
+        <div className={classes}>
           <p>Your cart is empty</p>
           <a href={storePathLinkBuilder()}>Continue Shopping</a>
-        </Column>
+        </div>
       );
 
     return cartContent;

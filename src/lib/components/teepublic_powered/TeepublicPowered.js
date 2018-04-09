@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import tpLogo from '../tp-logo.png';
 
-import Row from '../row/Row';
-import Column from '../column/Column';
-
 import './TeepublicPowered.css';
 
 const CLASS_ROOT = 'tp-powered';
@@ -16,33 +13,23 @@ export default class TeepublicPowered extends Component {
 
     const classes = classnames(CLASS_ROOT, className);
 
-    const text = <p className={`${CLASS_ROOT}__text`}>Powered By </p>;
-    const logo = (
-      <a
-        className={`${CLASS_ROOT}__logo`}
-        href="https://www.teepublic.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src={tpLogo} alt="TeePubic logo" height="15" />
-      </a>
+    return (
+      <p className={classes}>
+        <span className={`${CLASS_ROOT}__text`}>Store powered by</span>
+        <a
+          className={`${CLASS_ROOT}__logo-link`}
+          href="https://www.teepublic.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            className={`${CLASS_ROOT}__logo`}
+            src={tpLogo}
+            alt="TeePubic logo"
+          />
+        </a>
+      </p>
     );
-    let content = (
-      <Row justify="center" align="center">
-        {text}
-        {logo}
-      </Row>
-    );
-
-    if (layout === 'column') {
-      content = (
-        <Column className={classes} justify="center" align="center">
-          {text}
-          {logo}
-        </Column>
-      );
-    }
-    return content;
   }
 }
 
