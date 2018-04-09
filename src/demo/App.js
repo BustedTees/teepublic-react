@@ -79,8 +79,8 @@ export default class App extends Component {
         <Cart
           onCheckout={cartItems => console.log(cartItems)}
           storePathLinkBuilder={() => '/'}
-          buyProductLinkBuilder={(designId, productType) => {
-            return `/store/${productType}/${designId}`;
+          buyProductLinkBuilder={(designId, productType, storeId) => {
+            return `/stores/${storeId}/designs/${productType}/${designId}`;
           }}
         />
 
@@ -89,8 +89,11 @@ export default class App extends Component {
           design={design}
           skuData={skuData}
           store={store}
-          buyProductLinkBuilder={(designId, productType) => {
-            return `/store/${productType}/${designId}`;
+          storeUrl={storeId => {
+            return `/stores/${storeId}`;
+          }}
+          buyProductLinkBuilder={(designId, productType, storeId) => {
+            return `/stores/${storeId}/designs/${productType}/${designId}`;
           }}
           tagLinkBuilder={(type, tag) => {
             var baseUrl = 'https://www.teepublic.com';
@@ -102,9 +105,10 @@ export default class App extends Component {
         <DesignCollection
           tileSize="large"
           designs={store._embedded.designs}
-          buyProductLinkBuilder={(designId, productType) => {
-            return `/store/${productType}/${designId}`;
+          buyProductLinkBuilder={(designId, productType, storeId) => {
+            return `/stores/${storeId}/designs/${productType}/${designId}`;
           }}
+          storeId={1}
         />
         <h3> --- DesignCollection Component (End) --- </h3>
         <TeepublicPowered layout="column" />
