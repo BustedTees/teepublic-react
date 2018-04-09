@@ -93,7 +93,8 @@ export default class BuyProduct extends Component {
       design,
       store,
       buyProductLinkBuilder,
-      tagLinkBuilder
+      tagLinkBuilder,
+      affiliateNetworkId
     } = this.props;
 
     const {
@@ -134,11 +135,22 @@ export default class BuyProduct extends Component {
       </p>
     );
 
-    const cartButton = <AddToCart design={design} sku={currentSku} />;
+    const cartButton = (
+      <AddToCart
+        design={design}
+        sku={currentSku}
+        storeId={store.id}
+        affiliateId={store.affiliateId}
+        affiliateNetworkId={affiliateNetworkId}
+      />
+    );
 
     const backToProducts = (
       <div style={{ width: '100%' }}>
-        <BackToProducts storeUrl="/" linkText="Back to Products" />
+        <BackToProducts
+          storeUrl={this.props.storeUrl(store.id)}
+          linkText="Back to Products"
+        />
       </div>
     );
 
@@ -202,5 +214,8 @@ export default class BuyProduct extends Component {
 }
 
 BuyProduct.propTypes = {
-  design: PropTypes.object.isRequired
+  design: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired,
+  storeUrl: PropTypes.func.isRequired,
+  affiliateNetworkId: PropTypes.number
 };
