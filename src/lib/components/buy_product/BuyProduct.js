@@ -168,6 +168,8 @@ export default class BuyProduct extends Component {
         design={design}
         currentSku={currentSku}
         tagLinkBuilder={tagLinkBuilder}
+        affiliateId={store.affiliateId}
+        affiliateNetworkId={affiliateNetworkId}
       />
     );
 

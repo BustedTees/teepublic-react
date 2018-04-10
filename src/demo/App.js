@@ -63,9 +63,9 @@ export default class App extends Component {
             return `/stores/${storeId}`;
           }}
           buyProductLinkBuilder={ROUTE_CONFIGURATION.buyProductUrl}
-          tagLinkBuilder={(type, tag) => {
+          tagLinkBuilder={(type, tag, affiliateId, affiliateNetworkId) => {
             var baseUrl = 'https://www.teepublic.com';
-            return `${baseUrl}/${type}/${tag}`;
+            return `${baseUrl}/${type}/${tag}?ref_id=${affiliateId}&aff_network_id=${affiliateNetworkId}`;
           }}
         />
         <br />
