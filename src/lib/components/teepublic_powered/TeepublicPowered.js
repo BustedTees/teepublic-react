@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import tpLogo from '../tp-logo.png';
 
-import './TeepublicPowered.css';
+import './TeepublicPowered.scss';
 
 const CLASS_ROOT = 'tp-powered';
 

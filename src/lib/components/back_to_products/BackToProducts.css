@@ -1,9 +1,0 @@
-.tp-back-products {
-  background: var(--tp-color-gray-light-2);
-  color: var(--tp-color-gray);
-  padding: 10px 25px;
-  border-radius: 2px;
-  border-bottom: 1px solid var(--tp-color-gray-light-1);
-  font-weight: bold;
-  font-size: 14px;
-}

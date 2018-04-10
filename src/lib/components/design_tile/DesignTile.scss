@@ -1,3 +1,5 @@
+@import '../variables';
+
 .tp-design-tile {
   text-decoration: none;
   margin-bottom: 20px;
@@ -6,7 +8,7 @@
 .tp-design-tile__buy-btn {
   width: 100%;
   border-radius: 2px;
-  background: var(--tp-color-blue);
+  background: $color-blue;
   height: 35px;
   color: white;
   font-size: 14px;
@@ -14,7 +16,7 @@
   width: 56px;
   display: block;
   border: none;
-  border-bottom: 2px solid var(--tp-color-blue-dark);
+  border-bottom: 2px solid $color-blue-dark;
   padding-top: 5px;
   margin-left: 20px;
   cursor: pointer;

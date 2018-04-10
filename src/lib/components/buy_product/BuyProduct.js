@@ -11,7 +11,7 @@ import ProductHelper from '../../utils/ProductHelper';
 import SkuSelector from '../sku_selector/SkuSelector';
 import RelatedTags from '../related_tags/RelatedTags';
 
-import './BuyProduct.css';
+import './BuyProduct.scss';
 
 const CLASS_ROOT = 'tp-product';
 

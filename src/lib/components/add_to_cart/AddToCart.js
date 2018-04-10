@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import CartHelper from '../../utils/CartHelper';
 
-import './AddToCart.css';
+import './AddToCart.scss';
 
 const CLASS_ROOT = 'tp-add-to-cart';
 

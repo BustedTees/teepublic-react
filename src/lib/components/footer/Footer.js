@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TeePublicPowered } from '../../../index';
 
-import './Footer.css';
+import './Footer.scss';
 const CLASS_ROOT = 'tp-footer';
 
 export default class Footer extends Component {

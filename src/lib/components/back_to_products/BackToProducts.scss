@@ -1,0 +1,11 @@
+@import '../variables';
+
+.tp-back-products {
+  background: $color-gray-light-2;
+  color: $color-gray;
+  padding: 10px 25px;
+  border-radius: 2px;
+  border-bottom: 1px solid $color-gray-light-1;
+  font-weight: bold;
+  font-size: 14px;
+}

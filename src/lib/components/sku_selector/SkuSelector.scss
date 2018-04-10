@@ -1,3 +1,5 @@
+@import '../variables';
+
 .tp-sku-selector__choose {
   flex-grow: 1;
 }
@@ -9,7 +11,7 @@
 
 .tp-sku-selector__color-color {
   font-weight: normal;
-  color: var(--tp-color-gray);
+  color: $color-gray;
   margin-left: 4px;
 }
 
@@ -23,11 +25,11 @@
   margin: 3px;
   border-radius: 2px;
   padding: 3px;
-  border: 2px solid var(--tp-color-gray-light-2);
+  border: 2px solid $color-gray-light-2;
 }
 
 .tp-sku-selector__color-option.on {
-  border-color: var(--tp-color-blue);
+  border-color: $color-blue;
 }
 
 .tp-sku-selector__color-option input {
@@ -45,7 +47,7 @@
 }
 
 .tp-sku-selector__dropdown {
-  border: 1px solid var(--tp-color-gray-light-1);
+  border: 1px solid $color-gray-light-1;
   border-radius: 2px;
   width: 100%;
   background: transparent;

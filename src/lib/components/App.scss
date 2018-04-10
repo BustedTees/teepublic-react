@@ -1,0 +1,23 @@
+@import './variables';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #444;
+  font-family: helvetica, arial, sans-serif;
+}
+
+a {
+  color: $color-blue;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  margin: 0;
+}

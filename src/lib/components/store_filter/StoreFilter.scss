@@ -1,5 +1,7 @@
+@import '../variables.scss';
+
 .tp-store-filter__dropdown {
-  border: 1px solid var(--tp-color-gray-light-1);
+  border: 1px solid $color-gray-light-1;
   border-radius: 2px;
   width: 100%;
   background: transparent;

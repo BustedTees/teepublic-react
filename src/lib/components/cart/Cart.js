@@ -6,7 +6,7 @@ import CartItem from '../cart_item/CartItem';
 import MoneyHelper from '../../utils/MoneyHelper';
 import CartHelper from '../../utils/CartHelper';
 
-import './Cart.css';
+import './Cart.scss';
 
 const CLASS_ROOT = 'tp-cart';
 
