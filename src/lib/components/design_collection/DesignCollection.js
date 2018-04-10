@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import DesignTile from '../design_tile/DesignTile';
 
-import './DesignCollection.css';
+import './DesignCollection.scss';
 
 const CLASS_ROOT = 'tp-design-collection';
 

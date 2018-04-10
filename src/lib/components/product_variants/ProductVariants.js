@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductHelper from '../../utils/ProductHelper';
-import './ProductVariants.css';
+import './ProductVariants.scss';
 
 const CLASS_ROOT = 'tp-product-variants';
 

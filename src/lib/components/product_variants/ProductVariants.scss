@@ -1,3 +1,5 @@
+@import '../variables';
+
 .tp-product-variants__thumbs {
   display: flex;
   flex-wrap: wrap;
@@ -12,7 +14,7 @@
   margin-top: 6px;
   margin-bottom: 2px;
   font-size: 10px;
-  color: var(--tp-color-gray);
+  color: $color-gray;
   text-transform: uppercase;
 }
 

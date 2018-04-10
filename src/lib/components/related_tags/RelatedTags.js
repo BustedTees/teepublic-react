@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import TagHelper from '../../utils/TagHelper';
 
-import './RelatedTags.css';
+import './RelatedTags.scss';
 const CLASS_ROOT = 'tp-related-tags';
 const tagHelper = new TagHelper();
 

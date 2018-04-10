@@ -1,3 +1,5 @@
+@import '../variables';
+
 .tp-cart-item {
 }
 
@@ -16,7 +18,7 @@
   list-style-type: none;
   padding-left: 0;
   font-size: 12px;
-  color: var(--tp-color-gray);
+  color: $color-gray;
 }
 
 .tp-cart-item__details li {
@@ -45,7 +47,7 @@
 
 .tp-cart-item__update {
   font-size: 11px;
-  color: var(--tp-color-blue);
+  color: $color-blue;
   cursor: pointer;
 }
 

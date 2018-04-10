@@ -1,5 +1,7 @@
+@import '../variables';
+
 .tp-product__attribution {
-  color: var(--tp-color-gray);
+  color: $color-gray;
   margin-top: 10px;
 }
 
@@ -18,7 +20,7 @@
 
 .tp-product__price {
   font-size: 34px;
-  color: var(--tp-color-green);
+  color: $color-green;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 20px;

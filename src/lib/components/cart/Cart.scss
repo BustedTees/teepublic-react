@@ -1,10 +1,12 @@
+@import '../variables';
+
 .tp-cart {
   width: 100%;
   max-width: 400px;
 }
 
 .tp-cart__checkout {
-  background: var(--tp-color-gray-light);
+  background: $color-gray-light-2;
   margin-top: 30px;
   text-align: center;
   padding: 15px;
@@ -13,7 +15,7 @@
 .tp-cart__checkout-checkout {
   width: 100%;
   border-radius: 2px;
-  background: var(--tp-color-green);
+  background: $color-green;
   height: 48px;
   color: white;
   font-size: 18px;
@@ -26,7 +28,7 @@
   margin-top: 10px;
   border: none;
   text-transform: uppercase;
-  border-bottom: 4px solid var(--tp-color-green-dark);
+  border-bottom: 4px solid $color-green-dark;
   padding-top: 5px;
 }
 
@@ -36,12 +38,12 @@
 
 .tp-cart__h {
   font-size: 15px;
-  border-bottom: 1px solid var(--tp-color-gray-light);
+  border-bottom: 1px solid $color-gray-light-1;
   padding-bottom: 15px;
 }
 
 .tp-cart__h span {
-  color: var(--tp-color-gray);
+  color: $color-gray;
   font-weight: normal;
 }
 
@@ -52,7 +54,7 @@
 
 .tp-cart__total-h {
   text-transform: uppercase;
-  color: var(--tp-color-gray);
+  color: $color-gray;
   font-weight: bold;
 }
 
@@ -62,5 +64,5 @@
 
 .tp-cart__total-price span {
   font-weight: normal;
-  color: var(--tp-color-gray);
+  color: $color-gray;
 }

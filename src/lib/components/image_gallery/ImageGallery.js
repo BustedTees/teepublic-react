@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './ImageGallery.css';
+import './ImageGallery.scss';
 
 const CLASS_ROOT = 'tp-image-gallery';
 

@@ -1,3 +1,5 @@
+@import '../variables';
+
 .tp-powered {
   margin: 0px;
   width: 100%;
@@ -11,7 +13,7 @@
 }
 
 .tp-powered__text {
-  color: var(--tp-color-gray);
+  color: $color-gray;
   font-size: 12px;
   margin-top: -3px;
 }

@@ -8,7 +8,7 @@ import MoneyHelper from '../../utils/MoneyHelper';
 import ProductHelper from '../../utils/ProductHelper';
 import _ from 'underscore';
 
-import './CartItem.css';
+import './CartItem.scss';
 
 const CLASS_ROOT = 'tp-cart-item';
 

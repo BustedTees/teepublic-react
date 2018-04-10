@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './SkuSelector.css';
+import './SkuSelector.scss';
 const CLASS_ROOT = 'tp-sku-selector';
 
 export default class SkuSelector extends Component {

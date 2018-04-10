@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import MoneyHelper from '../../utils/MoneyHelper';
 import _ from 'underscore';
 
-import './DesignTile.css';
+import './DesignTile.scss';
 
 const CLASS_ROOT = 'tp-design-tile';
 

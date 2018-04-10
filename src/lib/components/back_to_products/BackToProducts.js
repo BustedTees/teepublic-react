@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './BackToProducts.css';
+import './BackToProducts.scss';
 
 const CLASS_ROOT = 'tp-back-products';
 

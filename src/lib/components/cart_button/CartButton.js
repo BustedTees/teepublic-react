@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import CartHelper from '../../utils/CartHelper';
 import MoneyHelper from '../../utils/MoneyHelper';
 
-import './CartButton.css';
+import './CartButton.scss';
 
 const CLASS_ROOT = 'tp-cart-button';
 

@@ -16,7 +16,7 @@ import skuData from './SkuData';
 import { ROUTE_CONFIGURATION } from './RouteConfiguration';
 
 import 'normalize.css';
-import '../lib/components/App.css';
+import '../lib/components/App.scss';
 
 export default class App extends Component {
   constructor(props) {
