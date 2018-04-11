@@ -27,6 +27,7 @@ export default class DesignCollection extends Component {
           buyProductLinkBuilder={buyProductLinkBuilder}
           design={design}
           storeId={storeId}
+          className={`${CLASS_ROOT}__tile`}
         />
       );
     }, this);

@@ -68,12 +68,6 @@ export default class Store extends Component {
       <div className={classes}>
         <CartButton href={this.props.configuration.cartUrl()} />
 
-        <Pagination
-          currentPage={selectedPage}
-          totalPages={totalPages}
-          onPageChange={this.pageChangeHandler}
-        />
-
         <StoreFilter
           albums={albums}
           productTypes={productTypes}
@@ -88,6 +82,12 @@ export default class Store extends Component {
           tileSize="large"
           buyProductLinkBuilder={this.props.configuration.buyProductUrl}
           storeId={this.props.storeData.id}
+        />
+
+        <Pagination
+          currentPage={selectedPage}
+          totalPages={totalPages}
+          onPageChange={this.pageChangeHandler}
         />
       </div>
     );

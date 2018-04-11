@@ -37,13 +37,13 @@ export default class Pagination extends Component {
         <span onClick={this.nextPage}>{'>'}</span>
       ) : null;
 
-    return (
+    return totalPages > 1 ? (
       <nav className={classes}>
         {prevTag}
         {this.renderPages()}
         {nextTag}
       </nav>
-    );
+    ) : null;
   }
 
   renderPages() {
