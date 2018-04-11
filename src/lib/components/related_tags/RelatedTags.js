@@ -9,7 +9,14 @@ const tagHelper = new TagHelper();
 
 export default class RelatedTags extends Component {
   render() {
-    const { className, design, currentSku, tagLinkBuilder } = this.props;
+    const {
+      className,
+      design,
+      currentSku,
+      tagLinkBuilder,
+      affiliateId,
+      affiliateNetworkId
+    } = this.props;
     const tags = buildTags(design._embedded.tags);
     const relatedTags = buildTags(design._embedded.relatedTags);
     const classes = classnames(CLASS_ROOT, className);
@@ -20,7 +27,14 @@ export default class RelatedTags extends Component {
           {tags.map((tag, i) => {
             return (
               <li key={tag}>
-                <a href={tagLinkBuilder('t-shirts', tag)}>
+                <a
+                  href={tagLinkBuilder(
+                    't-shirts',
+                    tag,
+                    affiliateId,
+                    affiliateNetworkId
+                  )}
+                >
                   {tagHelper.unslugify(tag)}
                 </a>
                 {i < tags.length - 1 ? ',' : ''}
@@ -44,5 +58,9 @@ export default class RelatedTags extends Component {
 }
 
 RelatedTags.propTypes = {
-  design: PropTypes.object.isRequired
+  design: PropTypes.object.isRequired,
+  tagLinkBuilder: PropTypes.func.isRequired,
+  affiliateId: PropTypes.number,
+  affiliateNetworkId: PropTypes.number,
+  className: PropTypes.string
 };
