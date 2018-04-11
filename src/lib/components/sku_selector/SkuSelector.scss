@@ -26,6 +26,10 @@
   border-radius: 2px;
   padding: 3px;
   border: 2px solid $color-gray-light-2;
+
+  @media(min-width: $mobile-4-min) {
+    width: calc(100% / 8 - 6px);
+  }
 }
 
 .tp-sku-selector__color-option.on {
