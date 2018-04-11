@@ -5,4 +5,9 @@
 .tp-image-gallery__thumb {
   width: 78px;
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.tp-image-gallery__preview {
+  width: 100%;
 }

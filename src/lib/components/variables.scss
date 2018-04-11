@@ -6,3 +6,35 @@ $color-gray-light-2: rgb(241, 241, 241);
 $color-gray-light-3: rgb(248, 248, 248);
 $color-green: rgba(39, 183, 66, 1);
 $color-green-dark: rgba(29, 173, 56, 1);
+
+
+$mobile-1-min:                         320px; // iPhone 5
+$mobile-2-min:                         375px; // iPhone 6
+$mobile-3-min:                         414px; // iPhone 6+
+$mobile-4-min:                         600px;
+$mobile-5-min:                         768px; // iPad portrait
+$mobile-6-min:                         970px;
+
+$desktop-1-min:                        1025px; // iPad landscape + 1
+$desktop-2-min:                        1060px;
+$desktop-3-min:                        1200px;
+$desktop-4-min:                        1376px;
+
+$mobile-1-max:                         ($mobile-2-min - 1);
+$mobile-2-max:                         ($mobile-3-min - 1);
+$mobile-3-max:                         ($mobile-4-min - 1);
+$mobile-4-max:                         ($mobile-5-min - 1);
+$mobile-5-max:                         ($mobile-6-min - 1);
+$mobile-6-max:                         ($desktop-1-min - 1); // 1024px
+
+$desktop-1-max:                        ($desktop-2-min - 1);
+$dekstop-2-max:                        ($desktop-3-min - 1);
+$desktop-3-max:                        ($desktop-4-min - 1);
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}

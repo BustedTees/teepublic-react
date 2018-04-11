@@ -37,14 +37,23 @@ export default class App extends Component {
 
   render() {
     return (
-      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-        <h2>- Store -</h2>
-        <Store storeData={store} configuration={ROUTE_CONFIGURATION} />
+      <div className="teepublic">
+        <div className="contain">
+          <h2>- Store -</h2>
+        </div>
+        <Store
+          className="contain"
+          storeData={store}
+          configuration={ROUTE_CONFIGURATION}
+        />
         <br />
         <br />
 
-        <h2>- Pagination -</h2>
+        <div className="contain">
+          <h2>- Pagination -</h2>
+        </div>
         <Pagination
+          className="contain"
           currentPage={1}
           totalPages={10}
           onPageChange={pgNum => {
@@ -54,8 +63,12 @@ export default class App extends Component {
         <br />
         <br />
 
-        <h2>- BuyProduct -</h2>
+        <div className="contain">
+          <h2>- BuyProduct -</h2>
+        </div>
+
         <BuyProduct
+          className="contain"
           design={design}
           skuData={skuData}
           store={store}
@@ -71,19 +84,27 @@ export default class App extends Component {
         <br />
         <br />
 
-        <h2>- Cart Button -</h2>
-        <CartButton href="/cart" />
+        <div className="contain">
+          <h2>- Cart Button -</h2>
+          <CartButton href="/cart" />
+        </div>
         <br />
         <br />
 
-        <h2>- Cart -</h2>
+        <div className="contain">
+          <h2>- Cart -</h2>
+        </div>
+
         <Cart
+          className="contain"
           onCheckout={cartItems => console.log(cartItems)}
           storePathLinkBuilder={ROUTE_CONFIGURATION.storeUrl}
           buyProductLinkBuilder={ROUTE_CONFIGURATION.buyProductUrl}
         />
 
-        <h2>- Footer -</h2>
+        <div className="contain">
+          <h2>- Footer -</h2>
+        </div>
         <Footer />
       </div>
     );

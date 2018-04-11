@@ -8,7 +8,9 @@ export default class Footer extends Component {
   render() {
     return (
       <div className={CLASS_ROOT}>
-        <TeePublicPowered />
+        <div className="contain">
+          <TeePublicPowered />
+        </div>
       </div>
     );
   }

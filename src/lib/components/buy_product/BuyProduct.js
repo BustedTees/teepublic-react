@@ -146,7 +146,7 @@ export default class BuyProduct extends Component {
     );
 
     const backToProducts = (
-      <div style={{ width: '100%' }}>
+      <div className={`${CLASS_ROOT}__back`}>
         <BackToProducts
           storeUrl={this.props.storeUrl(store.id)}
           linkText="Back to Products"
@@ -187,28 +187,35 @@ export default class BuyProduct extends Component {
       <div className={classes}>
         <div className={`${CLASS_ROOT}__product`}>
           {backToProducts}
-          {designTitle}
-          <p className={`${CLASS_ROOT}__attribution`}>
-            Design by {design._embedded.owner.username}
-          </p>
-          {skuImageGallery}
 
-          <div className={`${CLASS_ROOT}__options`}>
-            <SkuSelector
-              onSkuChange={this.onSkuChange.bind(this)}
-              selectorsOptions={selectorsOptions}
-              productOptions={productOptions}
-              selectedOptions={selectedOptions}
-              colorMetaData={colorMetaData}
-            />
-            {designPrice}
-            {cartButton}
-            {relatedInfo}
+          <div className={`${CLASS_ROOT}__config`}>
+            <div className={`${CLASS_ROOT}__heading`}>
+              {designTitle}
+
+              <p className={`${CLASS_ROOT}__attribution`}>
+                Design by {design._embedded.owner.username}
+              </p>
+            </div>
+
+            {skuImageGallery}
+
+            <div className={`${CLASS_ROOT}__options`}>
+              <SkuSelector
+                onSkuChange={this.onSkuChange.bind(this)}
+                selectorsOptions={selectorsOptions}
+                productOptions={productOptions}
+                selectedOptions={selectedOptions}
+                colorMetaData={colorMetaData}
+              />
+              {designPrice}
+              {cartButton}
+            </div>
           </div>
+
+          {relatedInfo}
         </div>
 
         <div className={`${CLASS_ROOT}__variants`}>{productVariants}</div>
-
         <div className={`${CLASS_ROOT}__tags`}>{relatedTags}</div>
       </div>
     );

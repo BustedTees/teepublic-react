@@ -47,11 +47,15 @@ export default class RelatedTags extends Component {
 
     return (
       <div className={classes}>
-        <h4 className={`${CLASS_ROOT}__h`}>Design Tags</h4>
-        {tags}
+        <div className={`${CLASS_ROOT}__group`}>
+          <h4 className={`${CLASS_ROOT}__h`}>Design Tags</h4>
+          {tags}
+        </div>
 
-        <h4 className={`${CLASS_ROOT}__h`}>Related Tags</h4>
-        {relatedTags}
+        <div className={`${CLASS_ROOT}__group`}>
+          <h4 className={`${CLASS_ROOT}__h`}>Related Tags</h4>
+          {relatedTags}
+        </div>
       </div>
     );
   }
