@@ -45,22 +45,23 @@ export default class CartItem extends Component {
         className={`${CLASS_ROOT}__image`}
         src={skuMockupImage.url}
         alt={skuMockupImage.type}
-        height={100}
       />
     );
 
+    const designTitleLink = (
+      <a
+        href={buyProductLinkBuilder(
+          cartItem.design.id,
+          cartItem.sku.productType,
+          cartItem.storeId
+        )}
+      >
+        {cartItem.design.description}
+      </a>
+    );
+
     const designTitle = (
-      <p className={`${CLASS_ROOT}__title`}>
-        <a
-          href={buyProductLinkBuilder(
-            cartItem.design.id,
-            cartItem.sku.productType,
-            cartItem.storeId
-          )}
-        >
-          {cartItem.design.description}
-        </a>
-      </p>
+      <p className={`${CLASS_ROOT}__title`}>{designTitleLink}</p>
     );
 
     const skuPrice = (
@@ -91,19 +92,30 @@ export default class CartItem extends Component {
 
           <div className={`${CLASS_ROOT}__config`}>
             <ul className={`${CLASS_ROOT}__details`}>
+              <li className={`${CLASS_ROOT}__details-title`}>
+                {designTitleLink}
+              </li>
               <li>{skuOptions.style}</li>
-              <li>{`${skuOptions.gender}, Size ${skuOptions.size}`}</li>
+              <li>{`${skuOptions.gender} - Size ${skuOptions.size}`}</li>
               <li>{skuOptions.color}</li>
             </ul>
 
+            <div className={`${CLASS_ROOT}__price-d`}>{skuPrice}</div>
+
             <div className={`${CLASS_ROOT}__adjust`}>
-              {skuPrice}
+              <div className={`${CLASS_ROOT}__price-m`}>{skuPrice}</div>
               {skuQuantity}
+            </div>
+
+            <div className={`${CLASS_ROOT}__total`}>
+              {`$${(Number(cartItem.sku.price) * cartItem.quantity).toFixed(
+                2
+              )}`}
             </div>
 
             <span
               onClick={this.deleteCartItem}
-              className={`${CLASS_ROOT}__update`}
+              className={`${CLASS_ROOT}__update ${CLASS_ROOT}__remove`}
             >
               Remove
             </span>

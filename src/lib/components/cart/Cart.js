@@ -81,7 +81,15 @@ export default class Cart extends Component {
             Your Cart
             <span>{` (${this.cartHelper.itemsDescription(items)})`}</span>
           </h2>
-          {cartItems}
+
+          <ul className={`${CLASS_ROOT}__items-h`}>
+            <li className={`${CLASS_ROOT}__item-h`}>Product</li>
+            <li className={`${CLASS_ROOT}__item-h`}>Unit Price</li>
+            <li className={`${CLASS_ROOT}__item-h`}>Quantity</li>
+            <li className={`${CLASS_ROOT}__item-h`}>Total</li>
+          </ul>
+
+          <div className={`${CLASS_ROOT}__items`}>{cartItems}</div>
 
           <div className={`${CLASS_ROOT}__checkout`}>
             <div className={`${CLASS_ROOT}__total`}>
@@ -95,19 +103,21 @@ export default class Cart extends Component {
               </span>
             </div>
 
-            <button
-              onClick={this.checkoutHandler}
-              className={`${CLASS_ROOT}__checkout-checkout`}
-            >
-              Checkout
-            </button>
+            <div className={`${CLASS_ROOT}__ctas`}>
+              <button
+                onClick={this.checkoutHandler}
+                className={`${CLASS_ROOT}__checkout-checkout`}
+              >
+                Checkout
+              </button>
 
-            <a
-              href={storePathLinkBuilder()}
-              className={`${CLASS_ROOT}__checkout-shopping`}
-            >
-              Continue Shopping
-            </a>
+              <a
+                href={storePathLinkBuilder()}
+                className={`${CLASS_ROOT}__checkout-shopping`}
+              >
+                Continue Shopping
+              </a>
+            </div>
           </div>
         </div>
       ) : (

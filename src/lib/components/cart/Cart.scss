@@ -6,10 +6,18 @@
 }
 
 .tp-cart__checkout {
-  background: $color-gray-light-2;
+  background: $color-gray-light-3;
   margin-top: 30px;
   text-align: center;
   padding: 15px;
+
+  @media(min-width: $mobile-4-min) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    margin-top: 50px;
+  }
 }
 
 .tp-cart__checkout-checkout {
@@ -30,21 +38,85 @@
   text-transform: uppercase;
   border-bottom: 4px solid $color-green-dark;
   padding-top: 5px;
+
+  @media(min-width: $mobile-4-min) {
+    order: 1;
+    max-width: 274px;
+    margin: 0 0 0 10px;
+  }
 }
 
 .tp-cart__checkout-shopping {
   font-size: 14px;
+
+  @media(min-width: $mobile-4-min) {
+    background: $color-gray-light-2;
+    padding: 0px 25px;
+    border-radius: 2px;
+    border-bottom: 1px solid $color-gray-light-1;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    height: 48px;
+    line-height: calc(48 / 14);
+
+    .teepublic & {
+      color: $color-gray;
+    }
+  }
+}
+
+.tp-cart__ctas {
+  @media(min-width: $mobile-4-min) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+    @include ie-flex-fix;
+  }
 }
 
 .tp-cart__h {
   font-size: 15px;
-  border-bottom: 1px solid $color-gray-light-1;
-  padding-bottom: 15px;
+
+  @media(max-width: $mobile-3-max) {
+    border-bottom: 1px solid $color-gray-light-1;
+    padding-bottom: 15px;
+  }
 }
 
 .tp-cart__h span {
   color: $color-gray;
   font-weight: normal;
+}
+
+.tp-cart__item-h {
+  &:first-child {
+    width: calc(#{$cart-item-details-width} + #{$cart-item-image-width});
+  }
+}
+
+.tp-cart__items-h {
+  @media(max-width: $mobile-3-max) {
+    display: none;
+  }
+
+  background: $color-gray-light-3;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 25px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.tp-cart__items {
+  margin-top: 20px;
+
+  @media(min-width: $mobile-4-min) {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
 }
 
 .tp-cart__total {
@@ -56,6 +128,8 @@
   text-transform: uppercase;
   color: $color-gray;
   font-weight: bold;
+  font-size: 15px;
+  margin-right: 10px;
 }
 
 .tp-cart__total-price {
@@ -65,4 +139,8 @@
 .tp-cart__total-price span {
   font-weight: normal;
   color: $color-gray;
+
+  @media(min-width: $mobile-4-min) {
+    color: inherit;
+  }
 }
