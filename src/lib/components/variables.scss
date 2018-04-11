@@ -1,6 +1,7 @@
 $color-blue: rgb(85, 175, 249);
 $color-blue-dark: rgb(75, 165, 239);
 $color-gray: rgba(123, 125, 126, 1);
+$color-gray-dark-1: rgb(68, 68, 68);
 $color-gray-light-1: rgb(200, 200, 200);
 $color-gray-light-2: rgb(241, 241, 241);
 $color-gray-light-3: rgb(248, 248, 248);
@@ -31,10 +32,19 @@ $desktop-1-max:                        ($desktop-2-min - 1);
 $dekstop-2-max:                        ($desktop-3-min - 1);
 $desktop-3-max:                        ($desktop-4-min - 1);
 
+
+$cart-item-details-width: calc((300 / 882 ) * 100%);
+$cart-item-image-width: 113px;;
+
 @mixin clearfix {
   &:after {
     content: "";
     clear: both;
     display: table;
   }
+}
+
+@mixin ie-flex-fix {
+  width: 1px;
+  max-width: 100%;
 }
