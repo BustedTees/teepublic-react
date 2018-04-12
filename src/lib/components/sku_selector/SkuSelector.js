@@ -118,6 +118,23 @@ export default class SkuSelector extends Component {
       );
     }
 
+    function sizingButton(option) {
+      if (option.toLowerCase() == 'size') {
+        return (
+          <button
+            className={`${CLASS_ROOT}__sizing`}
+            onClick={() =>
+              (window.location = 'https://www.teepublic.com/sizechart')
+            }
+          >
+            Sizing
+          </button>
+        );
+      } else {
+        return null;
+      }
+    }
+
     function buildDropdownOptions(productOption, selectorOptions) {
       return (
         <div key={productOption.name} className={`${CLASS_ROOT}__option`}>
@@ -137,6 +154,8 @@ export default class SkuSelector extends Component {
               ))}
             </select>
           </div>
+
+          {sizingButton(productOption.name)}
         </div>
       );
     }
