@@ -77,6 +77,16 @@ export default class Store extends Component {
           selectedProductTypeName={selectedProductTypeName}
         />
 
+        <StoreFilter
+          albums={albums}
+          productTypes={productTypes}
+          onAlbumChange={this.albumChangeHandler}
+          onProductTypeChange={this.productTypeChangeHandler}
+          selectedAlbumId={selectedAlbumId}
+          selectedProductTypeName={selectedProductTypeName}
+          filterStyle="nav"
+        />
+
         <DesignCollection
           designs={designs}
           tileSize="large"
