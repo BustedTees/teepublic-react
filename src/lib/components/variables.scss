@@ -32,10 +32,6 @@ $desktop-1-max:                        ($desktop-2-min - 1);
 $dekstop-2-max:                        ($desktop-3-min - 1);
 $desktop-3-max:                        ($desktop-4-min - 1);
 
-
-$cart-item-details-width: calc((300 / 882 ) * 100%);
-$cart-item-image-width: 113px;;
-
 @mixin clearfix {
   &:after {
     content: "";

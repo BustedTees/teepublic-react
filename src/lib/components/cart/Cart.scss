@@ -91,8 +91,18 @@
 }
 
 .tp-cart__item-h {
+  width: 20%;
+  text-align: right;
+
   &:first-child {
-    width: calc(#{$cart-item-details-width} + #{$cart-item-image-width});
+    width: 113px;
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  &:nth-child(2) {
+    margin-left: 20px;
+    width: 31%;
   }
 }
 

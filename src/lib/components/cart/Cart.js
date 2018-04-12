@@ -84,6 +84,7 @@ export default class Cart extends Component {
 
           <ul className={`${CLASS_ROOT}__items-h`}>
             <li className={`${CLASS_ROOT}__item-h`}>Product</li>
+            <li className={`${CLASS_ROOT}__item-h`} />
             <li className={`${CLASS_ROOT}__item-h`}>Unit Price</li>
             <li className={`${CLASS_ROOT}__item-h`}>Quantity</li>
             <li className={`${CLASS_ROOT}__item-h`}>Total</li>
