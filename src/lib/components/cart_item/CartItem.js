@@ -84,6 +84,17 @@ export default class CartItem extends Component {
       />
     );
 
+    const removeLink = className => {
+      return (
+        <span
+          onClick={this.deleteCartItem}
+          className={`${CLASS_ROOT}__update ${CLASS_ROOT}__${className}`}
+        >
+          Remove
+        </span>
+      );
+    };
+
     return (
       <div className={classes}>
         {designTitle}
@@ -98,6 +109,7 @@ export default class CartItem extends Component {
               <li>{skuOptions.style}</li>
               <li>{`${skuOptions.gender} - Size ${skuOptions.size}`}</li>
               <li>{skuOptions.color}</li>
+              <li>{removeLink('remove-d')}</li>
             </ul>
 
             <div className={`${CLASS_ROOT}__price-d`}>{skuPrice}</div>
@@ -113,12 +125,7 @@ export default class CartItem extends Component {
               )}`}
             </div>
 
-            <span
-              onClick={this.deleteCartItem}
-              className={`${CLASS_ROOT}__update ${CLASS_ROOT}__remove`}
-            >
-              Remove
-            </span>
+            {removeLink('remove-m')}
           </div>
         </div>
       </div>
