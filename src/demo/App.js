@@ -80,6 +80,7 @@ export default class App extends Component {
             var baseUrl = 'https://www.teepublic.com';
             return `${baseUrl}/${type}/${tag}?ref_id=${affiliateId}&aff_network_id=${affiliateNetworkId}`;
           }}
+          sizechartUrl={ROUTE_CONFIGURATION.sizechartUrl()}
         />
         <br />
         <br />

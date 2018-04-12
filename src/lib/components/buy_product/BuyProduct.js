@@ -94,7 +94,8 @@ export default class BuyProduct extends Component {
       store,
       buyProductLinkBuilder,
       tagLinkBuilder,
-      affiliateNetworkId
+      affiliateNetworkId,
+      sizechartUrl
     } = this.props;
 
     const {
@@ -206,6 +207,7 @@ export default class BuyProduct extends Component {
                 productOptions={productOptions}
                 selectedOptions={selectedOptions}
                 colorMetaData={colorMetaData}
+                sizechartUrl={sizechartUrl}
               />
               {designPrice}
               {cartButton}

@@ -29,3 +29,41 @@
   border-right: 6px solid transparent;
   pointer-events: none;
 }
+
+.tp-store-filter__nav {
+  width: 192px;
+  margin-right: 50px;
+}
+
+.tp-store-filter__nav-group {
+  background: $color-gray-light-3;
+  list-style-type: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 2px;
+}
+
+.tp-store-filter__nav-group-h {
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-top: 18px;
+  margin-bottom: 10px;
+}
+
+.tp-store-filter__nav-h {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.tp-store-filter__nav-item {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  color: $color-blue;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.tp-store-filter__nav-products{
+  margin-top: 25px;
+}

@@ -19,5 +19,9 @@ export const ROUTE_CONFIGURATION = {
 
   buyProductUrl: (designId, productTypeName, storeId) => {
     return `/stores/${storeId}/designs/${designId}?product_type=${productTypeName}`;
+  },
+
+  sizechartUrl: () => {
+    return 'https://www.teepublic.com/sizechart';
   }
 };

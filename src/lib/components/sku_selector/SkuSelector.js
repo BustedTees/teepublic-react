@@ -13,7 +13,8 @@ export default class SkuSelector extends Component {
       selectorsOptions,
       className,
       selectedOptions,
-      colorMetaData
+      colorMetaData,
+      sizechartUrl
     } = this.props;
     const classes = classnames(CLASS_ROOT, className);
 
@@ -123,9 +124,9 @@ export default class SkuSelector extends Component {
         return (
           <button
             className={`${CLASS_ROOT}__sizing`}
-            onClick={() =>
-              (window.location = 'https://www.teepublic.com/sizechart')
-            }
+            onClick={() => {
+              window.location = sizechartUrl;
+            }}
           >
             Sizing
           </button>
