@@ -45,32 +45,6 @@ export default class StoreFilter extends Component {
       </option>
     ));
 
-    const albumNavs = albums.map((album, index) => (
-      <li key={index} className={`${CLASS_ROOT}__nav-item`}>
-        {album.name}
-      </li>
-    ));
-
-    const productNavs = (function() {
-      let navs = filterHelper.groupProducts(productTypes);
-      let groups = Object.keys(navs);
-
-      return groups.map(group => (
-        <div key={group} className={`${CLASS_ROOT}__nav-group-wrap`}>
-          <h3 className={`${CLASS_ROOT}__nav-group-h`}>{group}</h3>
-          <ul className={`${CLASS_ROOT}__nav-group`}>
-            {navs[group].map((productType, index) => {
-              return (
-                <li key={index} className={`${CLASS_ROOT}__nav-item`}>
-                  {productType.displayName}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ));
-    })();
-
     const filterDropdown = (
       <div className={classes}>
         <div className={`${CLASS_ROOT}__dropdown-wrap`}>
@@ -98,6 +72,42 @@ export default class StoreFilter extends Component {
         </div>
       </div>
     );
+
+    const albumNavs = albums.map(function(album, index) {
+      const classes = classnames(`${CLASS_ROOT}__nav-item`, {
+        active: index == 0
+      });
+
+      return (
+        <li key={index} className={classes}>
+          {album.name}
+        </li>
+      );
+    });
+
+    const productNavs = (function() {
+      const navs = filterHelper.groupProducts(productTypes);
+      const groups = Object.keys(navs);
+
+      return groups.map(group => (
+        <div key={group} className={`${CLASS_ROOT}__nav-group-wrap`}>
+          <h3 className={`${CLASS_ROOT}__nav-group-h`}>{group}</h3>
+          <ul className={`${CLASS_ROOT}__nav-group`}>
+            {navs[group].map(function(productType, index) {
+              const classes = classnames(`${CLASS_ROOT}__nav-item`, {
+                active: index == 0
+              });
+
+              return (
+                <li key={index} className={classes}>
+                  {productType.displayName}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ));
+    })();
 
     const filterNav = (
       <nav className={`${CLASS_ROOT}__nav`}>
