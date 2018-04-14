@@ -86,13 +86,6 @@ export default class App extends Component {
         <br />
 
         <div className="contain">
-          <h2>- Cart Button -</h2>
-          <CartButton href="/cart" />
-        </div>
-        <br />
-        <br />
-
-        <div className="contain">
           <h2>- Cart -</h2>
         </div>
 

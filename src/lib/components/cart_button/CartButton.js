@@ -30,9 +30,14 @@ export default class CartButton extends Component {
     const classes = classnames(className, CLASS_ROOT);
 
     return (
-      <a className={classes} {...props}>
-        Cart ({this.cartHelper.itemsDescription(cartItems)})
-      </a>
+      <div className={classes}>
+        <a className={`${CLASS_ROOT}__link`} {...props}>
+          Cart
+          <span className={`${CLASS_ROOT}__count`}>{cartItems.length}</span>
+        </a>
+
+        <button className={`${CLASS_ROOT}__checkout`}>Checkout</button>
+      </div>
     );
   }
 }
