@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Row from '../row/Row';
-import Column from '../column/Column';
 import MoneyHelper from '../../utils/MoneyHelper';
 import ProductHelper from '../../utils/ProductHelper';
 import _ from 'underscore';

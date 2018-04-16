@@ -10,13 +10,7 @@ const CLASS_ROOT = 'tp-design-collection';
 
 export default class DesignCollection extends Component {
   render() {
-    const {
-      className,
-      designs,
-      tileSize,
-      buyProductLinkBuilder,
-      storeId
-    } = this.props;
+    const { className, designs, buyProductLinkBuilder, storeId } = this.props;
 
     const classes = classnames(CLASS_ROOT, className);
 

@@ -9,7 +9,7 @@ export const ROUTE_CONFIGURATION = {
     if (selectedAlbumId) url += `&album_id=${selectedAlbumId}`;
     if (selectedProductTypeName)
       url += `&product_type=${selectedProductTypeName}`;
-
+    console.log(selectedPage, selectedAlbumId, selectedProductTypeName);
     return url;
   },
 

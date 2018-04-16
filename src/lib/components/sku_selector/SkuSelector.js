@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import './SkuSelector.scss';
@@ -120,7 +119,7 @@ export default class SkuSelector extends Component {
     }
 
     function sizingButton(option) {
-      if (option.toLowerCase() == 'size') {
+      if (option.toLowerCase() === 'size') {
         return (
           <button
             className={`${CLASS_ROOT}__sizing`}

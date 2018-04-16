@@ -6,7 +6,7 @@ const CLASS_ROOT = 'tp-back-products';
 
 export default class BackToProducts extends Component {
   render() {
-    const { storeUrl, linkText, ...props } = this.props;
+    const { storeUrl, linkText } = this.props;
     return (
       <a className={CLASS_ROOT} href={storeUrl}>
         {linkText}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import tpLogo from '../tp-logo.png';
 
@@ -9,7 +8,7 @@ const CLASS_ROOT = 'tp-powered';
 
 export default class TeepublicPowered extends Component {
   render() {
-    const { className, layout } = this.props;
+    const { className } = this.props;
 
     const classes = classnames(CLASS_ROOT, className);
 
@@ -32,11 +31,3 @@ export default class TeepublicPowered extends Component {
     );
   }
 }
-
-TeepublicPowered.propTypes = {
-  layout: PropTypes.oneOf(['row', 'column'])
-};
-
-TeepublicPowered.defaultProps = {
-  layout: 'row'
-};
