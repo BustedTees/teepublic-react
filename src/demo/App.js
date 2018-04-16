@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Footer,
-  DesignCollection,
-  Cart,
-  BuyProduct,
-  CartButton,
-  StoreFilter,
-  Pagination,
-  Store
-} from '../index';
+import { Footer, Cart, BuyProduct, Pagination, Store } from '../index';
 
 import store from './StoreData';
 import design from './DesignData';
@@ -23,7 +14,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       selectedAlbumId: null,
-      selectedProductTypeName: null
+      selectedProductTypeName: ''
     };
   }
 
@@ -36,6 +27,8 @@ export default class App extends Component {
   };
 
   render() {
+    const { selectedAlbumId, selectedProductTypeName } = this.state;
+
     return (
       <div className="teepublic">
         <div className="contain">
@@ -45,6 +38,8 @@ export default class App extends Component {
           className="contain"
           storeData={store}
           configuration={ROUTE_CONFIGURATION}
+          selectedAlbumId={selectedAlbumId}
+          selectedProductTypeName={selectedProductTypeName}
         />
         <br />
         <br />

@@ -101,7 +101,6 @@ export default class BuyProduct extends Component {
     const {
       skuImageIndex,
       productOptions,
-      skus,
       selectorsOptions,
       selectedOptions,
       colorMetaData,

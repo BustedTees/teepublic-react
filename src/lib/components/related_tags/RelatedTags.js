@@ -12,7 +12,6 @@ export default class RelatedTags extends Component {
     const {
       className,
       design,
-      currentSku,
       tagLinkBuilder,
       affiliateId,
       affiliateNetworkId

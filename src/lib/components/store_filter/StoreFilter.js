@@ -24,23 +24,13 @@ export default class StoreFilter extends Component {
     const classes = classnames(className, CLASS_ROOT);
 
     const productTypeOptions = productTypes.map((productType, index) => (
-      <option
-        key={index}
-        name="product-types"
-        value={productType.name}
-        defaultChecked={productType.name === selectedProductTypeName}
-      >
+      <option key={index} name="product-types" value={productType.name}>
         {productType.displayName}
       </option>
     ));
 
     const albumOptions = albums.map((album, index) => (
-      <option
-        key={index}
-        name="albums"
-        value={album.id}
-        defaultChecked={album.id === selectedAlbumId}
-      >
+      <option key={index} name="albums" value={album.id}>
         {album.name}
       </option>
     ));
@@ -53,8 +43,9 @@ export default class StoreFilter extends Component {
             onChange={event => {
               onAlbumChange(parseInt(event.target.value, 10));
             }}
+            value={selectedAlbumId || ''}
           >
-            <option>Filter by album</option>
+            <option value="">Filter by album</option>
             {albumOptions}
           </select>
         </div>
@@ -65,8 +56,9 @@ export default class StoreFilter extends Component {
             onChange={event => {
               onProductTypeChange(event.target.value);
             }}
+            value={selectedProductTypeName}
           >
-            <option>Filter by product</option>
+            <option value={''}>Filter by product</option>
             {productTypeOptions}
           </select>
         </div>
@@ -75,11 +67,17 @@ export default class StoreFilter extends Component {
 
     const albumNavs = albums.map(function(album, index) {
       const classes = classnames(`${CLASS_ROOT}__nav-item`, {
-        active: index == 0
+        active: album.id === selectedAlbumId
       });
 
       return (
-        <li key={index} className={classes}>
+        <li
+          key={album.id}
+          className={classes}
+          onClick={event => {
+            onAlbumChange(Number(album.id));
+          }}
+        >
           {album.name}
         </li>
       );
@@ -95,11 +93,19 @@ export default class StoreFilter extends Component {
           <ul className={`${CLASS_ROOT}__nav-group`}>
             {navs[group].map(function(productType, index) {
               const classes = classnames(`${CLASS_ROOT}__nav-item`, {
-                active: index == 0
+                active:
+                  productType.displayName.toLowerCase() ===
+                  selectedProductTypeName.toLowerCase()
               });
 
               return (
-                <li key={index} className={classes}>
+                <li
+                  key={index}
+                  className={classes}
+                  onClick={event => {
+                    onProductTypeChange(productType.displayName);
+                  }}
+                >
                   {productType.displayName}
                 </li>
               );

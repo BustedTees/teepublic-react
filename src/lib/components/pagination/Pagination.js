@@ -57,7 +57,7 @@ export default class Pagination extends Component {
           id={pgNum}
           onClick={this.handleClick}
           key={pgNum}
-          className={pgNum == currentPage ? 'on' : ''}
+          className={pgNum === currentPage ? 'on' : ''}
         >
           {pgNum}
         </span>

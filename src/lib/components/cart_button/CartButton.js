@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import CartHelper from '../../utils/CartHelper';
-import MoneyHelper from '../../utils/MoneyHelper';
 
 import './CartButton.scss';
 

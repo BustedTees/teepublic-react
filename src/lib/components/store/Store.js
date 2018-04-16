@@ -18,7 +18,7 @@ export default class Store extends Component {
 
     this.state = {
       selectedPage: props.selectedPage || 1,
-      selectedAlbumId: parseInt(props.selectedAlbumId, 10),
+      selectedAlbumId: parseInt(props.selectedAlbumId, 10) || null,
       selectedProductTypeName: props.selectedProductTypeName
     };
   }

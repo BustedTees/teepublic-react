@@ -31,7 +31,7 @@ export default class DesignTile extends Component {
       },
       className
     );
-    const owner = design._embedded.owner;
+
     const sku = design._embedded.defaultProduct._embedded.defaultSku;
     const { images, price } = sku;
 
