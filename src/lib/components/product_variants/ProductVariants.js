@@ -14,6 +14,8 @@ export default class ProductVariants extends Component {
       currentSku.productType
     );
 
+    const classes = classnames(CLASS_ROOT, 'teepublic');
+
     const variants = otherVariants.map((variant, i) => {
       const imageUrl = this.productHelper.mockupImage(variant).url;
       const variantGroup = this.productHelper.variantGroup(store, variant);
@@ -24,10 +26,8 @@ export default class ProductVariants extends Component {
         store.id
       );
 
-      const classes = classnames(CLASS_ROOT, 'teepublic');
-
       return (
-        <div className={classes} key={i}>
+        <div className={`${CLASS_ROOT}__variant`} key={i}>
           <a href={buyProductLink}>
             <img
               key={imageUrl}
@@ -49,7 +49,7 @@ export default class ProductVariants extends Component {
     }, this);
 
     return (
-      <div className={CLASS_ROOT}>
+      <div className={classes}>
         <h3 className={`${CLASS_ROOT}__h`}>
           This product is also available as:
         </h3>
