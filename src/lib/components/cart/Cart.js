@@ -55,7 +55,7 @@ export default class Cart extends Component {
     } = this.props;
     const { items } = this.state;
 
-    const classes = classnames(className, CLASS_ROOT);
+    const classes = classnames(className, CLASS_ROOT, 'teepublic');
 
     const cartItems = items.map(function(item, itemIndex) {
       return (

@@ -21,7 +21,7 @@ export default class StoreFilter extends Component {
       filterStyle
     } = this.props;
 
-    const classes = classnames(className, CLASS_ROOT);
+    const classes = classnames(className, CLASS_ROOT, 'teepublic');
 
     const productTypeOptions = productTypes.map((productType, index) => (
       <option key={index} name="product-types" value={productType.name}>

@@ -107,7 +107,7 @@ export default class BuyProduct extends Component {
       currentSku
     } = this.state;
 
-    const classes = classnames(CLASS_ROOT, className);
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
     const description = this.props.design.description;
     const materialInfo = currentSku.description;
 

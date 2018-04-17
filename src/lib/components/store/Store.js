@@ -62,7 +62,7 @@ export default class Store extends Component {
     const totalPages = parseInt(this.props.storeData.totalPages, 10);
 
     const { className } = this.props;
-    const classes = classnames(className, CLASS_ROOT);
+    const classes = classnames(className, CLASS_ROOT, 'teepublic');
 
     return (
       <div className={classes}>

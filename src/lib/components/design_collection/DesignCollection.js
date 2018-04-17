@@ -12,7 +12,7 @@ export default class DesignCollection extends Component {
   render() {
     const { className, designs, buyProductLinkBuilder, storeId } = this.props;
 
-    const classes = classnames(CLASS_ROOT, className);
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
 
     const designTiles = designs.map(function(design, designIndex) {
       return (

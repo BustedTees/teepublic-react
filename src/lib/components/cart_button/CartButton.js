@@ -25,7 +25,7 @@ export default class CartButton extends Component {
     const { className, ...props } = this.props;
     const cartItems = this.cartHelper.getCartItems();
 
-    const classes = classnames(className, CLASS_ROOT);
+    const classes = classnames(className, CLASS_ROOT, 'teepublic');
 
     return (
       <div className={classes}>

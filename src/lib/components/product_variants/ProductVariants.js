@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProductHelper from '../../utils/ProductHelper';
 import './ProductVariants.scss';
+import classnames from 'classnames';
 
 const CLASS_ROOT = 'tp-product-variants';
 
@@ -23,8 +24,10 @@ export default class ProductVariants extends Component {
         store.id
       );
 
+      const classes = classnames(CLASS_ROOT, 'teepublic');
+
       return (
-        <div className={`${CLASS_ROOT}__variant`} key={i}>
+        <div className={classes} key={i}>
           <a href={buyProductLink}>
             <img
               key={imageUrl}

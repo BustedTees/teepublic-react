@@ -18,7 +18,7 @@ export default class RelatedTags extends Component {
     } = this.props;
     const tags = buildTags(design._embedded.tags);
     const relatedTags = buildTags(design._embedded.relatedTags);
-    const classes = classnames(CLASS_ROOT, className);
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
 
     function buildTags(tags) {
       return (

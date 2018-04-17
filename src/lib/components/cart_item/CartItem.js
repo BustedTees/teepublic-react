@@ -31,7 +31,7 @@ export default class CartItem extends Component {
 
   render() {
     const { className, cartItem, buyProductLinkBuilder } = this.props;
-    const classes = classnames(className, CLASS_ROOT);
+    const classes = classnames(className, CLASS_ROOT, 'teepublic');
     const skuOptions = this.productHelper.skuOptions(cartItem.sku);
 
     var skuMockupImage = _.find(cartItem.sku.images, function(image) {

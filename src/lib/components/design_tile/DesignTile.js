@@ -29,7 +29,8 @@ export default class DesignTile extends Component {
       {
         [`${CLASS_ROOT}--${size}`]: size
       },
-      className
+      className,
+      'teepublic'
     );
 
     const sku = design._embedded.defaultProduct._embedded.defaultSku;

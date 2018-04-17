@@ -15,7 +15,7 @@ export default class SkuSelector extends Component {
       colorMetaData,
       sizechartUrl
     } = this.props;
-    const classes = classnames(CLASS_ROOT, className);
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
 
     function buildSwatchOptions(
       productOption,

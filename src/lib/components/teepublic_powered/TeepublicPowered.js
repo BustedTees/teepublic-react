@@ -10,7 +10,7 @@ export default class TeepublicPowered extends Component {
   render() {
     const { className } = this.props;
 
-    const classes = classnames(CLASS_ROOT, className);
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
 
     return (
       <p className={classes}>

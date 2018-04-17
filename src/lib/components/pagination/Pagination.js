@@ -27,7 +27,7 @@ export default class Pagination extends Component {
 
   render() {
     const { className, totalPages, currentPage } = this.props;
-    const classes = classnames(className, CLASS_ROOT);
+    const classes = classnames(className, CLASS_ROOT, 'teepublic');
 
     const prevTag =
       currentPage > 1 ? <span onClick={this.prevPage}>{'<'}</span> : null;

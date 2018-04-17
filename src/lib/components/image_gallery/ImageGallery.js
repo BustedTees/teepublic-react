@@ -9,7 +9,7 @@ const CLASS_ROOT = 'tp-image-gallery';
 export default class ImageGallery extends Component {
   render() {
     const { className, images, selectedImageIndex, onImageSelect } = this.props;
-    const classes = classnames(CLASS_ROOT, className);
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
 
     const thumbImageTags = images.map(function(image, imageIndex) {
       return (

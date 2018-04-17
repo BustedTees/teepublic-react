@@ -23,7 +23,7 @@ export default class AddToCart extends Component {
 
   render() {
     const { className, design, sku } = this.props;
-    const classes = classnames(CLASS_ROOT, className);
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
     const disabled = !(design && sku);
     return (
       <button
