@@ -1,0 +1,35 @@
+@import '../variables';
+
+.teepublic {
+  color: $color-gray-dark-1;
+  font-family: helvetica, arial, sans-serif;
+  overflow-x: hidden;
+
+  .contain {
+    width: 100%;
+    max-width: 1030px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: $color-blue;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  ul {
+    margin: 0;
+  }
+}

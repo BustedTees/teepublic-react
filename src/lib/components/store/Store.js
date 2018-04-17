@@ -8,7 +8,7 @@ import CartButton from '../cart_button/CartButton';
 import Pagination from '../pagination/Pagination';
 import StoreFilter from '../store_filter/StoreFilter';
 
-import './Store.css';
+import './Store.scss';
 
 const CLASS_ROOT = 'tp-store';
 
@@ -77,22 +77,24 @@ export default class Store extends Component {
           selectedProductTypeName={selectedProductTypeName}
         />
 
-        <StoreFilter
-          albums={albums}
-          productTypes={productTypes}
-          onAlbumChange={this.albumChangeHandler}
-          onProductTypeChange={this.productTypeChangeHandler}
-          selectedAlbumId={selectedAlbumId}
-          selectedProductTypeName={selectedProductTypeName}
-          filterStyle="nav"
-        />
+        <div className={`${CLASS_ROOT}__collection-wrap`}>
+          <StoreFilter
+            albums={albums}
+            productTypes={productTypes}
+            onAlbumChange={this.albumChangeHandler}
+            onProductTypeChange={this.productTypeChangeHandler}
+            selectedAlbumId={selectedAlbumId}
+            selectedProductTypeName={selectedProductTypeName}
+            filterStyle="nav"
+          />
 
-        <DesignCollection
-          designs={designs}
-          tileSize="large"
-          buyProductLinkBuilder={this.props.configuration.buyProductUrl}
-          storeId={this.props.storeData.id}
-        />
+          <DesignCollection
+            designs={designs}
+            tileSize="large"
+            buyProductLinkBuilder={this.props.configuration.buyProductUrl}
+            storeId={this.props.storeData.id}
+          />
+        </div>
 
         <Pagination
           currentPage={selectedPage}
