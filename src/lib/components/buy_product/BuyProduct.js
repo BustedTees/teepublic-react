@@ -224,8 +224,12 @@ export default class BuyProduct extends Component {
 }
 
 BuyProduct.propTypes = {
+  className: PropTypes.string,
   design: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   storeUrl: PropTypes.func.isRequired,
-  affiliateNetworkId: PropTypes.number
+  affiliateNetworkId: PropTypes.number.isRequired,
+  tagLinkBuilder: PropTypes.func.isRequired,
+  buyProductLinkBuilder: PropTypes.func.isRequired,
+  sizechartUrl: PropTypes.func.isRequired
 };

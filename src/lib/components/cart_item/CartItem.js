@@ -132,7 +132,9 @@ export default class CartItem extends Component {
 }
 
 CartItem.propTypes = {
+  className: PropTypes.string,
   cartItem: PropTypes.object.isRequired,
+  buyProductLinkBuilder: PropTypes.func.isRequired,
   updateCartItem: PropTypes.func.isRequired,
   deleteCartItem: PropTypes.func.isRequired
 };

@@ -66,7 +66,10 @@ export default class Store extends Component {
 
     return (
       <div className={classes}>
-        <CartButton href={this.props.configuration.cartUrl()} />
+        <CartButton
+          cartUrl={this.props.configuration.cartUrl()}
+          onCheckout={cartItems => console.log(cartItems)}
+        />
 
         <StoreFilter
           albums={albums}
@@ -107,6 +110,7 @@ export default class Store extends Component {
 }
 
 Store.propTypes = {
+  className: PropTypes.string,
   storeData: PropTypes.object.isRequired,
   configuration: PropTypes.shape({
     storeUrl: PropTypes.func.isRequired,

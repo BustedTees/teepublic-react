@@ -61,9 +61,9 @@ export default class RelatedTags extends Component {
 }
 
 RelatedTags.propTypes = {
+  className: PropTypes.string,
   design: PropTypes.object.isRequired,
   tagLinkBuilder: PropTypes.func.isRequired,
   affiliateId: PropTypes.number,
-  affiliateNetworkId: PropTypes.number,
-  className: PropTypes.string
+  affiliateNetworkId: PropTypes.number
 };
