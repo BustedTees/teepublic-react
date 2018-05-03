@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProductHelper from '../../utils/ProductHelper';
 import './ProductVariants.scss';
 import classnames from 'classnames';
@@ -58,3 +59,11 @@ export default class ProductVariants extends Component {
     );
   }
 }
+
+ProductVariants.propTypes = {
+  className: PropTypes.string,
+  store: PropTypes.object.isRequired,
+  design: PropTypes.object.isRequired,
+  currentSku: PropTypes.object.isRequired,
+  buyProductLinkBuilder: PropTypes.func.isRequired
+};

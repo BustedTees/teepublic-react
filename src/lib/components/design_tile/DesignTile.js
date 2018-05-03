@@ -87,10 +87,11 @@ export default class DesignTile extends Component {
 }
 
 DesignTile.propTypes = {
+  className: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   design: PropTypes.object.isRequired,
   buyProductLinkBuilder: PropTypes.func.isRequired,
-  storeId: PropTypes.number
+  storeId: PropTypes.number.isRequired
 };
 
 DesignTile.defaultProps = {

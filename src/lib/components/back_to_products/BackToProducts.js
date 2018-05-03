@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+
 import './BackToProducts.scss';
 
 const CLASS_ROOT = 'tp-back-products';
 
 export default class BackToProducts extends Component {
   render() {
-    const { storeUrl, linkText } = this.props;
+    const { className, storeUrl, linkText } = this.props;
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
     return (
-      <a className={CLASS_ROOT} href={storeUrl}>
+      <a className={classes} href={storeUrl}>
         {linkText}
       </a>
     );
@@ -16,5 +19,7 @@ export default class BackToProducts extends Component {
 }
 
 BackToProducts.propTypes = {
-  storeUrl: PropTypes.string
+  className: PropTypes.string,
+  storeUrl: PropTypes.string.isRequired,
+  linkText: PropTypes.string.isRequired
 };

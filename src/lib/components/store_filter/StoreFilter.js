@@ -138,15 +138,18 @@ export default class StoreFilter extends Component {
 }
 
 StoreFilter.propTypes = {
+  className: PropTypes.string,
   albums: PropTypes.array.isRequired,
   productTypes: PropTypes.array.isRequired,
   selectedAlbumId: PropTypes.number,
   selectedProductTypeName: PropTypes.string,
   onAlbumChange: PropTypes.func.isRequired,
-  onProductTypeChange: PropTypes.func.isRequired
+  onProductTypeChange: PropTypes.func.isRequired,
+  filterStyle: PropTypes.oneOf(['nav', 'dropdown'])
 };
 
 StoreFilter.defaultProps = {
   albums: [],
-  productTypes: []
+  productTypes: [],
+  filterStyle: 'dropdown'
 };

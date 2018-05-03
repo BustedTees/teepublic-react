@@ -38,9 +38,10 @@ export default class AddToCart extends Component {
 }
 
 AddToCart.propTypes = {
+  className: PropTypes.string,
   design: PropTypes.object.isRequired,
-  affiliateId: PropTypes.number,
-  affiliateNetworkId: PropTypes.number,
-  storeId: PropTypes.number,
-  sku: PropTypes.object
+  affiliateId: PropTypes.number.isRequired,
+  affiliateNetworkId: PropTypes.number.isRequired,
+  storeId: PropTypes.number.isRequired,
+  sku: PropTypes.object.isRequired
 };

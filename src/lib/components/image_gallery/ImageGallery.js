@@ -47,6 +47,7 @@ export default class ImageGallery extends Component {
 }
 
 ImageGallery.propTypes = {
+  className: PropTypes.string,
   images: PropTypes.array.isRequired,
   selectedImageIndex: PropTypes.number.isRequired,
   onImageSelect: PropTypes.func.isRequired

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import CartHelper from '../../utils/CartHelper';
@@ -21,21 +22,38 @@ export default class CartButton extends Component {
     clearInterval(this.fetchCartIntervalId);
   }
 
+  checkoutHandler = e => {
+    const { onCheckout } = this.props;
+    const cartItems = this.cartHelper.checkoutCartItems();
+    onCheckout(cartItems);
+  };
+
   render() {
-    const { className, ...props } = this.props;
+    const { className, cartUrl } = this.props;
     const cartItems = this.cartHelper.getCartItems();
 
     const classes = classnames(className, CLASS_ROOT, 'teepublic');
 
     return (
       <div className={classes}>
-        <a className={`${CLASS_ROOT}__link`} {...props}>
+        <a className={`${CLASS_ROOT}__link`} href={cartUrl}>
           Cart
           <span className={`${CLASS_ROOT}__count`}>{cartItems.length}</span>
         </a>
 
-        <button className={`${CLASS_ROOT}__checkout`}>Checkout</button>
+        <button
+          className={`${CLASS_ROOT}__checkout`}
+          onClick={this.checkoutHandler}
+        >
+          Checkout
+        </button>
       </div>
     );
   }
 }
+
+CartButton.propTypes = {
+  className: PropTypes.string,
+  cartUrl: PropTypes.string.isRequired,
+  onCheckout: PropTypes.func.isRequired
+};
