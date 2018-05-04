@@ -77,9 +77,9 @@ AddToCart.propTypes = {
 ```
 **design**: design object returned from TeePublic APIs, there are several APIs which return design objects, one example is this. (https://api.teepublic.com/v1/docs#/designs/getV1DesignsId)
 
-**affiliateId**: Your Affiliate ID so that we can track the sale and credit your portion of the revenue to you account. You can find this  (https://api.teepublic.com/v1/docs#/stores/getV1StoresId)
+**affiliateId**: The Affiliate ID of a given store so that we can track the sale and credit your portion of the revenue to you account. You can find this  (https://api.teepublic.com/v1/docs#/stores/getV1StoresId)
 
-**affiliateNetworkId**: Marcelo, Joe
+**affiliateNetworkId**: Your Affiliate Network ID so we can track the sale and credit your portion of the revenue to the account. Since it is possible to have multiple affiliates, and affiliate stores in your network, the Affiliate Network ID is necessary to get credit for sales coming from stores in your network. Found as a header `X-AffiliateNetwork-Id` on API responses.
 
 **storeId**: This is your store id on TeePublic, also returned from the API (https://api.teepublic.com/v1/docs#/stores/getV1StoresId)
 
@@ -136,7 +136,7 @@ BuyProduct.propTypes = {
 }
 ```
 
-**affiliateNetworkId**: Marcelo, Joe
+**affiliateNetworkId**: Your Affiliate Network ID so we can track the sale and credit your portion of the revenue to the account. Since it is possible to have multiple affiliates, and affiliate stores in your network, the Affiliate Network ID is necessary to get credit for sales coming from stores in your network. Found as a header `X-AffiliateNetwork-Id` on API responses.
 
 **tagLinkBuilder**: We place a component at the bottom of the page to allow users dive into other related tags. But inorder to make that happen we need a URL where we can direct them after the click. This is how our demo projects looks like.
 ```
@@ -421,15 +421,15 @@ Store.propTypes = {
 }
 ```
 
-**selectedAlbumId**: Marcello
+**selectedAlbumId**: The ID of the currently selected album, if there is an album selected. This should get passed down to the `<StoreFilter />`.
 
-**selectedPage**: Marcello
+**selectedPage**: The currently selected page number; used for paging. This should get passed down to the `<StoreFilter />`.
 
-**selectedProductTypeName**: Marcello
+**selectedProductTypeName**: The currently selected product type. This should get passed down to the `<StoreFilter />` to enable filtering by that product.
 
 
 ### `<StoreFilter />`
-You can place this filter in combination with `<DesignCollection />` and when users clicks on any of these filters, you can fire a new request (Marcello) to get filtered design. We allow user to filter by product type like tshirts or mug. We also allow users to filter by album.
+You can place this filter in combination with `<DesignCollection />` and when users clicks on any of these filters, you can fire a new request using the `onAlbumChange` or `onProductTypeChange` callbacks to get filtered design. It is likely that these callbacks can be used to make a requests to an API with params to return filtered results (https://api.teepublic.com/v1/docs#/stores/getV1StoresId). We allow user to filter by product type like t-shirts or mug. We also allow users to filter by album.
 ```
 StoreFilter.propTypes = {
   className: PropTypes.string,
@@ -458,7 +458,7 @@ StoreFilter.propTypes = {
 **filterStyle**: We support two styles as of now. nav and dropdown. dropdown is a default style but if you want you can change the style to nav. Dropdown is for mobile and nav is for desktop
 
 ### `<TeepublicPowered />`
-This is the most simple component which just let's you  drop powered by teepublic logo anywhere you want on the screen 
+This is the most simple component which just let's you  drop powered by teepublic logo anywhere you want on the screen
 
 
 # Devlopment Process
