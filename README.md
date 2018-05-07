@@ -8,8 +8,8 @@ or
 `yarn add teepublic-react`
 
 # Quick Start
-## For Ruby and React Stack
-### Step 1 - Get TeePubic Gem
+# For Ruby and React Stack
+## Step 1 - Get TeePublic Gem
 Add TeePublic gem to your Gemfile, which is a wrapper around TeePublic APIs (https://api.teepublic.com/v1/docs#/)
 
 `gem 'teepublic-api', github: 'bustedtees/teepublic-api'`
@@ -18,7 +18,7 @@ and run
 
 $`bundle install`
 
-### Step 2 - Configure
+## Step 2 - Configure
 Add `config/initializers/tee_public.rb`
 and copy paste the content below with your api key
 ```
@@ -29,7 +29,7 @@ TeePublic::Api.configure do |config|
 end
 ```
 
-### Step 3 - Explore APIs
+## Step 3 - Explore APIs
 Open rails console `rails c` and try these
 #### List of Stores API
 ```
@@ -56,8 +56,8 @@ Open rails console `rails c` and try these
   puts store
 ```
 
-### Design API
-If no designs are found in Single Store API that means you have not added any designs to that store on teepublic.com. Head to TeePubic.com, locate that store from slug, '/stores/<store-slug>'. Add few designs to it.
+#### Design API
+If no designs are found in Single Store API that means you have not added any designs to that store on teepublic.com. Head to TeePublic.com, locate that store from slug, '/stores/<store-slug>'. Add few designs to it.
 ```
   # design_id -> Single Store API returns a list of designs. Pick any design_id you like
   fetch_design = TeePublic::Api.designs(design_id).deep_symbolize_keys!
@@ -77,7 +77,7 @@ Each design can be printed on different products like t-shirt, mug or case. Furt
 ```
 
 #### Affiliate Network ID API
-Affiliate Network ID is a unique ID assigned to an application (like https://mywebsite.com) on TeePubic system. This is required by TeePubic during checkout to make sure it credit sales back to an affiliate network.
+Affiliate Network ID is a unique ID assigned to an application (like https://mywebsite.com) on TeePublic system. This is required by TeePublic during checkout to make sure it credit sales back to an affiliate network.
 ```
 # store_url is explained in "Single Store API" section
 fetch_store = TeePublic::Api.send(store_url).deep_symbolize_keys!
@@ -85,7 +85,7 @@ affiliate_network_id = fetch_store.dig(:headers, :'x-affiliatenetwork-id')
 puts affiliate_network_id
 ```
 
-### Step 4 -  Add Routes to route file
+## Step 4 -  Add Routes to routes.rb file
 Application will need at-least below three routes. One for teepublic store, one for teepublic design and one for cart page.
 This is how our demo application creates these routes
 ```
@@ -96,10 +96,12 @@ get '/cart', to: 'application#cart'
 Decide which URL you plan to dedicate to show teepublic pages and add them to your `routes.rb`
 
 
-### Step 5 - Prepare Controller
+## Step 5 - Prepare Controller
 According to Step 5, add actions in controller to handle newly added routes.
 
 **Please refactor according to the application style, we added all logic into one function to make it easier to understand**
+
+#### Store action
 ```
 def store
   @page ||= params['page'].try(:to_i) || 1
@@ -110,7 +112,10 @@ def store
   fetch_store = TeePublic::Api.send(store_url).deep_symbolize_keys!
   @store = fetch_store[:body]
 end
+```
 
+#### Design Action
+```
 def design
   @page ||= params['page'].try(:to_i) || 1
   store_url = "stores/#{params[:id]}?page=#{@page}"
@@ -131,18 +136,144 @@ def design
   # Set at the end since this requires a response.
   @affiliate_network_id = fetch_store.dig(:headers, :'x-affiliatenetwork-id')
 end
+```
 
+#### Cart action
+```
 def cart
 end
 ```
 
-### Step 7 - Creating views
-*COMING SOON*
+## Step 7 - Creating views
+Create 3 corresponding views to actions added in step 6
 
-### Step 8 - Creating TeePublic Wrapper components
-*COMING SOON*
+#### Store view
+Add store.html.erb
+```
+<%= react_component('TeePublicStore', store: @store, page: @page, albumId: params[:album_id], productTypeName: params[:product_type]) %>
+```
 
-### Step 9 - Understanding Route Builders
+#### Design view
+Add design.html.erb
+```
+<%= react_component('TeePublicDesign', store: @store, design: @design, skuData: @skus, affiliateNetworkId: @affiliate_network_id) %>
+```
+
+#### Cart view
+Add cart.html.erb
+```
+<%= react_component('TeePublicCart') %>
+```
+
+## Step 8 - Creating TeePublic React Components
+Let's install the latest version of teepublic-react package
+
+`npm i teepublic-react`
+
+import teepublic-react css to your application
+
+`import 'teepublic-react/build/css/index.css'`
+
+Component level documentation could be found below in documentation section.
+
+As you noticed in the Step 7, we used some components (`TeePublicStore`, `TeePublicDesign`, `TeePublicCart`) which doesn't exist.
+#### `<TeePublicStore />`
+Add this new component to your react component library.
+Copy paste the code below with your necessary tweaks
+
+```
+import React from 'react'
+
+import { Footer, Store } from 'teepublic-react'
+// We will talk about this in Step 9
+import { TeePublicRoutes } from '../TeePublicConfiguration'
+
+export default class TeePublicStore extends React.Component {
+  render () {
+    const { store, page, albumId, productTypeName  } = this.props
+
+    return (
+      <div className='teepublic store'>
+        <Store
+          className='contain'
+          storeData={store}
+          configuration={TeePublicRoutes}
+          selectedAlbumId={albumId}
+          selectedPage={page}
+          selectedProductTypeName={productTypeName || ''}
+        />
+        <Footer />
+      </div>
+    )
+  }
+}
+```
+
+#### `<TeePublicDesign />`
+Add this new component to your react component library.
+Copy paste the code below with your necessary tweaks
+```
+import React, {Component} from 'react'
+
+import { BuyProduct, CartButton, Footer } from 'teepublic-react'
+// We will talk about this in Step 9
+import { TeePublicRoutes } from '../TeePublicConfiguration'
+
+export default class TeePublicDesign extends Component {
+  render () {
+    const { design, store, skuData, affiliateNetworkId } = this.props
+
+    return (
+      <div className='teepublic design'>
+        <CartButton className='contain' href={TeePublicRoutes.cartUrl()} onCheckout={TeePublicRoutes.onCheckout} />
+
+        <BuyProduct
+          design={design}
+          store={store}
+          skuData={skuData}
+          storeUrl={TeePublicRoutes.storeUrl}
+          buyProductLinkBuilder={TeePublicRoutes.buyProductUrl}
+          tagLinkBuilder={TeePublicRoutes.tagUrl}
+          affiliateNetworkId={affiliateNetworkId}
+          className='contain'
+        />
+
+        <Footer />
+      </div>
+    )
+  }
+}
+```
+
+#### `<TeePublicCart />`
+Add this new component to your react component library.
+Copy paste the code below with your necessary tweaks
+```
+import React, {Component} from 'react'
+
+import { Cart, Footer } from 'teepublic-react'
+// We will talk about this in Step 9
+import { TeePublicRoutes } from '../TeePublicConfiguration'
+
+export default class TeePublicCart extends Component {
+  render () {
+    return (
+      <div className='teepublic cart'>
+        <Cart
+          className='contain'
+          onCheckout={TeePublicRoutes.onCheckout}
+          storePathLinkBuilder={TeePublicRoutes.storesUrl}
+          buyProductLinkBuilder={TeePublicRoutes.buyProductUrl}
+        />
+
+        <Footer />
+      </div>
+    )
+  }
+}
+```
+
+## Step 9 - Understanding Route Builders
 Each application can host teepublic store, product or cart pages according to their routing convention.
 For eg.
 https://website.com/stores/store_id
@@ -533,7 +664,7 @@ RelatedTags.propTypes = {
 This is a wrapper around flex box with row layout
 
 ## `<Store />`
-This renders a complete store page very similar to your TeePubic store.
+This renders a complete store page very similar to your TeePublic store.
 #### `<Store />` propTypes
 ```
 Store.propTypes = {
