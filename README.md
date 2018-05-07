@@ -277,7 +277,9 @@ export default class TeePublicCart extends Component {
 Each application can host teepublic store, product or cart pages according to their routing convention.
 For eg.
 https://website.com/stores/store_id
+
 https://website.com/cart
+
 https://website.com/design/design_id
 
 React components allows applications to pass functions which knows how to build your application specific routes.
