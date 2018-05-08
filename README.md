@@ -10,7 +10,7 @@ or
 # Quick Start
 # For Ruby and React Stack
 ## Step 1 - Get TeePublic Gem
-Add TeePublic gem to your Gemfile, which is a wrapper around TeePublic APIs (https://api.teepublic.com/v1/docs#/)
+Add TeePublic gem to the Gemfile, which is a wrapper around TeePublic APIs (https://api.teepublic.com/v1/docs#/)
 
 `gem 'teepublic-api', github: 'bustedtees/teepublic-api'`
 
@@ -57,7 +57,7 @@ Open rails console `rails c` and try these
 ```
 
 #### Design API
-If no designs are found in Single Store API that means you have not added any designs to that store on teepublic.com. Head to TeePublic.com, locate that store from slug, '/stores/<store-slug>'. Add few designs to it.
+If no designs are found in Single Store API that means store has no designs added on teepublic.com. Head to TeePublic.com, locate that store from slug, '/stores/<store-slug>'. Add few designs to it.
 ```
   # design_id -> Single Store API returns a list of designs. Pick any design_id you like
   fetch_design = TeePublic::Api.designs(design_id).deep_symbolize_keys!
@@ -66,7 +66,7 @@ If no designs are found in Single Store API that means you have not added any de
 ```
 
 #### SKUs API
-Each design can be printed on different products like t-shirt, mug or case. Further more, each product can have different skus like t-shirt colors, sizes, etc. Skus are different variants of a product for a given design
+TeePublic prints each design on a variety of products like t-shirts, mugs and phone cases. Each product is of a certain product type, and each specific product (a combination of size, color, product type, etc) is represented by a single SKU
 ```
   # design_id -> Single Store API returns a list of designs. Pick any design_id you like
   # product_type -> Design API returns a list of skus, sku object has a key called "productType"
@@ -86,14 +86,13 @@ puts affiliate_network_id
 ```
 
 ## Step 4 -  Add Routes to routes.rb file
-Application will need at-least below three routes. One for teepublic store, one for teepublic design and one for cart page.
-This is how our demo application creates these routes
+Will need the 3 routes below: the storefront, the design, and the cart.
 ```
 get '/stores/:id', to: 'application#store'
 get '/stores/:id/designs/:product_type/:design_id', to: 'application#design'
 get '/cart', to: 'application#cart'
 ```
-Decide which URL you plan to dedicate to show teepublic pages and add them to your `routes.rb`
+Decide which URL application plans to dedicate to show teepublic pages and add them to the `routes.rb`
 
 
 ## Step 5 - Prepare Controller
@@ -150,23 +149,23 @@ Create 3 corresponding views to actions added in step 6
 #### Store view
 Add store.html.erb
 ```
-<%= react_component('TeePublicStore', store: @store, page: @page, albumId: params[:album_id], productTypeName: params[:product_type]) %>
+<%= react_component('MySiteStore', store: @store, page: @page, albumId: params[:album_id], productTypeName: params[:product_type]) %>
 ```
 
 #### Design view
 Add design.html.erb
 ```
-<%= react_component('TeePublicDesign', store: @store, design: @design, skuData: @skus, affiliateNetworkId: @affiliate_network_id) %>
+<%= react_component('MySiteDesign', store: @store, design: @design, skuData: @skus, affiliateNetworkId: @affiliate_network_id) %>
 ```
 
 #### Cart view
 Add cart.html.erb
 ```
-<%= react_component('TeePublicCart') %>
+<%= react_component('MySiteCart') %>
 ```
 
 ## Step 8 - Creating TeePublic React Components
-Let's install the latest version of teepublic-react package
+Install the latest version of teepublic-react package
 
 `npm i teepublic-react`
 
@@ -176,11 +175,8 @@ import teepublic-react css to your application
 
 Component level documentation could be found below in documentation section.
 
-As you noticed in the Step 7, we used some components (`TeePublicStore`, `TeePublicDesign`, `TeePublicCart`) which doesn't exist.
-#### `<TeePublicStore />`
-Add this new component to your react component library.
-Copy paste the code below with your necessary tweaks
-
+As noticed in the Step 7, some components (`MySiteStore`, `MySiteDesign`, `MySiteCart`) which doesn't exist yet.
+#### `<MySiteStore />`
 ```
 import React from 'react'
 
@@ -188,7 +184,7 @@ import { Footer, Store } from 'teepublic-react'
 // We will talk about this in Step 9
 import { TeePublicRoutes } from '../TeePublicConfiguration'
 
-export default class TeePublicStore extends React.Component {
+export default class MySiteStore extends React.Component {
   render () {
     const { store, page, albumId, productTypeName  } = this.props
 
@@ -209,9 +205,7 @@ export default class TeePublicStore extends React.Component {
 }
 ```
 
-#### `<TeePublicDesign />`
-Add this new component to your react component library.
-Copy paste the code below with your necessary tweaks
+#### `<MySiteDesign />`
 ```
 import React, {Component} from 'react'
 
@@ -219,7 +213,7 @@ import { BuyProduct, CartButton, Footer } from 'teepublic-react'
 // We will talk about this in Step 9
 import { TeePublicRoutes } from '../TeePublicConfiguration'
 
-export default class TeePublicDesign extends Component {
+export default class MySiteDesign extends Component {
   render () {
     const { design, store, skuData, affiliateNetworkId } = this.props
 
@@ -245,9 +239,7 @@ export default class TeePublicDesign extends Component {
 }
 ```
 
-#### `<TeePublicCart />`
-Add this new component to your react component library.
-Copy paste the code below with your necessary tweaks
+#### `<MySiteCart />`
 ```
 import React, {Component} from 'react'
 
@@ -255,7 +247,7 @@ import { Cart, Footer } from 'teepublic-react'
 // We will talk about this in Step 9
 import { TeePublicRoutes } from '../TeePublicConfiguration'
 
-export default class TeePublicCart extends Component {
+export default class MySiteCart extends Component {
   render () {
     return (
       <div className='teepublic cart'>
@@ -285,7 +277,7 @@ https://website.com/design/design_id
 React components allows applications to pass functions which knows how to build your application specific routes.
 It would be a good practice if application maintains these route builders in one file.  
 
-Create a `TeepublicConfiguration.js` in your javascript folder and copy paste the content below and change the functions according to your application URLs for TeePublic pages. Keep the `tagUrl` and `onCheckout` function as it is for now and they will just work without any change.
+Create a `TeepublicConfiguration.js` in the javascript folder and copy paste the content below and change the functions according to your application's URLs for TeePublic pages.
 ```
 export const TeePublicRoutes = {
   ### NEEDS CHANGE ####
@@ -309,7 +301,8 @@ export const TeePublicRoutes = {
   },
 
 
-
+  // Keep the `tagUrl` and `onCheckout` function as it is for now
+  // they will just work without any change.
   tagUrl: (type, tag, affiliateId, affiliateNetworkId) => {
     var baseUrl = 'https://www.teepublic.com'
     let aff_param = `ref_id=${affiliateId || ''}`;
