@@ -4,5 +4,5 @@ import BuyProduct from './BuyProduct';
 
 it.skip('BuyProduct renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Cart />, div);
+  ReactDOM.render(<BuyProduct />, div);
 });
