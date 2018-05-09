@@ -529,14 +529,12 @@ This component shows a collection of `<DesignTile />`. This component is being i
 #### `<DesignCollection />` propTypes
 ```
 DesignCollection.propTypes = {
-  tileSize: PropTypes.oneOf(['small', 'medium', 'large']),
   designs: PropTypes.array.isRequired,
   buyProductLinkBuilder: PropTypes.func.isRequired,
   storeId: PropTypes.number
 };
 ```
 #### `<DesignCollection />` propTypes explanation
-**tileSize**: This is being passed to individual `<DesignTile />` component
 
 **designs**: List of designs returned from TeePublic APIs. (https://api.teepublic.com/v1/docs#/designs/getV1Designs)
 
