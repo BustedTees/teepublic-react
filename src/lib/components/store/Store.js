@@ -93,7 +93,6 @@ export default class Store extends Component {
 
           <DesignCollection
             designs={designs}
-            tileSize="large"
             buyProductLinkBuilder={this.props.configuration.buyProductUrl}
             storeId={this.props.storeData.id}
           />

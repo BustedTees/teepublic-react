@@ -31,12 +31,7 @@ export default class DesignCollection extends Component {
 }
 
 DesignCollection.propTypes = {
-  tileSize: PropTypes.oneOf(['small', 'medium', 'large']),
   designs: PropTypes.array.isRequired,
   buyProductLinkBuilder: PropTypes.func.isRequired,
   storeId: PropTypes.number
-};
-
-DesignCollection.defaultProps = {
-  tileSize: 'large'
 };
