@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DesignTile from './DesignTile';
 
-it('DesignTile renders without crashing', () => {
-  expect(1).toBe(1);
+it.skip('DesignTile renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Footer />, div);
 });
