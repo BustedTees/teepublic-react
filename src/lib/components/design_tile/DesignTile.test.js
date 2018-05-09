@@ -4,5 +4,5 @@ import DesignTile from './DesignTile';
 
 it.skip('DesignTile renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Footer />, div);
+  ReactDOM.render(<DesignTile />, div);
 });
