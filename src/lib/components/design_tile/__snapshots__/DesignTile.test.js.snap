@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Design Tile Testing renders correctly 1`] = `
+<div
+  className="tp-design-tile teepublic"
+>
+  <a
+    className="tp-design-tile__image-link"
+    href="store/146747/design/2310768/product/t-shirt"
+  >
+    <img
+      alt="mockup"
+      className="tp-design-tile__image"
+      src="https://res.cloudinary.com/teepublic/image/private/s--VlT5WX6b--/t_Resized Artwork/c_crop,x_10,y_10/c_fit,w_649/c_crop,g_north_west,h_626,w_470,x_89,y_36/g_north_west,u_upload:v1462829015:production:blanks:mtl53ofohwq5goqjo9ke,x_-395,y_-325/b_rgb:eeeeee/c_limit,f_jpg,h_630,q_90,w_630/v1516963941/production/designs/2310768_0.jpg"
+    />
+  </a>
+  <div
+    className="tp-design-tile__details"
+  >
+    <p
+      className="tp-design-tile__title"
+    >
+      <a
+        href="store/146747/design/2310768/product/t-shirt"
+      >
+        Ring System
+      </a>
+    </p>
+    <button
+      className="tp-design-tile__buy-btn"
+      onClick={[Function]}
+    >
+      Buy
+    </button>
+  </div>
+  <p
+    className="tp-design-tile__price"
+  >
+    $20.00
+  </p>
+</div>
+`;

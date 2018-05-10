@@ -10,13 +10,7 @@ const CLASS_ROOT = 'tp-design-tile';
 
 export default class DesignTile extends Component {
   render() {
-    const {
-      className,
-      design,
-      size,
-      buyProductLinkBuilder,
-      storeId
-    } = this.props;
+    const { className, design, buyProductLinkBuilder, storeId } = this.props;
     const designSku = design._embedded.defaultProduct._embedded.defaultSku;
     const buyProductLink = buyProductLinkBuilder(
       design.id,
@@ -24,17 +18,9 @@ export default class DesignTile extends Component {
       storeId
     );
 
-    const classes = classnames(
-      CLASS_ROOT,
-      {
-        [`${CLASS_ROOT}--${size}`]: size
-      },
-      className,
-      'teepublic'
-    );
+    const classes = classnames(CLASS_ROOT, className, 'teepublic');
 
-    const sku = design._embedded.defaultProduct._embedded.defaultSku;
-    const { images, price } = sku;
+    const { images, price } = designSku;
 
     var skuMockupImage = _.find(images, function(image) {
       return image.type === 'mockup';
@@ -65,7 +51,7 @@ export default class DesignTile extends Component {
     const buyButton = (
       <button
         className={`${CLASS_ROOT}__buy-btn`}
-        onClick={() => (window.location = buyProductLink)}
+        onClick={() => (window.location.href = buyProductLink)}
       >
         Buy
       </button>
@@ -88,12 +74,7 @@ export default class DesignTile extends Component {
 
 DesignTile.propTypes = {
   className: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
   design: PropTypes.object.isRequired,
   buyProductLinkBuilder: PropTypes.func.isRequired,
   storeId: PropTypes.number.isRequired
-};
-
-DesignTile.defaultProps = {
-  size: 'large'
 };
