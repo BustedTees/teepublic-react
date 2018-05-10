@@ -553,14 +553,12 @@ This component is responsible for rendering individual design tile which include
 ```
 DesignTile.propTypes = {
   className: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
   design: PropTypes.object.isRequired,
   buyProductLinkBuilder: PropTypes.func.isRequired,
   storeId: PropTypes.number.isRequired
 };
 ```
 #### `<DesignTile />` propTypes explanation
-**size**: `['small', 'medium', 'large']`
 
 **design**: a single design object returned from TeePublic APIs (https://api.teepublic.com/v1/docs#/designs/getV1Designs)
 
