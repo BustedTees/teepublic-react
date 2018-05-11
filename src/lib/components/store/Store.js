@@ -68,7 +68,7 @@ export default class Store extends Component {
       <div className={classes}>
         <CartButton
           cartUrl={this.props.configuration.cartUrl()}
-          onCheckout={cartItems => console.log(cartItems)}
+          onCheckout={this.props.configuration.onCheckout}
         />
 
         <StoreFilter
@@ -114,7 +114,8 @@ Store.propTypes = {
   configuration: PropTypes.shape({
     storeUrl: PropTypes.func.isRequired,
     cartUrl: PropTypes.func.isRequired,
-    buyProductUrl: PropTypes.func.isRequired
+    buyProductUrl: PropTypes.func.isRequired,
+    onCheckout: PropTypes.func.isRequired
   }).isRequired,
   selectedAlbumId: PropTypes.number,
   selectedPage: PropTypes.number,

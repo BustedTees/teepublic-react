@@ -664,7 +664,8 @@ Store.propTypes = {
   configuration: PropTypes.shape({
     storeUrl: PropTypes.func.isRequired,
     cartUrl: PropTypes.func.isRequired,
-    buyProductUrl: PropTypes.func.isRequired
+    buyProductUrl: PropTypes.func.isRequired,
+    onCheckout: PropTypes.func.isRequired,
   }).isRequired,
   selectedAlbumId: PropTypes.number,
   selectedPage: PropTypes.number,
@@ -688,6 +689,16 @@ Store.propTypes = {
 (designId, productTypeName, storeId) => {
   return `/stores/${storeId}/designs/${designId}?product_type=${productTypeName}`;
 }
+```
+
+**onCheckout**: A function to help users to checkout and redirect them to TeePublic. Below is a working example
+```
+  (cartItems) => {
+    const cartJSON = JSON.stringify({cartItems: cartItems})
+    var url = 'https://www.teepublic.com/external_cart?cart_items='
+    url += cartJSON
+    window.location = url
+  },
 ```
 
 **selectedAlbumId**: The ID of the currently selected album, if there is an album selected. This should get passed down to the `<StoreFilter />`.
