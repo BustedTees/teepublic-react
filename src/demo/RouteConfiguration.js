@@ -20,6 +20,10 @@ export const ROUTE_CONFIGURATION = {
     return `/stores/${storeId}/designs/${designId}?product_type=${productTypeName}`;
   },
 
+  onCheckout: cartItems => {
+    console.log(cartItems);
+  },
+
   sizechartUrl: () => {
     return 'https://www.teepublic.com/sizechart';
   }
