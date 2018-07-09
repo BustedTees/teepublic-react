@@ -524,7 +524,7 @@ This is a wrapper around flex box with column layout
 
 
 ## `<DesignCollection />`
-This component shows a collection of `<DesignTile />`. This component is being inside `<Store />` component but if applications needs to show a collection of designs somewhere else, this could be used.
+This component shows a collection of `<DesignTile />`. This component is being used inside `<Store />` component but if applications needs to show a collection of designs somewhere else, this could be used.
 
 #### `<DesignCollection />` propTypes
 ```
