@@ -20,18 +20,14 @@ export default class DesignTile extends Component {
 
     const classes = classnames(CLASS_ROOT, className, 'teepublic');
 
-    const { images, price } = designSku;
-
-    var skuMockupImage = _.find(images, function(image) {
-      return image.type === 'mockup';
-    });
+    const { defaultImage, price } = designSku;
 
     const designImage = (
       <a href={buyProductLink} className={`${CLASS_ROOT}__image-link`}>
         <img
           className={`${CLASS_ROOT}__image`}
-          src={skuMockupImage.url}
-          alt={skuMockupImage.type}
+          src={defaultImage.url}
+          alt={defaultImage.type}
         />
       </a>
     );
