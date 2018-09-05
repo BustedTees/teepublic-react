@@ -49,14 +49,14 @@ export default class ProductVariants extends Component {
       );
     }, this);
 
-    return (
+    return variants.length ? (
       <div className={classes}>
         <h3 className={`${CLASS_ROOT}__h`}>
           This product is also available as:
         </h3>
         <div className={`${CLASS_ROOT}__thumbs`}>{variants}</div>
       </div>
-    );
+    ) : null;
   }
 }
 
