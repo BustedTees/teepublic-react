@@ -4,7 +4,6 @@ import classnames from 'classnames';
 
 import MoneyHelper from '../../utils/MoneyHelper';
 import ProductHelper from '../../utils/ProductHelper';
-import _ from 'underscore';
 
 import './CartItem.scss';
 
@@ -32,17 +31,12 @@ export default class CartItem extends Component {
   render() {
     const { className, cartItem, buyProductLinkBuilder } = this.props;
     const classes = classnames(className, CLASS_ROOT, 'teepublic');
-    const skuOptions = this.productHelper.skuOptions(cartItem.sku);
-
-    var skuMockupImage = _.find(cartItem.sku.images, function(image) {
-      return image.type === 'mockup';
-    });
 
     const skuImage = (
       <img
         className={`${CLASS_ROOT}__image`}
-        src={skuMockupImage.url}
-        alt={skuMockupImage.type}
+        src={cartItem.sku.defaultImage.url}
+        alt={cartItem.sku.defaultImage.type}
       />
     );
 
@@ -93,6 +87,26 @@ export default class CartItem extends Component {
       );
     };
 
+    const productOptions = options => {
+      return options.map(option => {
+        let value;
+
+        switch (option.name.toLowerCase()) {
+          case 'size':
+          case 'print size':
+            value = 'Size: ' + option.value;
+            break;
+          case 'color':
+            value = 'Color: ' + option.value;
+            break;
+          default:
+            value = option.value;
+        }
+
+        return <li>{value}</li>;
+      });
+    };
+
     return (
       <div className={classes}>
         {designTitle}
@@ -104,9 +118,7 @@ export default class CartItem extends Component {
               <li className={`${CLASS_ROOT}__details-title`}>
                 {designTitleLink}
               </li>
-              <li>{skuOptions.style}</li>
-              <li>{`${skuOptions.gender} - Size ${skuOptions.size}`}</li>
-              <li>{skuOptions.color}</li>
+              {productOptions(cartItem.sku.productOptions)}
               <li>{removeLink('remove-d')}</li>
             </ul>
 

@@ -103,7 +103,7 @@ export default class StoreFilter extends Component {
                   key={index}
                   className={classes}
                   onClick={event => {
-                    onProductTypeChange(productType.displayName);
+                    onProductTypeChange(productType.name);
                   }}
                 >
                   {productType.displayName}
