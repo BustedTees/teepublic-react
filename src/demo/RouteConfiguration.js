@@ -26,5 +26,9 @@ export const ROUTE_CONFIGURATION = {
 
   sizechartUrl: () => {
     return 'https://www.teepublic.com/sizechart';
+  },
+
+  cartAddCallback: () => {
+    window.location = '/cart';
   }
 };

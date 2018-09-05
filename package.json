@@ -1,6 +1,6 @@
 {
   "name": "teepublic-react",
-  "version": "0.4.22",
+  "version": "0.5.0",
   "description": "TeePublic React Components",
   "main": "build/index.js",
   "scripts": {

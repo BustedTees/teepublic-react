@@ -15,10 +15,19 @@ export default class AddToCart extends Component {
       sku,
       storeId,
       affiliateId,
-      affiliateNetworkId
+      affiliateNetworkId,
+      callback
     } = this.props;
     const cartHelper = new CartHelper();
-    cartHelper.addToCart(design, sku, storeId, affiliateId, affiliateNetworkId);
+
+    cartHelper.addToCart(
+      design,
+      sku,
+      storeId,
+      affiliateId,
+      affiliateNetworkId,
+      callback
+    );
   };
 
   render() {
@@ -43,5 +52,6 @@ AddToCart.propTypes = {
   affiliateId: PropTypes.number.isRequired,
   affiliateNetworkId: PropTypes.number.isRequired,
   storeId: PropTypes.number.isRequired,
-  sku: PropTypes.object.isRequired
+  sku: PropTypes.object.isRequired,
+  callback: PropTypes.func
 };
