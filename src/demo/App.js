@@ -76,6 +76,7 @@ export default class App extends Component {
             return `${baseUrl}/${type}/${tag}?ref_id=${affiliateId}&aff_network_id=${affiliateNetworkId}`;
           }}
           sizechartUrl={ROUTE_CONFIGURATION.sizechartUrl()}
+          cartAddCallback={ROUTE_CONFIGURATION.cartAddCallback}
         />
         <br />
         <br />

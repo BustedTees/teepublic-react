@@ -23,6 +23,7 @@ export default class BuyProduct extends Component {
     const productOptions = props.skuData.options;
     const skus = props.skuData._embedded.skus;
     const colorMetaData = props.skuData._embedded.colors;
+    const cartAddCallback = props.cartAddCallback;
 
     this.productHelper = new ProductHelper();
     const selectorsOptions = this.productHelper.collectSelectorOptions(
@@ -95,7 +96,8 @@ export default class BuyProduct extends Component {
       buyProductLinkBuilder,
       tagLinkBuilder,
       affiliateNetworkId,
-      sizechartUrl
+      sizechartUrl,
+      cartAddCallback
     } = this.props;
 
     const {
@@ -142,6 +144,7 @@ export default class BuyProduct extends Component {
         storeId={store.id}
         affiliateId={store.affiliateId}
         affiliateNetworkId={affiliateNetworkId}
+        callback={cartAddCallback}
       />
     );
 

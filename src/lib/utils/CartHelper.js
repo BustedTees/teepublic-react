@@ -6,6 +6,7 @@ export default class CartHelper {
     storeId,
     affiliateId,
     affiliateNetworkId,
+    callback,
     quantity = 1
   ) {
     const addedCartItem = {
@@ -32,7 +33,7 @@ export default class CartHelper {
       cartItems.push(addedCartItem);
     }
 
-    this.setCartItems(cartItems);
+    this.setCartItems(cartItems, callback);
   }
 
   updateCartItem(updatedCartItem) {
@@ -85,8 +86,9 @@ export default class CartHelper {
     }
   }
 
-  setCartItems(cartItems) {
+  setCartItems(cartItems, callback) {
     localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+    if (callback) callback();
   }
 
   itemsDescription(cartItems) {
